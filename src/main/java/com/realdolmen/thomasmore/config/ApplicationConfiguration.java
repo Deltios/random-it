@@ -10,6 +10,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
+import java.util.Locale;
 import java.util.Properties;
 
 /**
@@ -25,10 +26,21 @@ public class ApplicationConfiguration {
     @Bean
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/");
-        dataSource.setUsername("");
-        dataSource.setPassword("");
+        String OS = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
+        if (OS.indexOf("nux") >= 0) {
+            dataSource.setDriverClassName("org.postgresql.Driver");
+            dataSource.setUrl("jdbc:postgresql://localhost:5432/");
+            dataSource.setUsername("pieter");
+            dataSource.setPassword("pieter");
+        }
+        else {
+            dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+            dataSource.setUrl("jdbc:mysql://localhost:3306/");
+            dataSource.setUsername("javaroot");
+            dataSource.setPassword("thomasmore");
+        }
+
+
 
         return dataSource;
     }
