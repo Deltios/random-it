@@ -30,17 +30,13 @@ public class ApplicationConfiguration {
         if (OS.indexOf("nux") >= 0) {
             dataSource.setDriverClassName("org.postgresql.Driver");
             dataSource.setUrl("jdbc:postgresql://localhost:5432/");
-            dataSource.setUsername("javaroot");
-            dataSource.setPassword("thomasmore");
         }
         else {
             dataSource.setDriverClassName("com.mysql.jdbc.Driver");
             dataSource.setUrl("jdbc:mysql://localhost:3306/");
-            dataSource.setUsername("javaroot");
-            dataSource.setPassword("thomasmore");
         }
-
-
+        dataSource.setUsername("javaroot");
+        dataSource.setPassword("thomasmore");
 
         return dataSource;
     }
