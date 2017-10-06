@@ -26,8 +26,8 @@ public class ApplicationConfiguration {
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/");
-        dataSource.setUsername("");
+        dataSource.setUrl("jdbc:mysql://localhost:1234/Java-project3");
+        dataSource.setUsername("root");
         dataSource.setPassword("");
 
         return dataSource;
@@ -42,7 +42,7 @@ public class ApplicationConfiguration {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(dataSource());
-        entityManager.setPackagesToScan("com.realdolmen.thomasmore.domain");
+        entityManager.setPackagesToScan("com.realdolmen.thomasmore.domain");//entity classes
         entityManager.setJpaVendorAdapter(jpaVendorAdapter());
         entityManager.setJpaProperties(jpaProperties());
 
@@ -59,7 +59,7 @@ public class ApplicationConfiguration {
 
     Properties jpaProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");//maakt zelf db aan en dropt zelf
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
 
         return properties;
