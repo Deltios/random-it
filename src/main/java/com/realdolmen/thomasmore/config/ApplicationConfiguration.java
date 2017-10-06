@@ -26,9 +26,9 @@ public class ApplicationConfiguration {
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/");
-        dataSource.setUsername("");
-        dataSource.setPassword("");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/projectdb");
+        dataSource.setUsername("root");
+        dataSource.setPassword("mysql");
 
         return dataSource;
     }
@@ -42,7 +42,7 @@ public class ApplicationConfiguration {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(dataSource());
-        entityManager.setPackagesToScan("com.realdolmen.thomasmore.domain");
+        entityManager.setPackagesToScan("com.realdolmen.thomasmore.domain"); //waar je entity files staan
         entityManager.setJpaVendorAdapter(jpaVendorAdapter());
         entityManager.setJpaProperties(jpaProperties());
 

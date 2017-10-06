@@ -11,7 +11,7 @@ import javax.faces.bean.RequestScoped;
 public class HelloWorldController {
 
     public String getHelloWorld() {
-        return "Hello, world!";
+        return "Hello, world! Wa moete we doen?";
     }
 
 }
