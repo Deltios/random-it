@@ -1,9 +1,13 @@
-package com.journaldev.security;
+package com.realdolmen.thomasmore.security;
 
-/*import com.journaldev.hibernate.data.User;
-import com.journaldev.session.UserSession;
-import com.journaldev.spring.service.UserService;
+/*
+
+
 */
+
+import com.realdolmen.thomasmore.data.User;
+import com.realdolmen.thomasmore.service.UserService;
+import com.realdolmen.thomasmore.session.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -19,6 +23,8 @@ import java.util.Collection;
 /**
  * Created by JUZAU33 on 8/08/2017.
  */
+
+
 @Service
 public class DatabaseSecurityProvider implements AuthenticationProvider {
 
@@ -28,14 +34,15 @@ public class DatabaseSecurityProvider implements AuthenticationProvider {
     @Autowired
     private UserSession userSession;
 
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        User user = userService.authenticateUser(username, password);
-
-        if (user == null) {
+//        User user = userService.authenticateUser(username, password);
+User user = new User(null, null);
+         if (user == null) {
             throw new BadCredentialsException("Invalid username or password!");
         }
 
@@ -47,10 +54,11 @@ public class DatabaseSecurityProvider implements AuthenticationProvider {
             }
         });
 
-        userSession.setUser(user);
+//        userSession.setUser(user);
 
         return new UsernamePasswordAuthenticationToken(authentication.getName(), authentication.getCredentials(), authorityCollection);
     }
+
 
     @Override
     public boolean supports(Class<?> aClass) {

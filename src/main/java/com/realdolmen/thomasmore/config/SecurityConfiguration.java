@@ -1,6 +1,6 @@
-package com.journaldev.config;
+package com.realdolmen.thomasmore.config;
 
-import com.journaldev.security.DatabaseSecurityProvider;
+import com.realdolmen.thomasmore.security.DatabaseSecurityProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
