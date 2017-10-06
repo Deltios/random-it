@@ -1,8 +1,9 @@
 package com.journaldev.security;
 
-import com.journaldev.hibernate.data.User;
+/*import com.journaldev.hibernate.data.User;
 import com.journaldev.session.UserSession;
 import com.journaldev.spring.service.UserService;
+*/
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
