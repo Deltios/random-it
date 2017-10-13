@@ -9,5 +9,26 @@
 </h:head>
 <h:body>
     <h:outputText value="#{helloWorldController.helloWorld}" />
+    <br />
+    <h:form>
+        <p:growl id="growl" />
+        <p:inputText id="username" value="#{userController.newUserUsername}" /> <br />
+        <p:watermark value="Username" for="username" />
+        <p:inputText id="password" value="#{userController.newUserPassword}" /> <br />
+        <p:watermark value="Password" for="password" />
+        <p:inputText id="userLevel" value="#{userController.newUserLevel}" /> <br />
+        <p:watermark value="User level" for="userLevel" />
+        <p:commandButton value="Submit" action="#{userController.createUser()}" update="@form" />
+    </h:form>
+
+    <br />
+
+    <h:dataTable value="#{userController.users}" var="user">
+        <h:column>
+            <h:link value="#{user.username}" outcome="user">
+                <f:param name="id" value="#{user.id}" />
+            </h:link>
+        </h:column>
+    </h:dataTable>
 </h:body>
 </html>

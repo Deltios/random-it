@@ -12,10 +12,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void createEmployee(String username, String password) {
+    public void createUser(String username, String password, int userLevel) {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
+        user.setUserLevel(userLevel);
 
         userRepository.save(user);
     }

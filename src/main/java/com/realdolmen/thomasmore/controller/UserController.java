@@ -18,20 +18,22 @@ public class UserController {
 
     private String newUserUsername;
     private String newUserPassword;
+    private int newUserLevel;
 
     public List<User> getUsers() {
         return userService.findAllUsers();
     }
 
-    /*public void createUser() {
-        userService.createUser(newUserUsername, newUserPassword);
+    public void createUser() {
+        userService.createUser(newUserUsername, newUserPassword, newUserLevel);
         addMessage("User toegevoegd!");
         clearForm();
-    }*/
+    }
 
     private void clearForm() {
         newUserUsername = null;
         newUserPassword = null;
+        newUserLevel = 0;
     }
 
     private void addMessage(String summary) {
@@ -39,26 +41,34 @@ public class UserController {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
-    public String getNewEmployeeFirstName() {
+    public String getNewUserUsername() {
         return newUserUsername;
     }
 
-    public String getNewEmployeeLastName() {
+    public String getNewUserPassword() {
         return newUserPassword;
     }
 
-    public void setNewEmployeeFirstName(String newEmployeeFirstName) {
+    public int getNewUserLevel() {
+        return newUserLevel;
+    }
+
+    public void setNewUserUsername(String newEmployeeFirstName) {
         this.newUserUsername = newEmployeeFirstName;
     }
 
-    public void setNewEmployeeLastName(String newEmployeeLastName) {
+    public void setNewUserPassword(String newEmployeeLastName) {
         this.newUserPassword = newEmployeeLastName;
+    }
+
+    public void setNewUserLevel(int newUserLevel) {
+        this.newUserLevel = newUserLevel;
     }
 
     /**
      * Deze setter MOET aanwezig zijn, anders kan spring deze service niet injecteren.
      */
-    public void setEmployeeService(UserService userService) {
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 }
