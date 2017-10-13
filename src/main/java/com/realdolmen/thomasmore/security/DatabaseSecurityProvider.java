@@ -41,8 +41,9 @@ public class DatabaseSecurityProvider implements AuthenticationProvider {
         String password = authentication.getCredentials().toString();
 
 //        User user = userService.authenticateUser(username, password);
-User user = new User(null, null);
-         if (user == null) {
+        User user = new User();
+
+        if (user == null) {
             throw new BadCredentialsException("Invalid username or password!");
         }
 
