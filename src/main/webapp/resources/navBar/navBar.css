@@ -1,0 +1,17 @@
+/*Als iets gewijzigd moet worden en het wordt overschreven door
+Bootsfaces, zet er !important achter. */
+
+
+/*Opmaak van de navbar*/
+.navbar-default{
+    background-color: #123456 !important;
+}
+/*Opmaak van de eerste link op de navbar*/
+.navbar-default .navbar-brand{
+    color: white !important;
+}
+
+/* Opmaak van de tekst op de navbar*/
+.navbar-default .navbar-nav > li > a {
+    color: #fff !important;
+}
