@@ -15,3 +15,12 @@ Bootsfaces, zet er !important achter. */
 .navbar-default .navbar-nav > li > a {
     color: #fff !important;
 }
+/*Workaround voor enkel de eerste .dropdown-toggle anderskleurig te krijgen.
+ */
+.open > .dropdown-toggle{
+    background-color: #1c5610 !important;
+}
+
+.open > .dropdown-toggle ~ .dropdown-toggle{
+    background-color: #123456 !important;
+}
