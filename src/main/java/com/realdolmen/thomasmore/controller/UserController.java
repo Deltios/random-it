@@ -6,20 +6,20 @@ import com.realdolmen.thomasmore.service.UserService;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import java.util.List;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class UserController {
     @ManagedProperty("#{userService}")
     private UserService userService;
-
+    private User newUser = new User();
     private String newUserVoornaam;
     private String newUserFamilienaam;
     private String newPaswoord;
-
     public List<User> getUsers() {
         return userService.findAllUsers();
     }
@@ -29,7 +29,9 @@ public class UserController {
         addMessage("User toegevoegd!");
         clearForm();
     }
-
+    public String showUserDetails(){
+        return "details";
+    }
     private void clearForm() {
         newUserVoornaam = null;
         newUserFamilienaam = null;
@@ -59,6 +61,14 @@ public class UserController {
 
     public String getNewPaswoord() {
         return newPaswoord;
+    }
+
+    public User getNewUser() {
+        return newUser;
+    }
+
+    public void setNewUser(User newUser) {
+        this.newUser = newUser;
     }
 
     public void setNewPaswoord(String newPaswoord) {

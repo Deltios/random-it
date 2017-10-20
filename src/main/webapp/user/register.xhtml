@@ -19,18 +19,17 @@
             </b:row>
             <b:row>
                 <b:inputText label="Email:" value="#{userController.newUser.email}" span="6" placeholder="" />
-                <b:inputText type="password" label="Wachtwoord:" value="#{userController.newUser.email}" span="4" placeholder="" />
+                <b:inputText type="password" label="Wachtwoord:" value="#{userController.newUser.wachtwoord}" span="4" placeholder="" />
 
             </b:row>
             <b:row>
-                <b:inputText label="Adres:" value="#{userController.newUser.}" span="7" placeholder="" />
-                <b:inputText label="Land:" value="#{userController.newUser.email}" span="3" placeholder="" />
+                <b:inputText label="Adres:" value="#{userController.newUser.adres}" span="10" placeholder="" />
             </b:row>
             <b:row>
-                <b:inputText label="Postcode:" value="#{userController.newUser.email}" span="4" placeholder="" />
-                <b:inputText label="Woonplaats:" value="#{userController.newUser.email}" span="6" placeholder="" />
+                <b:inputText label="Postcode:" value="#{userController.newUser.postcode}" span="4" placeholder="" />
+                <b:inputText label="Woonplaats:" value="#{userController.newUser.gemeente}" span="6" placeholder="" />
             </b:row>
-            <b:commandButton value="Normal button" look="primary" action="#" />
+            <b:commandButton value="Normal button" look="primary" action="#{userController.showUserDetails()}" />
         </h:form>
     </b:container>
 </h:body>
