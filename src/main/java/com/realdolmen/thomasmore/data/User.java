@@ -1,31 +1,57 @@
 package com.realdolmen.thomasmore.data;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User implements Serializable{
 
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String username;
-    private String password;
-    private int userLevel;
+    private String voornaam;
+    private String familienaam;
+    private String adres;
+    private String gemeente;
+    private int postcode;
+    private String email;
+    private String wachtwoord;
+    private String telefoon;
 
+    @OneToMany(mappedBy="user")
+    private List<SupportTicket> supportTickets = new ArrayList<>();
+
+    @OneToMany(mappedBy="user")
+    private List<Bestelling> bestellingen = new ArrayList<>();
+
+
+    //constructors
     public User() {
     }
 
-    public User(Long id, String username, String password, int userLevel) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.userLevel = userLevel;
+    public User(String voornaam, String familienaam, String wachtwoord) {
+        this.voornaam = voornaam;
+        this.familienaam = familienaam;
+        this.wachtwoord = wachtwoord;
     }
 
+    public User(String voornaam, String familienaam, String adres, String gemeente, int postcode, String email, String wachtwoord, String telefoon) {
+        this.voornaam = voornaam;
+        this.familienaam = familienaam;
+        this.adres = adres;
+        this.gemeente = gemeente;
+        this.postcode = postcode;
+        this.email = email;
+        this.wachtwoord = wachtwoord;
+        this.telefoon = telefoon;
+    }
+
+    //getters en setters
     public Long getId() {
         return id;
     }
@@ -34,27 +60,83 @@ public class User implements Serializable{
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getVoornaam() {
+        return voornaam;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setVoornaam(String voornaam) {
+        this.voornaam = voornaam;
     }
 
-    public String getPassword() {
-        return password;
+    public String getFamilienaam() {
+        return familienaam;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setFamilienaam(String familienaam) {
+        this.familienaam = familienaam;
     }
 
-    public int getUserLevel() {
-        return userLevel;
+    public String getAdres() {
+        return adres;
     }
 
-    public void setUserLevel(int userLevel) {
-        this.userLevel = userLevel;
+    public void setAdres(String adres) {
+        this.adres = adres;
+    }
+
+    public String getGemeente() {
+        return gemeente;
+    }
+
+    public void setGemeente(String gemeente) {
+        this.gemeente = gemeente;
+    }
+
+    public int getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(int postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getWachtwoord() {
+        return wachtwoord;
+    }
+
+    public void setWachtwoord(String wachtwoord) {
+        this.wachtwoord = wachtwoord;
+    }
+
+    public String getTelefoon() {
+        return telefoon;
+    }
+
+    public void setTelefoon(String telefoon) {
+        this.telefoon = telefoon;
+    }
+
+    public List<SupportTicket> getSupportTickets() {
+        return supportTickets;
+    }
+
+    public void setSupportTickets(List<SupportTicket> supportTickets) {
+        this.supportTickets = supportTickets;
+    }
+
+    public List<Bestelling> getBestellingen() {
+        return bestellingen;
+    }
+
+    public void setBestellingen(List<Bestelling> bestellingen) {
+        this.bestellingen = bestellingen;
     }
 }

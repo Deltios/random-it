@@ -12,12 +12,14 @@
     <br />
     <h:form>
         <p:growl id="growl" />
-        <p:inputText id="username" value="#{userController.newUserUsername}" /> <br />
-        <p:watermark value="Username" for="username" />
-        <p:inputText id="password" value="#{userController.newUserPassword}" /> <br />
-        <p:watermark value="Password" for="password" />
-        <p:inputText id="userLevel" value="#{userController.newUserLevel}" /> <br />
-        <p:watermark value="User level" for="userLevel" />
+        <p:inputText id="username" value="#{userController.newUserVoornaam}" /> <br />
+        <p:watermark value="Voornaam" for="username" />
+
+        <p:inputText id="familienaam" value="#{userController.newUserFamilienaam}" /> <br />
+        <p:watermark value="familienaam" for="familienaam" />
+
+        <p:inputText type="password" id="paswoord" value="#{userController.newPaswoord}" /> <br />
+        <p:watermark value="paswoord" for="paswoord" />
         <p:commandButton value="Submit" action="#{userController.createUser()}" update="@form" />
     </h:form>
 
@@ -25,7 +27,7 @@
 
     <h:dataTable value="#{userController.users}" var="user">
         <h:column>
-            <h:link value="#{user.username}" outcome="user">
+            <h:link value="#{user.voornaam}" outcome="user">
                 <f:param name="id" value="#{user.id}" />
             </h:link>
         </h:column>

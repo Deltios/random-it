@@ -16,24 +16,24 @@ public class UserController {
     @ManagedProperty("#{userService}")
     private UserService userService;
 
-    private String newUserUsername;
-    private String newUserPassword;
-    private int newUserLevel;
+    private String newUserVoornaam;
+    private String newUserFamilienaam;
+    private String newPaswoord;
 
     public List<User> getUsers() {
         return userService.findAllUsers();
     }
 
     public void createUser() {
-        userService.createUser(newUserUsername, newUserPassword, newUserLevel);
+        userService.createUser(newUserVoornaam, newUserFamilienaam, newPaswoord);
         addMessage("User toegevoegd!");
         clearForm();
     }
 
     private void clearForm() {
-        newUserUsername = null;
-        newUserPassword = null;
-        newUserLevel = 0;
+        newUserVoornaam = null;
+        newUserFamilienaam = null;
+        newPaswoord = null;
     }
 
     private void addMessage(String summary) {
@@ -41,28 +41,28 @@ public class UserController {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
-    public String getNewUserUsername() {
-        return newUserUsername;
+    public String getNewUserVoornaam() {
+        return newUserVoornaam;
     }
 
-    public String getNewUserPassword() {
-        return newUserPassword;
+    public void setNewUserVoornaam(String newUserVoornaam) {
+        this.newUserVoornaam = newUserVoornaam;
     }
 
-    public int getNewUserLevel() {
-        return newUserLevel;
+    public String getNewUserFamilienaam() {
+        return newUserFamilienaam;
     }
 
-    public void setNewUserUsername(String newEmployeeFirstName) {
-        this.newUserUsername = newEmployeeFirstName;
+    public void setNewUserFamilienaam(String newUserFamilienaam) {
+        this.newUserFamilienaam = newUserFamilienaam;
     }
 
-    public void setNewUserPassword(String newEmployeeLastName) {
-        this.newUserPassword = newEmployeeLastName;
+    public String getNewPaswoord() {
+        return newPaswoord;
     }
 
-    public void setNewUserLevel(int newUserLevel) {
-        this.newUserLevel = newUserLevel;
+    public void setNewPaswoord(String newPaswoord) {
+        this.newPaswoord = newPaswoord;
     }
 
     /**
