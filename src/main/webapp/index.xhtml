@@ -2,36 +2,33 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
 <h:head>
     <script name="jquery/jquery.js" library="primefaces"></script>
-    <title>Register Employee</title>
+    <title>Homepage</title>
+    <h:outputStylesheet name="/style/index.css"></h:outputStylesheet>
 </h:head>
-<h:body>
-    <h:outputText value="#{helloWorldController.helloWorld}" />
-    <br />
-    <h:form>
-        <p:growl id="growl" />
-        <p:inputText id="username" value="#{userController.newUserVoornaam}" /> <br />
-        <p:watermark value="Voornaam" for="username" />
+<h:body styleClass="achtergrondfoto">
+    <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
+    <ui:include src="/included/navbar/navBar.xhtml"/>
+    <b:container>
+        <b:row>
+            <b:column>
+                <b:jumbotron styleClass="techfoto">
+                    <b:image value="/resources/images/logo.png" styleClass="center" />
+                    <hr/>
+                    <p style="text-align: center" class="customFont">Welkom op de thuispagina van Random IT, uw IT-specialist in het verkopen van computeronderdelen en andere technologie!</p>
+                    <p style="text-align: center" class="customFont">Kijk gerust door onze lijst van producten of kies een categorie van onderdelen waarnaar je op zoek bent. U kan ook altijd een mailtje sturen indien iets niet overeen komt met uw wensen, of feedback geven over onze service, zodat we het kunnen verbeteren naar uw wensen.</p>
+                    <p style="text-align: center" class="customFont">Alvast veel plezier gewenst!</p>
+                </b:jumbotron>
+            </b:column>
+        </b:row>
+        <b:row>
+            <b:column>
 
-        <p:inputText id="familienaam" value="#{userController.newUserFamilienaam}" /> <br />
-        <p:watermark value="familienaam" for="familienaam" />
-
-        <p:inputText type="password" id="paswoord" value="#{userController.newPaswoord}" /> <br />
-        <p:watermark value="paswoord" for="paswoord" />
-        <p:commandButton value="Submit" action="#{userController.createUser()}" update="@form" />
-    </h:form>
-
-    <br />
-
-    <h:dataTable value="#{userController.users}" var="user">
-        <h:column>
-            <h:link value="#{user.voornaam}" outcome="user">
-                <f:param name="id" value="#{user.id}" />
-            </h:link>
-        </h:column>
-    </h:dataTable>
-    <h:link outcome="testPage"> TestPage</h:link>
+            </b:column>
+        </b:row>
+    </b:container>
 </h:body>
 </html>
