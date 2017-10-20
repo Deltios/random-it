@@ -15,20 +15,11 @@ public class IndexController {
     public String getHelloWorld() {
         return "Hello, world!";
     }
-
-    public String testPage(){
-        return "testPage";
-    }
-    public ArrayList<Integer> NummerTest(){
+    public ArrayList<Integer> NummerTest() {
         ArrayList<Integer> nummers = new ArrayList<Integer>();
-        for(int i= 0; i <= 10; i++){
+        for (int i = 0; i <= 10; i++) {
             nummers.add(i);
         }
         return nummers;
     }
-    //Methode brengt de gebruiker naar de registratiepagina
-    public String registerPage(){
-        return "register";
-    }
-
 }
