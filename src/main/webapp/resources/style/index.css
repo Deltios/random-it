@@ -1,0 +1,7 @@
+/* index pagina general CSS */
+
+/* background image voor index pagina */
+body {
+    background-image: url("../images/background.png") !important;
+    background-color: black;
+}

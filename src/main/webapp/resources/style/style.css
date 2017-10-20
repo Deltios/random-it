@@ -1,0 +1,14 @@
+/* Gebruik dit bestand om alle styleClasses te definiëren, die je wil gebruiken in dit project. */
+
+/* class om images te centreren */
+.center {
+    display: block;
+    margin: auto;
+    padding: 10px;
+}
+
+/* class om een zwarte achtergrond en witte letters te tonen */
+.darkBackground {
+    background-color: black !important;
+    color: white !important;
+}

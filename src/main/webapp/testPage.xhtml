@@ -4,23 +4,36 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
     <title>BootsFaces Basic Page</title>
 </h:head>
 <h:body>
-    <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
-    <ui:include src="/included/navbar/navBar.xhtml"/>
-    <b:container>
-        <b:row>
-            <b:column>
-                <b:jumbotron>
-                    <h1>Testpagina voor layout!</h1>
-                    <p>Hier kan eventueel een logo of een banner komen, zoals te zien op MusicStore van MVC. Hieronder kunnen dan bijvoorbeeld categorieën of een willekeurige selectie.</p>
-                    <p>Verder kunnen we de navbar wijzen op basis of de gebruiker is ingelogd of niet. Suggesties altijd welkom! </p>
-                </b:jumbotron>
-            </b:column>
-        </b:row>
-    </b:container>
+    <h:outputText value="#{helloWorldController.helloWorld}" />
+    <br />
+    <h:form>
+        <p:growl id="growl" />
+        <p:inputText id="username" value="#{userController.newUserVoornaam}" /> <br />
+        <p:watermark value="Voornaam" for="username" />
+
+        <p:inputText id="familienaam" value="#{userController.newUserFamilienaam}" /> <br />
+        <p:watermark value="familienaam" for="familienaam" />
+
+        <p:inputText type="password" id="paswoord" value="#{userController.newPaswoord}" /> <br />
+        <p:watermark value="paswoord" for="paswoord" />
+        <p:commandButton value="Submit" action="#{userController.createUser()}" update="@form" />
+    </h:form>
+
+    <br />
+
+    <h:dataTable value="#{userController.users}" var="user">
+        <h:column>
+            <h:link value="#{user.voornaam}" outcome="user">
+                <f:param name="id" value="#{user.id}" />
+            </h:link>
+        </h:column>
+    </h:dataTable>
+    <h:link outcome="testPage"> TestPage</h:link>
 </h:body>
 </html>
