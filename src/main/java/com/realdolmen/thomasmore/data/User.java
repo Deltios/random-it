@@ -18,7 +18,7 @@ public class User implements Serializable{
     private String familienaam;
     private String adres;
     private String gemeente;
-    private int postcode;
+    private String postcode;
     private String email;
     private String wachtwoord;
     private String telefoon;
@@ -40,7 +40,7 @@ public class User implements Serializable{
         this.wachtwoord = wachtwoord;
     }
 
-    public User(String voornaam, String familienaam, String adres, String gemeente, int postcode, String email, String wachtwoord, String telefoon) {
+    public User(String voornaam, String familienaam, String adres, String gemeente, String postcode, String email, String wachtwoord, String telefoon) {
         this.voornaam = voornaam;
         this.familienaam = familienaam;
         this.adres = adres;
@@ -92,11 +92,11 @@ public class User implements Serializable{
         this.gemeente = gemeente;
     }
 
-    public int getPostcode() {
+    public String getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(int postcode) {
+    public void setPostcode(String postcode) {
         this.postcode = postcode;
     }
 

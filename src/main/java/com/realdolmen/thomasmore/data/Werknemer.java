@@ -13,7 +13,7 @@ public class Werknemer extends User implements Serializable {
         super(voornaam, familienaam, wachtwoord);
     }
 
-    public Werknemer(String voornaam, String familienaam, String adres, String gemeente, int postcode, String email, String wachtwoord, String telefoon) {
+    public Werknemer(String voornaam, String familienaam, String adres, String gemeente, String postcode, String email, String wachtwoord, String telefoon) {
         super(voornaam, familienaam, adres, gemeente, postcode, email, wachtwoord, telefoon);
     }
 }

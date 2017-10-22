@@ -18,7 +18,7 @@ public class Klant extends User implements Serializable {
 		this.datumRegistratie = datumRegistratie;
 	}
 
-	public Klant(String voornaam, String familienaam, String adres, String gemeente, int postcode, String email, String wachtwoord, String telefoon, Calendar datumRegistratie) {
+	public Klant(String voornaam, String familienaam, String adres, String gemeente, String postcode, String email, String wachtwoord, String telefoon, Calendar datumRegistratie) {
 		super(voornaam, familienaam, adres, gemeente, postcode, email, wachtwoord, telefoon);
 		this.datumRegistratie = datumRegistratie;
 	}
