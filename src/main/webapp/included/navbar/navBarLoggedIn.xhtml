@@ -9,9 +9,9 @@
         xmlns:b="http://bootsfaces.net/ui">
     <!-- Om de CSS van iets te veranderen moet je naar een eigen CSS verwijzen. CSS van Bootstrap komt op Facebook te staan.-->
     <h:outputStylesheet name="navBar/navBar.css"></h:outputStylesheet>
-    <b:navBar brand="Home" brandHref="index.xhtml">
+    <b:navBar brand="Home" brandHref="#{request.contextPath}/index.xhtml">
         <b:navbarLinks>
-            <b:navLink outcome="index">#{helloWorldController.helloWorld}</b:navLink>
+            <b:navLink outcome="/index">Welkom, usernummer #{userController.sessionUserId}</b:navLink>
             <b:navLink href="#"></b:navLink>
             <b:dropMenu value="Dropdown" iconAwesome="birthday-cake">
                 <b:navLink value="Action" href="#"></b:navLink>
@@ -40,7 +40,9 @@
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
         <!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
-        <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
-        <b:navLink value="Logout" href="#"></b:navLink>
+        <b:navbarLinks pull="right">
+            <b:navCommandLink value="Logout" outcome="#{userController.logoutUser()}"/>
+        </b:navbarLinks>
+
     </b:navBar>
 </ui:composition>

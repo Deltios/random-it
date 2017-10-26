@@ -3,6 +3,7 @@ package com.realdolmen.thomasmore.controller;
 import com.realdolmen.thomasmore.data.Klant;
 import com.realdolmen.thomasmore.data.User;
 import com.realdolmen.thomasmore.service.UserService;
+import com.realdolmen.thomasmore.session.UserSession;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -17,7 +18,8 @@ import java.util.List;
 public class UserController {
     @ManagedProperty("#{userService}")
     private UserService userService;
-    private Klant nieuweKlant = new Klant();
+
+    private Klant huidigeKlant = new Klant();
     private String newUserVoornaam;
     private String newUserFamilienaam;
     private String newAdres;
@@ -26,6 +28,8 @@ public class UserController {
     private String newEmail;
     private String newPaswoord;
     private String newTelefoon;
+
+    private Long sessionUserId;
 
     public List<User> getUsers() {
         return userService.findAllUsers();
@@ -61,24 +65,34 @@ public class UserController {
         newPaswoord = null;
         newTelefoon = null;
     }
-
     private void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
+
     public String registerKlant(){
-        userService.registerKlant(nieuweKlant);
+        userService.registerKlant(huidigeKlant);
         return "details";
     }
-    public String loginKlant(String email, String wachtwoord){
-        boolean juisteLogin = userService.checkLogin(email, wachtwoord);
-        if (juisteLogin){
-            nieuweKlant = (Klant)userService.getByEmail(email);
+
+    public String loginKlant(){
+        User user = userService.authenticateUser(newEmail, newPaswoord);
+        if (user !=  null){
+            huidigeKlant = (Klant)userService.getByEmail(newEmail);
+            this.sessionUserId=userService.setUserSession(user);
+            this.newEmail = null;
+            this.newPaswoord = null;
+
             return "details";
         }
         else{
             return "verkeerdeLogin";
         }
+    }
+    public String logoutUser(){
+        userService.logoutUser();
+        this.sessionUserId =  null;
+        return "loggedOut";
     }
 
     public void test(){
@@ -109,12 +123,12 @@ public class UserController {
         this.newPaswoord = newPaswoord;
     }
 
-    public Klant getNieuweKlant() {
-        return nieuweKlant;
+    public Klant getHuidigeKlant() {
+        return huidigeKlant;
     }
 
-    public void setNieuweKlant(Klant nieuweKlant) {
-        this.nieuweKlant = nieuweKlant;
+    public void setHuidigeKlant(Klant huidigeKlant) {
+        this.huidigeKlant = huidigeKlant;
     }
 
     public String getNewAdres() {
@@ -166,5 +180,13 @@ public class UserController {
      */
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    public Long getSessionUserId() {
+        return sessionUserId;
+    }
+
+    public void setSessionUserId(Long sessionUserId) {
+        this.sessionUserId = sessionUserId;
     }
 }

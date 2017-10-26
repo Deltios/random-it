@@ -11,9 +11,9 @@
     <h:outputStylesheet library="navBar" name="navBar.css"></h:outputStylesheet>
     <h:outputStylesheet name="navBar/navBar.css"></h:outputStylesheet>
     <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
-    <b:navBar brand="Home" brandHref="index.xhtml">
+    <b:navBar brand="Home" brandHref="#{request.contextPath}/index.xhtml">
         <b:navbarLinks>
-            <b:navLink outcome="/index">#{helloWorldController.helloWorld}</b:navLink>
+            <b:navLink outcome="#/index">#{helloWorldController.helloWorld}</b:navLink>
             <b:navLink href="#"></b:navLink>
             <b:dropMenu value="Dropdown" iconAwesome="birthday-cake">
                 <b:navLink value="Action" href="#"></b:navLink>
@@ -44,7 +44,7 @@
         <!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
         <b:navbarLinks pull="right" >
             <b:navLink  value="Register" outcome="/user/register"></b:navLink>
-            <b:navLink  value="Login" href="#"></b:navLink>
+            <b:navLink  value="Login" outcome="/user/Login"></b:navLink>
         </b:navbarLinks>
 
     </b:navBar>

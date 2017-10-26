@@ -3,18 +3,24 @@ package com.realdolmen.thomasmore.service;
 import com.realdolmen.thomasmore.data.Klant;
 import com.realdolmen.thomasmore.data.User;
 import com.realdolmen.thomasmore.repository.UserRepository;
+import com.realdolmen.thomasmore.session.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.faces.bean.ManagedProperty;
 import java.util.List;
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserSession userSession;
 
+
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
     public void createUser(String voornaam, String familienaam, String adres, String gemeente, String postcode, String email, String wachtwoord, String telefoon) {
         User user = new User();
         user.setVoornaam(voornaam);
@@ -39,24 +45,21 @@ public class UserService {
     }
 
     public void registerKlant(Klant nieuweKlant) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         nieuweKlant.setUserLevel(1);
-
-        String hashedWachtwoord = encoder.encode(nieuweKlant.getWachtwoord());
+        String hashedWachtwoord = passwordEncoder.encode(nieuweKlant.getWachtwoord());
         nieuweKlant.setWachtwoord(hashedWachtwoord);
 
         userRepository.save(nieuweKlant);
     }
 
-    public boolean checkLogin(String email, String wachtwoord){
+    public User authenticateUser(String email, String wachtwoord){
         User gebruiker = userRepository.findByEmail(email);
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        if (encoder.matches(wachtwoord, gebruiker.getWachtwoord())){
-            return true;
+        if (!(gebruiker==null)){
+            if ((passwordEncoder.matches(wachtwoord, gebruiker.getWachtwoord()))){
+                return gebruiker;
+            }
         }
-        else{
-            return false;
-        }
+        return null;
     }
     public User getByEmail(String email){
         return userRepository.findByEmail(email);
@@ -64,5 +67,13 @@ public class UserService {
     public User getUser(long id){
         User user = userRepository.findOne(id);
         return user;
+    }
+
+    public Long setUserSession(User huidigeUser) {
+
+        return userSession.setUserSession(huidigeUser);
+    }
+    public void logoutUser(){
+        userSession.logoutSession();
     }
 }

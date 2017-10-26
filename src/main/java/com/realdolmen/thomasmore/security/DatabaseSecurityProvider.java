@@ -39,9 +39,7 @@ public class DatabaseSecurityProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
-
-//        User user = userService.authenticateUser(username, password);
-        User user = new User();
+        User user = userService.authenticateUser(username, password);
 
         if (user == null) {
             throw new BadCredentialsException("Invalid username or password!");
@@ -55,7 +53,7 @@ public class DatabaseSecurityProvider implements AuthenticationProvider {
             }
         });
 
-//        userSession.setUser(user);
+        userSession.setUser(user);
 
         return new UsernamePasswordAuthenticationToken(authentication.getName(), authentication.getCredentials(), authorityCollection);
     }
