@@ -41,11 +41,7 @@ public class User implements Serializable{
         this.wachtwoord = wachtwoord;
     }
 
-<<<<<<< HEAD
-    public User(String voornaam, String familienaam, int userLevel, String adres, String gemeente, int postcode, String email, String wachtwoord, String telefoon) {
-=======
-    public User(String voornaam, String familienaam, String adres, String gemeente, String postcode, String email, String wachtwoord, String telefoon) {
->>>>>>> 56fcaf5011033f7330a255af05a8c2fdf192f272
+    public User(String voornaam, String familienaam, int userLevel, String adres, String gemeente, String postcode, String email, String wachtwoord, String telefoon) {
         this.voornaam = voornaam;
         this.familienaam = familienaam;
         this.userLevel = userLevel;
