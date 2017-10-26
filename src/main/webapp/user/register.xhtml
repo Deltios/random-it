@@ -14,22 +14,22 @@
     <b:container>
         <h:form>
             <b:row>
-                <b:inputText label="Voornaam:" value="#{userController.newUser.voornaam}" span="5" placeholder="" />
-                <b:inputText label="Familienaam:" value="#{userController.newUser.familienaam}" span="5" placeholder="" />
+                <b:inputText label="Voornaam:" value="#{userController.nieuweKlant.voornaam}" span="5" placeholder="" />
+                <b:inputText label="Familienaam:" value="#{userController.nieuweKlant.familienaam}" span="5" placeholder="" />
             </b:row>
             <b:row>
-                <b:inputText label="Email:" value="#{userController.newUser.email}" span="6" placeholder="" />
-                <b:inputText type="password" label="Wachtwoord:" value="#{userController.newUser.wachtwoord}" span="4" placeholder="" />
+                <b:inputText label="Email:" value="#{userController.nieuweKlant.email}" span="6" placeholder="" />
+                <b:inputText type="password" label="Wachtwoord:" value="#{userController.nieuweKlant.wachtwoord}" span="4" placeholder="" />
 
             </b:row>
             <b:row>
-                <b:inputText label="Adres:" value="#{userController.newUser.adres}" span="10" placeholder="" />
+                <b:inputText label="Adres:" value="#{userController.nieuweKlant.adres}" span="10" placeholder="" />
             </b:row>
             <b:row>
-                <b:inputText label="Postcode:" value="#{userController.newUser.postcode}" span="4" placeholder="" />
-                <b:inputText label="Woonplaats:" value="#{userController.newUser.gemeente}" span="6" placeholder="" />
+                <b:inputText label="Postcode:" value="#{userController.nieuweKlant.postcode}" span="4" placeholder="" />
+                <b:inputText label="Woonplaats:" value="#{userController.nieuweKlant.gemeente}" span="6" placeholder="" />
             </b:row>
-            <b:commandButton value="Normal button" look="primary" action="#{userController.showUserDetails()}" />
+            <b:commandButton value="Normal button" look="primary" action="#{userController.registerKlant()}" />
         </h:form>
     </b:container>
 </h:body>

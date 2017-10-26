@@ -12,10 +12,15 @@
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
     <ui:include src="/included/navbar/navBar.xhtml"/>
     <b:container>
-        <h1>test</h1>
-        <p>
-            #{userController.nieuweKlant.voornaam}  #{userController.nieuweKlant.familienaam}
-        </p>
+        <h:form>
+            <b:row>
+                <b:inputText label="Email:" span="5" placeholder="" var="email" />
+            </b:row>
+            <b:row>
+                <b:inputText type="password" label="Wachtwoord:" span="4"  var="wachtwoord"/>
+            </b:row>
+            <b:commandButton value="Normal button" look="primary" action="#{userController.loginKlant(email, wachtwoord)}" />
+        </h:form>
     </b:container>
 </h:body>
 </html>

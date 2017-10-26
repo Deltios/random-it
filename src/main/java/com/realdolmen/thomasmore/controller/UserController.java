@@ -1,5 +1,6 @@
 package com.realdolmen.thomasmore.controller;
 
+import com.realdolmen.thomasmore.data.Klant;
 import com.realdolmen.thomasmore.data.User;
 import com.realdolmen.thomasmore.service.UserService;
 
@@ -16,7 +17,7 @@ import java.util.List;
 public class UserController {
     @ManagedProperty("#{userService}")
     private UserService userService;
-    private User newUser = new User();
+    private Klant nieuweKlant = new Klant();
     private String newUserVoornaam;
     private String newUserFamilienaam;
     private String newPaswoord;
@@ -42,7 +43,20 @@ public class UserController {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
-
+    public String registerKlant(){
+        userService.registerKlant(nieuweKlant);
+        return "details";
+    }
+    public String loginKlant(String email, String wachtwoord){
+        boolean juisteLogin = userService.checkLogin(email, wachtwoord);
+        if (juisteLogin){
+            nieuweKlant = (Klant)userService.getByEmail(email);
+            return "details";
+        }
+        else{
+            return "verkeerdeLogin";
+        }
+    }
     public String getNewUserVoornaam() {
         return newUserVoornaam;
     }
@@ -63,16 +77,16 @@ public class UserController {
         return newPaswoord;
     }
 
-    public User getNewUser() {
-        return newUser;
-    }
-
-    public void setNewUser(User newUser) {
-        this.newUser = newUser;
-    }
-
     public void setNewPaswoord(String newPaswoord) {
         this.newPaswoord = newPaswoord;
+    }
+
+    public Klant getNieuweKlant() {
+        return nieuweKlant;
+    }
+
+    public void setNieuweKlant(Klant nieuweKlant) {
+        this.nieuweKlant = nieuweKlant;
     }
 
     /**

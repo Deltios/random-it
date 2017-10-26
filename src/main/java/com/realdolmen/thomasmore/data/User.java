@@ -22,6 +22,7 @@ public class User implements Serializable{
     private String email;
     private String wachtwoord;
     private String telefoon;
+    private int userLevel;
 
     @OneToMany(mappedBy="user")
     private List<SupportTicket> supportTickets = new ArrayList<>();
@@ -40,9 +41,10 @@ public class User implements Serializable{
         this.wachtwoord = wachtwoord;
     }
 
-    public User(String voornaam, String familienaam, String adres, String gemeente, int postcode, String email, String wachtwoord, String telefoon) {
+    public User(String voornaam, String familienaam, int userLevel, String adres, String gemeente, int postcode, String email, String wachtwoord, String telefoon) {
         this.voornaam = voornaam;
         this.familienaam = familienaam;
+        this.userLevel = userLevel;
         this.adres = adres;
         this.gemeente = gemeente;
         this.postcode = postcode;
@@ -138,5 +140,13 @@ public class User implements Serializable{
 
     public void setBestellingen(List<Bestelling> bestellingen) {
         this.bestellingen = bestellingen;
+    }
+
+    public int getUserLevel() {
+        return userLevel;
+    }
+
+    public void setUserLevel(int userLevel) {
+        this.userLevel = userLevel;
     }
 }
