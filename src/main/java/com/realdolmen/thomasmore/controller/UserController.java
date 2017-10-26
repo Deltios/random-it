@@ -66,7 +66,6 @@ public class UserController {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
-<<<<<<< HEAD
     public String registerKlant(){
         userService.registerKlant(nieuweKlant);
         return "details";
@@ -81,13 +80,11 @@ public class UserController {
             return "verkeerdeLogin";
         }
     }
-=======
 
     public void test(){
         addMessage("Test users toegevoegd!");
     }
 
->>>>>>> 56fcaf5011033f7330a255af05a8c2fdf192f272
     public String getNewUserVoornaam() {
         return newUserVoornaam;
     }
