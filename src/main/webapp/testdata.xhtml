@@ -1,0 +1,79 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <title>BootsFaces Basic Page</title>
+</h:head>
+<h:body>
+    <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
+    <ui:include src="included/navbar/navBar.xhtml"/>
+    <b:container>
+        <b:row>
+            <b:column>
+                <b:jumbotron>
+                    <h1>Testdata</h1>
+                    <br />
+                    <h:form>
+                        <p:commandButton value="Create Test Users" action="#{userController.createTestUsers()}" />
+                        <p:commandButton value="Create Test Bestellingen" action="#{bestellingController.createTestBestellingen()}" />
+                        <p:commandButton value="Create Test Categorieën" action="#{categorieController.createTestCategories()}" />
+                        <p:commandButton value="Create Test Merken" action="#{merkController.createTestMerken()}" />
+                        <p:commandButton value="Create Test Producten" action="#{productController.createTestProducten()}" />
+                        <p:commandButton value="Create Test Specificaties" action="#{specificatieController.createTestSpecificaties()}" />
+                        <p:commandButton value="Create Test Support Tickets" action="#{supportTicketController.createTestSupportTickets()}" />
+                    </h:form>
+                    <br />
+                    <p:dataTable var="user" value="#{userController.getUsers()}">
+                        <p:column headerText="Voornaam">
+                            <h:outputText value="#{user.voornaam}" />
+                        </p:column>
+                        <p:column headerText="Familienaam">
+                            <h:outputText value="#{user.familienaam}" />
+                        </p:column>
+                    </p:dataTable>
+                    <br />
+                    <p:dataTable var="bestelling" value="#{bestellingController.getBestellingen()}">
+                        <p:column headerText="Bestelnummer">
+                            <h:outputText value="#{bestelling.bestelnummer}" />
+                        </p:column>
+                    </p:dataTable>
+                    <br />
+                    <p:dataTable var="categorie" value="#{categorieController.getCategories()}">
+                        <p:column headerText="Categorienaam">
+                            <h:outputText value="#{categorie.naam}" />
+                        </p:column>
+                    </p:dataTable>
+                    <br />
+                    <p:dataTable var="merk" value="#{merkController.getMerken()}">
+                        <p:column headerText="Merknaam">
+                            <h:outputText value="#{merk.naam}" />
+                        </p:column>
+                    </p:dataTable>
+                    <br />
+                    <p:dataTable var="product" value="#{productController.getProducts()}">
+                        <p:column headerText="Productnaam">
+                            <h:outputText value="#{product.naam}" />
+                        </p:column>
+                    </p:dataTable>
+                    <br />
+                    <p:dataTable var="specificatie" value="#{specificatieController.getSpecificaties()}">
+                        <p:column headerText="Specificatienaam">
+                            <h:outputText value="#{specificatie.naam}" />
+                        </p:column>
+                    </p:dataTable>
+                    <br />
+                    <p:dataTable var="supportTicket" value="#{supportTicketController.getSupportTickets()}">
+                        <p:column headerText="Support Ticket opmerking">
+                            <h:outputText value="#{supportTicket.opmerking}" />
+                        </p:column>
+                    </p:dataTable>
+                </b:jumbotron>
+            </b:column>
+        </b:row>
+    </b:container>
+</h:body>
+</html>

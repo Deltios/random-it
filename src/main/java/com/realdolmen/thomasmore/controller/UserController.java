@@ -20,29 +20,53 @@ public class UserController {
     private Klant nieuweKlant = new Klant();
     private String newUserVoornaam;
     private String newUserFamilienaam;
+    private String newAdres;
+    private String newGemeente;
+    private String newPostcode;
+    private String newEmail;
     private String newPaswoord;
+    private String newTelefoon;
+
     public List<User> getUsers() {
         return userService.findAllUsers();
     }
 
-    public void createUser() {
-        userService.createUser(newUserVoornaam, newUserFamilienaam, newPaswoord);
+    /*
+    public void createUser(){
+        userService.createUser(newUserVoornaam, newUserFamilienaam, newAdres, newGemeente, newPostcode, newEmail, newPaswoord, newTelefoon);
         addMessage("User toegevoegd!");
         clearForm();
+    }*/
+
+    public void createTestUsers(){
+        userService.createUser("Jan","Peeters","Bergenstraat 12","Dessel",
+                "2480","jan.peeters@gmail.com","Geheim","0475913475");
+        userService.createUser("Els","Vandenbroecke","Molenberg 5","Kasterlee",
+                "2460","els.vdbroecke@gmail.com","Abc123","0494327496");
+        userService.createUser("Dirk","Janssens","Ooststraat 15","Arendonk",
+                "2370","dirk.janssens@gmail.com","Tgdk","0461783519");
+        addMessage("Test users toegevoegd!");
     }
+
     public String showUserDetails(){
         return "details";
     }
     private void clearForm() {
         newUserVoornaam = null;
         newUserFamilienaam = null;
+        newAdres = null;
+        newGemeente = null;
+        newPostcode = null;
+        newEmail = null;
         newPaswoord = null;
+        newTelefoon = null;
     }
 
     private void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
+<<<<<<< HEAD
     public String registerKlant(){
         userService.registerKlant(nieuweKlant);
         return "details";
@@ -57,6 +81,13 @@ public class UserController {
             return "verkeerdeLogin";
         }
     }
+=======
+
+    public void test(){
+        addMessage("Test users toegevoegd!");
+    }
+
+>>>>>>> 56fcaf5011033f7330a255af05a8c2fdf192f272
     public String getNewUserVoornaam() {
         return newUserVoornaam;
     }
@@ -87,6 +118,50 @@ public class UserController {
 
     public void setNieuweKlant(Klant nieuweKlant) {
         this.nieuweKlant = nieuweKlant;
+    }
+
+    public String getNewAdres() {
+        return newAdres;
+    }
+
+    public void setNewAdres(String newAdres) {
+        this.newAdres = newAdres;
+    }
+
+    public String getNewGemeente() {
+        return newGemeente;
+    }
+
+    public void setNewGemeente(String newGemeente) {
+        this.newGemeente = newGemeente;
+    }
+
+    public String getNewPostcode() {
+        return newPostcode;
+    }
+
+    public void setNewPostcode(String newPostcode) {
+        this.newPostcode = newPostcode;
+    }
+
+    public String getNewEmail() {
+        return newEmail;
+    }
+
+    public void setNewEmail(String newEmail) {
+        this.newEmail = newEmail;
+    }
+
+    public String getNewTelefoon() {
+        return newTelefoon;
+    }
+
+    public void setNewTelefoon(String newTelefoon) {
+        this.newTelefoon = newTelefoon;
+    }
+
+    public UserService getUserService() {
+        return userService;
     }
 
     /**

@@ -18,8 +18,13 @@ public class Klant extends User implements Serializable {
 		this.datumRegistratie = datumRegistratie;
 	}
 
+<<<<<<< HEAD
 	public Klant(String voornaam, String familienaam, int userLevel,String adres, String gemeente, int postcode, String email, String wachtwoord, String telefoon, Calendar datumRegistratie) {
 		super(voornaam, familienaam, userLevel, adres, gemeente, postcode, email, wachtwoord, telefoon);
+=======
+	public Klant(String voornaam, String familienaam, String adres, String gemeente, String postcode, String email, String wachtwoord, String telefoon, Calendar datumRegistratie) {
+		super(voornaam, familienaam, adres, gemeente, postcode, email, wachtwoord, telefoon);
+>>>>>>> 56fcaf5011033f7330a255af05a8c2fdf192f272
 		this.datumRegistratie = datumRegistratie;
 	}
 
