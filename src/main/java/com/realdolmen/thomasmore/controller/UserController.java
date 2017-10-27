@@ -30,6 +30,7 @@ public class UserController {
     private String newTelefoon;
 
     private Long sessionUserId;
+    private String errorMessage;
 
     public List<User> getUsers() {
         return userService.findAllUsers();
@@ -71,6 +72,9 @@ public class UserController {
     }
 
     public String registerKlant(){
+        if (huidigeKlant == null){
+            errorHandling("Er zijn geen gegevens ingestuurd.");
+        }
         userService.registerKlant(huidigeKlant);
         return "details";
     }
@@ -83,19 +87,26 @@ public class UserController {
             this.sessionUserId = id;
             this.newEmail = null;
             this.newPaswoord = null;
-
             return "details";
         }
         else{
-            return "verkeerdeLogin";
+            errorHandling("Er is geen gebruiker  ingelogd.");
         }
+        return "index";
     }
     public String logoutUser(){
+        if  (this.sessionUserId==null){
+            errorHandling("Er is geen gebruiker  ingelogd.");
+        }
         userService.logoutUser();
         this.sessionUserId =  null;
+        this.huidigeKlant=null;
         return "loggedOut";
     }
-
+    public String errorHandling(String errorMessage){
+        this.errorMessage= errorMessage;
+        return "errorPage";
+    }
     public void test(){
         addMessage("Test users toegevoegd!");
     }
@@ -189,5 +200,13 @@ public class UserController {
 
     public void setSessionUserId(Long sessionUserId) {
         this.sessionUserId = sessionUserId;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

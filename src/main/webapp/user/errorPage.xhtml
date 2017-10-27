@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>BootsFaces Basic Page</title>
+</h:head>
+<h:body>
+    <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
+
+    <h:panelGroup id="wrapperPanel">
+        <h:panelGroup id="loggedOut" rendered="#{userController.sessionUserId == null}">
+            <ui:include src="/included/navbar/navBar.xhtml"/>
+        </h:panelGroup>
+        <h:panelGroup id="loggedIn" rendered="#{userController.sessionUserId != null}">
+            <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
+        </h:panelGroup>
+    </h:panelGroup>
+
+
+    <b:container>
+        <h1>Er is  iets misgelopen.</h1>
+        <p>
+            #{userController.errorMessage}
+        </p>
+    </b:container>
+</h:body>
+</html>
