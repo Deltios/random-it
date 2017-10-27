@@ -10,6 +10,10 @@ Bootsfaces, zet er !important achter. */
 .navbar-default .navbar-brand{
     color: white !important;
 }
+.navbar-default .navbar-brand:hover{
+    color: white !important;
+    background-color:#031C56;
+}
 
 /* Opmaak van de tekst op de navbar*/
 .navbar-default .navbar-nav > li > a {
@@ -18,9 +22,15 @@ Bootsfaces, zet er !important achter. */
 /*Workaround voor enkel de eerste .dropdown-toggle anderskleurig te krijgen.
  */
 .open > .dropdown-toggle{
-    background-color: #1c5610 !important;
+    background-color: #031C56 !important;
 }
 
 .open > .dropdown-toggle ~ .dropdown-toggle{
     background-color: #123456 !important;
+}
+.open > .dropdown-toggle ~ .dropdown-toggle:hover{
+    background-color: #031C56 !important;
+}
+.commandLink {
+    color: #fff !important;
 }

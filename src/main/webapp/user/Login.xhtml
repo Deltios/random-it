@@ -19,7 +19,7 @@
             <b:row>
                 <b:inputText type="password" label="Wachtwoord:" span="4"  value="#{userController.newPaswoord}"/>
             </b:row>
-            <b:commandButton value="Normal button" look="primary" action="#{userController.loginKlant()}" />
+            <b:commandButton ajax="false" value="Normal button" look="primary" action="#{userController.loginKlant()}" />
         </h:form>
     </b:container>
 </h:body>

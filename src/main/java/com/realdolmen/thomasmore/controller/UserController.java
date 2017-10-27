@@ -79,7 +79,8 @@ public class UserController {
         User user = userService.authenticateUser(newEmail, newPaswoord);
         if (user !=  null){
             huidigeKlant = (Klant)userService.getByEmail(newEmail);
-            this.sessionUserId=userService.setUserSession(user);
+            Long id =userService.setUserSession(user);
+            this.sessionUserId = id;
             this.newEmail = null;
             this.newPaswoord = null;
 

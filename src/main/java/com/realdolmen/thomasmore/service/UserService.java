@@ -70,7 +70,6 @@ public class UserService {
     }
 
     public Long setUserSession(User huidigeUser) {
-
         return userSession.setUserSession(huidigeUser);
     }
     public void logoutUser(){

@@ -41,7 +41,9 @@
         </form>
         <!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
         <b:navbarLinks pull="right">
-            <b:navCommandLink value="Logout" outcome="#{userController.logoutUser()}"/>
+            <h:form>
+                <b:navCommandLink class="logoutLink" value="Logout" action="#{userController.logoutUser()}"/>
+            </h:form>
         </b:navbarLinks>
 
     </b:navBar>
