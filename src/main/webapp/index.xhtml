@@ -29,6 +29,11 @@
                     <p style="text-align: center" class="customFont">Welkom op de thuispagina van Random IT, uw IT-specialist in het verkopen van computeronderdelen en andere technologie!</p>
                     <p style="text-align: center" class="customFont">Kijk gerust door onze lijst van producten of kies een categorie van onderdelen waarnaar je op zoek bent. U kan ook altijd een mailtje sturen indien iets niet overeen komt met uw wensen, of feedback geven over onze service, zodat we het kunnen verbeteren naar uw wensen.</p>
                     <p style="text-align: center" class="customFont">Alvast veel plezier gewenst!</p>
+                    <h:form>
+                        <p style="text-align: center; padding-top: 40px; padding-bottom: 40px" class="customFont">
+                            <b:commandButton action="#{productController.productenTonen()}" look="primary" size="lg" value="Producten bekijken" />
+                        </p>
+                    </h:form>
                 </b:jumbotron>
             </b:column>
         </b:row>

@@ -46,6 +46,10 @@ public class ProductController {
         newHoeveelheidInVoorraad = 0;
     }
 
+    public String productenTonen() {
+        return "producten/productenlijst";
+    }
+
     private void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
         FacesContext.getCurrentInstance().addMessage(null, message);

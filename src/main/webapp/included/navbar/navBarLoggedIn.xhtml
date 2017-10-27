@@ -9,6 +9,7 @@
         xmlns:b="http://bootsfaces.net/ui">
     <!-- Om de CSS van iets te veranderen moet je naar een eigen CSS verwijzen. CSS van Bootstrap komt op Facebook te staan.-->
     <h:outputStylesheet name="navBar/navBar.css"></h:outputStylesheet>
+    <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
     <b:navBar brand="Home" brandHref="#{request.contextPath}/index.xhtml">
         <b:navbarLinks>
             <b:navLink outcome="/index">Welkom, usernummer #{userController.sessionUserId}</b:navLink>
