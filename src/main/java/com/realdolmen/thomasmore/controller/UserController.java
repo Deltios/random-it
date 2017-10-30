@@ -83,7 +83,12 @@ public class UserController {
         User user = userService.authenticateUser(newEmail, newPaswoord);
         if (user !=  null){
             huidigeKlant = (Klant)userService.getByEmail(newEmail);
+
             Long id =userService.setUserSession(user);
+            if (user.getUserLevel() == 3){
+                AdminController adminController = new AdminController();
+                adminController.login(user);
+            }
             this.sessionUserId = id;
             this.newEmail = null;
             this.newPaswoord = null;
