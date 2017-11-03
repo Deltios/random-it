@@ -4,6 +4,9 @@ import com.realdolmen.thomasmore.data.Klant;
 import com.realdolmen.thomasmore.data.User;
 import com.realdolmen.thomasmore.service.UserService;
 import com.realdolmen.thomasmore.session.UserSession;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -11,6 +14,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @ManagedBean
@@ -79,17 +83,16 @@ public class UserController {
         return "details";
     }
 
-    public String loginKlant(){
+    public String loginKlant(HttpSession session){
         User user = userService.authenticateUser(newEmail, newPaswoord);
         if (user !=  null){
             huidigeKlant = (Klant)userService.getByEmail(newEmail);
 
-            Long id =userService.setUserSession(user);
+            session.setAttribute("user", user);
             if (user.getUserLevel() == 3){
-                AdminController adminController = new AdminController();
-                adminController.login(user);
+
             }
-            this.sessionUserId = id;
+            this.sessionUserId = user.getId();
             this.newEmail = null;
             this.newPaswoord = null;
             return "details";

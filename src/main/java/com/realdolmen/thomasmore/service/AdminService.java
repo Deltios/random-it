@@ -47,9 +47,9 @@ public class AdminService {
     public Specificatie findSpecificatieById(Long id){return specificatieRepository.findOne(id);}
 
     public void saveOrUpdateUser(User user){ userRepository.save(user); }
-    public void saveOrUpdateProduct(Product product){ userRepository.save(product); }
-    public void saveOrUpdateMerk(Merk merk){ userRepository.save(merk); }
-    public void saveOrUpdateCategorie(Categorie categorie){ userRepository.save(categorie); }
-    public void saveOrUpdateBestelling(Bestelling bestelling){ userRepository.save(bestelling); }
-    public void saveOrUpdateSpecificatie(Specificatie specificatie){ userRepository.save(specificatie); }
+    public void saveOrUpdateProduct(Product product){ productRepository.save(product); }
+    public void saveOrUpdateMerk(Merk merk){ merkRepository.save(merk); }
+    public void saveOrUpdateCategorie(Categorie categorie){ categorieRepository.save(categorie); }
+    public void saveOrUpdateBestelling(Bestelling bestelling){ bestellingRepository.save(bestelling); }
+    public void saveOrUpdateSpecificatie(Specificatie specificatie){ specificatieRepository.save(specificatie); }
 }
