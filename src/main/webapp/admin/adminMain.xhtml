@@ -23,6 +23,10 @@
                 <b:button outcome="./productsTable.xhtml" value="Producten bewerken"/>
                 <b:button outcome="./MerkenTable.xhtml" value="Merken bewerken"/>
                 <b:button outcome="./categorieTable.xhtml" value="Categorieën bewerken"/>
+                <h:form>
+                    <b:commandButton action="#{adminController.getAllBestellingen()}" value="Alle bestellingen"/>
+                </h:form>
+
             </b:column>
         </b:row>
     </b:container>

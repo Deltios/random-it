@@ -52,4 +52,15 @@ public class AdminService {
     public void saveOrUpdateCategorie(Categorie categorie){ categorieRepository.save(categorie); }
     public void saveOrUpdateBestelling(Bestelling bestelling){ bestellingRepository.save(bestelling); }
     public void saveOrUpdateSpecificatie(Specificatie specificatie){ specificatieRepository.save(specificatie); }
+
+    public void deleteUser(long id){ userRepository.delete(id); }
+    public void deleteProduct(long id){productRepository.delete(id);}
+    public void deleteMerk(long id){merkRepository.delete(id);}
+    public void deleteCategorie(long id){categorieRepository.delete(id);}
+    public void deleteBestelling(long id){bestellingRepository.delete(id);}
+    public void deleteSpecificatie(long id){specificatieRepository.delete(id);}
+
+    public List<Bestelling> findBestellingenByPerson(long id) {
+        return bestellingRepository.findBestellingsByUserId(id);
+    }
 }
