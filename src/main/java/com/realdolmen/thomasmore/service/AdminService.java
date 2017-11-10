@@ -27,6 +27,8 @@ public class AdminService {
     private BestellingRepository bestellingRepository;
     @Autowired
     private SpecificatieRepository specificatieRepository;
+    @Autowired
+    private SupportTicketRepository supportTicketRepository;
 
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
 
@@ -38,6 +40,7 @@ public class AdminService {
     public List<Categorie> findAllCategorie(){return categorieRepository.findAll();}
     public List<Bestelling> findAllBestelling(){return bestellingRepository.findAll();}
     public List<Specificatie> findAllSpecificatie(){return specificatieRepository.findAll();}
+    public List<SupportTicket> findAllSupportTicket(){return supportTicketRepository.findAll();}
 
     public User findUserById(Long id){return userRepository.findOne(id);}
     public Product findProductById(Long id){return productRepository.findOne(id);}
@@ -59,6 +62,7 @@ public class AdminService {
     public void deleteCategorie(long id){categorieRepository.delete(id);}
     public void deleteBestelling(long id){bestellingRepository.delete(id);}
     public void deleteSpecificatie(long id){specificatieRepository.delete(id);}
+    public void deleteSupportTicket(long id){supportTicketRepository.delete(id);}
 
     public List<Bestelling> findBestellingenByPerson(long id) {
         return bestellingRepository.findBestellingsByUserId(id);

@@ -7,7 +7,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import java.util.List;
 
@@ -29,7 +28,6 @@ public class MerkController {
         clearForm();
     }
 
-
     public void createTestMerken(){
         merkService.createMerk("Intel");
         merkService.createMerk("Nvidia");
@@ -43,6 +41,18 @@ public class MerkController {
     private void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    public MerkService getMerkService() {
+        return merkService;
+    }
+
+    public String getNewNaam() {
+        return newNaam;
+    }
+
+    public void setNewNaam(String newNaam) {
+        this.newNaam = newNaam;
     }
 
     /**
