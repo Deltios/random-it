@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <title>Producten</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
+    <h:outputStylesheet name="/style/index.css"></h:outputStylesheet>
+    <f:metadata>
+        <f:viewParam name="productId" value="#{productController.productId}"/>
+    </f:metadata>
+</h:head>
+<h:body styleClass="achtergrondfoto">
+    <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
+    <h:panelGroup id="wrapperPanel">
+        <h:panelGroup id="loggedOut" rendered="#{userController.sessionUserId == null}">
+            <ui:include src="/included/navbar/navBar.xhtml"/>
+        </h:panelGroup>
+        <h:panelGroup id="loggedIn" rendered="#{userController.sessionUserId != null}">
+            <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
+        </h:panelGroup>
+    </h:panelGroup>
+    <!-- kopieren van taakbalken stopt hier-->
+    <b:container>
+        <b:panel>
+            <h1 class="centerText customFont"><h:outputText value="#{productController.product.naam}" /></h1>
+            <hr/>
+            <p><b:image name="placeholder" value="../resources/images/placeholder.png" tooltip="#{productController.product.naam}" styleClass="centerImage"/></p>
+            <b:dataTable value="#{productController.getProducts()}"
+                         var="p"
+                         id="p"
+                         paginated="false"
+                         border="false"
+                         scroll-x="false"
+                         responsive="true"
+                         searching="false">
+                <b:dataTableColumn value="#{p.naam}" orderable="false" />
+            </b:dataTable>
+        </b:panel>
+    </b:container>
+</h:body>
+</html>

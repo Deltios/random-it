@@ -22,6 +22,23 @@ public class ProductController {
     private int newPrijs;
     private int newHoeveelheidInVoorraad;
 
+    private Product product;
+    public Product getProduct() {
+        return product;
+    }
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    private Long productId;
+    public Long getProductId() {
+        return productId;
+    }
+    public void setProductId(Long productId) {
+        this.productId = productId;
+        this.product = productService.getProduct(productId);
+    }
+
     public List<Product> getProducts() {
         return productService.findAllProducts();
     }
