@@ -15,7 +15,7 @@ public class Product implements Serializable {
 	private String naam;
 	private String omschrijving;
 	private double prijs;
-	private double hoeveelheidInVoorraad;
+	private int hoeveelheidInVoorraad;
 
 	@OneToMany(mappedBy = "product")
 	private List<BesteldProduct> besteldeProducten = new ArrayList<>();
@@ -71,7 +71,7 @@ public class Product implements Serializable {
 		return this.hoeveelheidInVoorraad;
 	}
 
-	public void setHoeveelheidInVoorraad(double hoeveelheidInVoorraad) {
+	public void setHoeveelheidInVoorraad(int hoeveelheidInVoorraad) {
 		this.hoeveelheidInVoorraad = hoeveelheidInVoorraad;
 	}
 
@@ -107,6 +107,9 @@ public class Product implements Serializable {
 		this.besteldeProducten = besteldeProducten;
 	}
 
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
 
 	/**
 	 * 

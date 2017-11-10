@@ -46,6 +46,26 @@ public class SpecificatieController {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
+    public SpecificatieService getSpecificatieService() {
+        return specificatieService;
+    }
+
+    public String getNewNaam() {
+        return newNaam;
+    }
+
+    public void setNewNaam(String newNaam) {
+        this.newNaam = newNaam;
+    }
+
+    public String getNewWaarde() {
+        return newWaarde;
+    }
+
+    public void setNewWaarde(String newWaarde) {
+        this.newWaarde = newWaarde;
+    }
+
     /**
      * Deze setter MOET aanwezig zijn, anders kan spring deze service niet injecteren.
      */

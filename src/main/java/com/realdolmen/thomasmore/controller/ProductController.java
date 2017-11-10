@@ -19,7 +19,7 @@ public class ProductController {
 
     private String newNaam;
     private String newOmschrijving;
-    private int newPrijs;
+    private double newPrijs;
     private int newHoeveelheidInVoorraad;
 
     private Product product;
@@ -49,7 +49,6 @@ public class ProductController {
         clearForm();
     }
 
-
     public void createTestProducten(){
         productService.createProduct("GTX 1080", "Zotte GPU", 899, 82);
         productService.createProduct("i7 6700k", "Zotte CPU", 499, 64);
@@ -66,6 +65,48 @@ public class ProductController {
     private void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    // Aanpassen product
+    public String editProduct(Product product) {
+
+        return null;
+    }
+
+    public ProductService getProductService() {
+        return productService;
+    }
+
+    public String getNewNaam() {
+        return newNaam;
+    }
+
+    public void setNewNaam(String newNaam) {
+        this.newNaam = newNaam;
+    }
+
+    public String getNewOmschrijving() {
+        return newOmschrijving;
+    }
+
+    public void setNewOmschrijving(String newOmschrijving) {
+        this.newOmschrijving = newOmschrijving;
+    }
+
+    public double getNewPrijs() {
+        return newPrijs;
+    }
+
+    public void setNewPrijs(double newPrijs) {
+        this.newPrijs = newPrijs;
+    }
+
+    public int getNewHoeveelheidInVoorraad() {
+        return newHoeveelheidInVoorraad;
+    }
+
+    public void setNewHoeveelheidInVoorraad(int newHoeveelheidInVoorraad) {
+        this.newHoeveelheidInVoorraad = newHoeveelheidInVoorraad;
     }
 
     /**

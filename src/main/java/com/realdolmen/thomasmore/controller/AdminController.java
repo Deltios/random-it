@@ -89,10 +89,11 @@ public class AdminController {
         adminService.deleteUser(id);
     }
     public void deleteProduct(long id){ adminService.deleteProduct(id);}
-    public void deleteMerk(long id){ adminService.deleteProduct(id);}
-    public void deleteCategorie(long id){ adminService.deleteProduct(id);}
-    public void deleteSpecificatie(long id){ adminService.deleteProduct(id);}
-    public void deleteBestelling(long id){ adminService.deleteProduct(id);}
+    public void deleteMerk(long id){ adminService.deleteMerk(id);}
+    public void deleteCategorie(long id){ adminService.deleteCategorie(id);}
+    public void deleteSpecificatie(long id){ adminService.deleteSpecificatie(id);}
+    public void deleteBestelling(long id){ adminService.deleteBestelling(id);}
+    public void deleteSupportTicket(long id){ adminService.deleteBestelling(id);}
 
     public UserService getUserService() {
         return userService;
