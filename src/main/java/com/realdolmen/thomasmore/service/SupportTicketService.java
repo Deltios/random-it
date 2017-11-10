@@ -14,10 +14,11 @@ public class SupportTicketService {
     @Autowired
     private SupportTicketRepository supportTicketRepository;
 
-    public void createSupportTicket(Calendar datumAanvraag, String opmerking) {
+    public void createSupportTicket(Calendar datumAanvraag, String naam, String opmerking) {
         SupportTicket supportTicket = new SupportTicket();
         supportTicket.setDatumAanvraag(datumAanvraag);
         supportTicket.setOpmerking(opmerking);
+        supportTicket.setNaam(naam);
 
         supportTicketRepository.save(supportTicket);
     }

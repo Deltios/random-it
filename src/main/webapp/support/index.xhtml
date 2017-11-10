@@ -4,10 +4,19 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
     <title>BootsFaces Basic Page</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
+    <h:outputStylesheet name="/style/contact.css"></h:outputStylesheet>
+    <style type="text/css">
+        .topcorner{
+            position:absolute;
+            top:0;
+            right:0;
+        }
+    </style>
 </h:head>
 <h:body>
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
@@ -19,15 +28,77 @@
                     <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
                 </h:panelGroup>
         </h:panelGroup>
-
     <b:container>
-        <h2 class="first">Inline</h2>
-        <p:tabMenu>
-            <p:menuitem value="Home" icon="ui-icon-home" outcome="tabMenu" iconPos="top"/>
-            <p:menuitem value="Settings" icon="ui-icon-gear" outcome="tabMenu2" iconPos="top"/>
-            <p:menuitem value="Search" icon="ui-icon-search" outcome="tabMenu3" iconPos="top"/>
-        </p:tabMenu>
+        <h3>Contact opnemen Random IT</h3>
+        <p:accordionPanel>
+            <p:tab title="Bedrijf contact gegevens">
+                <p:panelGrid columns="2" cellpadding="10" cellspacing="50">
+                    <h:outputText
+                            value="Adres:" />
+                    <h:outputText
+                            value="Kleinhoefstraat 4, 2440 Geel" />
+                    <h:outputText
+                            value="Contacteer ons:" />
+                    <h:outputText
+                            value="Telefoon: 047 145 424 29" />
+                    <h:outputText
+                            value="Stuur een mail:" />
+                    <a class="mailtolink" href="mailto:randomIT@randomit.be">randomIT@randomit.be</a>
+                </p:panelGrid>
+                <b:image width="50%" value="../resources/images/logo.png" styleClass="right" class="logorandomit topcorner" />
+            </p:tab>
+            <p:tab title="Geografische ligging">
+                <h1>Google maps comming soon :D</h1>
+            </p:tab>
+            <p:tab rendered="#{userController.sessionUserId != null}" title="alle support ticekts aadmin">
+                <b:panel>
+                    <h:form>
+                        <b:dataTable var="s" value="#{supportTicketController.getSupportTickets()}" responsive="true">
+                            <b:dataTableColumn value="#{s.opmerking}" />
+                            <b:dataTableColumn value="#{s.naam}" />
 
+                        </b:dataTable>
+                    </h:form>
+                </b:panel>
+            </p:tab>
+            <p:tab rendered="#{userController.sessionUserId != null}" title="Maak support ticket aan Random IT">
+                <b:panel>
+                    <h:form>
+                        <p:panel id="panel" header="Form" style="margin-bottom:10px;">
+                            <p:messages id="messages" />
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputLabel for="naam" value="Naam:" />
+                                <p:inputText id="naam" value="#{supportTicketController.supportTicket.naam}" />
+
+                                <h:outputLabel for="opmerking" value="Opmerking:" />
+                                <p:inputText id="opmerking" value="#{supportTicketController.supportTicket.opmerking}" />
+
+                                <p:outputLabel value="#{supportTicketController.now()}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" type="date" />
+                                </p:outputLabel>
+
+                                <p:commandButton value="Submit" action="#{supportTicketController.add()}" update="@form"  />
+
+                            </h:panelGrid>
+                        </p:panel>
+
+                    </h:form>
+                </b:panel>
+            </p:tab>
+            <p:tab rendered="#{userController.sessionUserId != null}" title="Support tickets van  #{userController.huidigeKlant.voornaam}  #{userController.huidigeKlant.familienaam} #{userController.huidigeKlant.id}">
+                <b:panel>
+                    <p>
+                        #{userController.huidigeKlant.voornaam}  #{userController.huidigeKlant.familienaam}"
+                    </p>
+                </b:panel>
+            </p:tab>
+
+        </p:accordionPanel>
     </b:container>
+
+    <script async="async" defer="defer"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5pfeSpfe2jKNtdGmFh7CDuj5E8Y5O0vc&amp;callback=initMap">
+    </script>
+
 </h:body>
 </html>
