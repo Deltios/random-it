@@ -25,4 +25,5 @@ public class BestellingService {
     public List<Bestelling> findAllBestellingen() {
         return bestellingRepository.findAll();
     }
+    public List<Bestelling> findAllBestellingenByUser(long Id){return bestellingRepository.findBestellingsByUserId(Id);}
 }

@@ -18,7 +18,7 @@ public class Bestelling implements Serializable {
 	private String opmerking;
 	private Calendar besteldatum;
 
-	@OneToMany(mappedBy ="bestelling")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy ="bestelling", cascade = CascadeType.ALL)
 	private List<BesteldProduct> besteldeProducten = new ArrayList<>();
 
 	@ManyToOne

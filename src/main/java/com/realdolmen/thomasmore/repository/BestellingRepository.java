@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface BestellingRepository extends CrudRepository<Bestelling, Long>{
     Bestelling findByBestelnummer(String bestelnummer);
+    List<Bestelling> findBestellingsByUserId(Long user_id);
     List<Bestelling> findAll();
+
 }

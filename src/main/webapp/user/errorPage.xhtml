@@ -10,17 +10,22 @@
 </h:head>
 <h:body>
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
-    <ui:include src="/included/navbar/navBar.xhtml"/>
+
+    <h:panelGroup id="wrapperPanel">
+        <h:panelGroup id="loggedOut" rendered="#{userController.sessionUserId == null}">
+            <ui:include src="/included/navbar/navBar.xhtml"/>
+        </h:panelGroup>
+        <h:panelGroup id="loggedIn" rendered="#{userController.sessionUserId != null}">
+            <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
+        </h:panelGroup>
+    </h:panelGroup>
+
+
     <b:container>
-        <h:form prependId="false">
-            <b:row>
-                <b:inputText label="Email:" span="5" value="#{userController.newEmail}" />
-            </b:row>
-            <b:row>
-                <b:inputText type="password" label="Wachtwoord:" span="4" value="#{userController.newPaswoord}"/>
-            </b:row>
-            <b:commandButton ajax="false" value="Login" look="primary" action="#{userController.loginKlant(session)}" />
-        </h:form>
+        <h1>Er is  iets misgelopen.</h1>
+        <p>
+            #{userController.errorMessage}
+        </p>
     </b:container>
 </h:body>
 </html>

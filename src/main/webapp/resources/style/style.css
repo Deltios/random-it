@@ -1,15 +1,34 @@
 /* Gebruik dit bestand om alle styleClasses te definiëren, die je wil gebruiken in dit project. */
 
-/* class om images te centreren */
-.center {
+/* class om titel logo te centreren en kleiner te maken */
+.centerLogoImage {
     display: block;
     margin: auto;
     width: 75%;
     height: auto;
 }
 
+/* class om images te centreren */
+.centerImage {
+    display: block;
+    margin: auto;
+    width: 100%;
+    height: auto;
+}
+
+/* class om text te centreren in een div */
+.centerText {
+    text-align: center;
+    vertical-align: middle;
+}
+
 /* class om een zwarte achtergrond en witte letters te tonen */
 .darkBackground {
     background-color: black !important;
     color: white !important;
+}
+
+/* class om de font van een p-tag aan te passen */
+.customFont {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }

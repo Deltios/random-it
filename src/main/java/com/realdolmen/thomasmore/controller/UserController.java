@@ -4,6 +4,9 @@ import com.realdolmen.thomasmore.data.Klant;
 import com.realdolmen.thomasmore.data.User;
 import com.realdolmen.thomasmore.service.UserService;
 import com.realdolmen.thomasmore.session.UserSession;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -11,6 +14,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @ManagedBean
@@ -30,6 +34,7 @@ public class UserController {
     private String newTelefoon;
 
     private Long sessionUserId;
+    private String errorMessage;
 
     public List<User> getUsers() {
         return userService.findAllUsers();
@@ -71,31 +76,45 @@ public class UserController {
     }
 
     public String registerKlant(){
+        if (huidigeKlant == null){
+            errorHandling("Er zijn geen gegevens ingestuurd.");
+        }
         userService.registerKlant(huidigeKlant);
         return "details";
     }
 
-    public String loginKlant(){
+    public String loginKlant(HttpSession session){
         User user = userService.authenticateUser(newEmail, newPaswoord);
         if (user !=  null){
             huidigeKlant = (Klant)userService.getByEmail(newEmail);
-            Long id =userService.setUserSession(user);
-            this.sessionUserId = id;
+
+            session.setAttribute("user", user);
+            if (user.getUserLevel() == 3){
+
+            }
+            this.sessionUserId = user.getId();
             this.newEmail = null;
             this.newPaswoord = null;
-
             return "details";
         }
         else{
-            return "verkeerdeLogin";
+            errorHandling("Er is geen gebruiker  ingelogd.");
         }
+        return "index";
     }
     public String logoutUser(){
+        if  (this.sessionUserId==null){
+            errorHandling("Er is geen gebruiker  ingelogd.");
+        }
         userService.logoutUser();
         this.sessionUserId =  null;
+        this.huidigeKlant=null;
         return "loggedOut";
     }
-
+    public String errorHandling(String errorMessage){
+        this.errorMessage= errorMessage;
+        return "errorPage";
+    }
     public void test(){
         addMessage("Test users toegevoegd!");
     }
@@ -189,5 +208,13 @@ public class UserController {
 
     public void setSessionUserId(Long sessionUserId) {
         this.sessionUserId = sessionUserId;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

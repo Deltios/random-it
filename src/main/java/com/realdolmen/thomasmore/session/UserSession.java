@@ -23,11 +23,10 @@ public class UserSession {
         this.user = user;
     }
 
-    public Long setUserSession(User user){
-        this.user=user;
-        return user.getId();
-    }
     public void logoutSession(){
         user=null;
+    }
+    public void setSession(HttpSession session){
+        session.setAttribute("user", user);
     }
 }

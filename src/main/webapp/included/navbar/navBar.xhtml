@@ -11,11 +11,11 @@
     <h:outputStylesheet library="navBar" name="navBar.css"></h:outputStylesheet>
     <h:outputStylesheet name="navBar/navBar.css"></h:outputStylesheet>
     <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
-    <b:navBar brand="Home" brandHref="#{request.contextPath}/index.xhtml">
+    <b:navBar brand="Home" brandHref="#{request.contextPath}/index.xhtml" inverse="true">
         <b:navbarLinks>
             <b:navLink outcome="#/index">#{helloWorldController.helloWorld}</b:navLink>
             <b:navLink href="#"></b:navLink>
-            <b:dropMenu value="Dropdown" iconAwesome="birthday-cake">
+            <b:dropMenu value="Dropdown" >
                 <b:navLink value="Action" href="#"></b:navLink>
                 <b:navLink value="Another action" href="#"></b:navLink>
                 <b:navLink value="Something else here" href="#"></b:navLink>
