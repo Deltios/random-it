@@ -1,12 +1,12 @@
 package com.realdolmen.thomasmore.service;
 
 import com.realdolmen.thomasmore.data.SupportTicket;
-import com.realdolmen.thomasmore.data.User;
 import com.realdolmen.thomasmore.repository.SupportTicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service

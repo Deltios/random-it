@@ -6,9 +6,11 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <script name="jquery/jquery.js" library="primefaces"></script>
-    <title>BootsFaces Basic Page</title>
+    <title>Testdata</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
+    <h:outputStylesheet name="/style/index.css"></h:outputStylesheet>
 </h:head>
-<h:body>
+<h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
     <h:panelGroup id="wrapperPanel">
         <h:panelGroup id="loggedOut" rendered="#{userController.sessionUserId == null}">
@@ -23,62 +25,225 @@
         <b:row>
             <b:column>
                 <b:jumbotron>
-                    <h1>Testdata</h1>
-                    <br />
-                    <h:form>
-                        <p:commandButton value="Create Test Users" action="#{userController.createTestUsers()}" />
-                        <p:commandButton value="Create Test Bestellingen" action="#{bestellingController.createTestBestellingen()}" />
-                        <p:commandButton value="Create Test Categorieën" action="#{categorieController.createTestCategories()}" />
-                        <p:commandButton value="Create Test Merken" action="#{merkController.createTestMerken()}" />
-                        <p:commandButton value="Create Test Producten" action="#{productController.createTestProducten()}" />
-                        <p:commandButton value="Create Test Specificaties" action="#{specificatieController.createTestSpecificaties()}" />
-                        <p:commandButton value="Create Test Support Tickets" action="#{supportTicketController.createTestSupportTickets()}" />
-                    </h:form>
-                    <br />
-                    <p:dataTable var="user" value="#{userController.getUsers()}">
-                        <p:column headerText="Voornaam">
-                            <h:outputText value="#{user.voornaam}" />
-                        </p:column>
-                        <p:column headerText="Familienaam">
-                            <h:outputText value="#{user.familienaam}" />
-                        </p:column>
-                    </p:dataTable>
-                    <br />
-                    <p:dataTable var="bestelling" value="#{bestellingController.getBestellingen()}">
-                        <p:column headerText="Bestelnummer">
-                            <h:outputText value="#{bestelling.bestelnummer}" />
-                        </p:column>
-                    </p:dataTable>
-                    <br />
-                    <p:dataTable var="categorie" value="#{categorieController.getCategories()}">
-                        <p:column headerText="Categorienaam">
-                            <h:outputText value="#{categorie.naam}" />
-                        </p:column>
-                    </p:dataTable>
-                    <br />
-                    <p:dataTable var="merk" value="#{merkController.getMerken()}">
-                        <p:column headerText="Merknaam">
-                            <h:outputText value="#{merk.naam}" />
-                        </p:column>
-                    </p:dataTable>
-                    <br />
-                    <p:dataTable var="product" value="#{productController.getProducts()}">
-                        <p:column headerText="Productnaam">
-                            <h:outputText value="#{product.naam}" />
-                        </p:column>
-                    </p:dataTable>
-                    <br />
-                    <p:dataTable var="specificatie" value="#{specificatieController.getSpecificaties()}">
-                        <p:column headerText="Specificatienaam">
-                            <h:outputText value="#{specificatie.naam}" />
-                        </p:column>
-                    </p:dataTable>
-                    <br />
-                    <p:dataTable var="supportTicket" value="#{supportTicketController.getSupportTickets()}">
-                        <p:column headerText="Support Ticket opmerking">
-                            <h:outputText value="#{supportTicket.opmerking}" />
-                        </p:column>
-                    </p:dataTable>
+                    <div>
+                        <h1>Testdata</h1>
+                        <br />
+                        <h:form>
+                            <p:commandButton value="Create Test Users" action="#{userController.createTestUsers()}" />
+                            <p:commandButton value="Create Test Bestellingen" action="#{bestellingController.createTestBestellingen()}" />
+                            <p:commandButton value="Create Test Categorieën" action="#{categorieController.createTestCategories()}" />
+                            <p:commandButton value="Create Test Merken" action="#{merkController.createTestMerken()}" />
+                            <p:commandButton value="Create Test Producten" action="#{productController.createTestProducten()}" />
+                            <p:commandButton value="Create Test Specificaties" action="#{specificatieController.createTestSpecificaties()}" />
+                            <p:commandButton value="Create Test Support Tickets" action="#{supportTicketController.createTestSupportTickets()}" />
+                        </h:form>
+                        <br />
+                        <h:form>
+                            <b:dataTable var="user" value="#{userController.getUsers()}" responsive="true">
+                                <b:dataTableColumn value="#{user.voornaam}" />
+                                <b:dataTableColumn value="#{user.familienaam}" />
+                                <b:dataTableColumn value="#{user.gemeente}" />
+                                <b:dataTableColumn value="#{user.postcode}" />
+                                <b:dataTableColumn value="#{user.telefoon}" />
+                                <b:dataTableColumn value="#{user.userLevel}" />
+                                <b:dataTableColumn value="" label="">
+                                    <h:commandLink action="#{adminController.deleteUser(user.id)}">
+                                        <b:icon name="trash" />
+                                    </h:commandLink>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </h:form>
+                        <br />
+                        <h:form>
+                            <b:dataTable var="bestelling" value="#{bestellingController.getBestellingen()}" responsive="true">
+                                <b:dataTableColumn value="#{bestelling.bestelnummer}" />
+                                <b:dataTableColumn value="#{bestelling.besteldatum}" />
+                                <b:dataTableColumn value="#{bestelling.opmerking}" />
+                                <b:dataTableColumn value="" label="">
+                                    <h:commandLink action="#{adminController.deleteBestelling(bestelling.id)}">
+                                        <b:icon name="trash" />
+                                    </h:commandLink>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </h:form>
+                        <br />
+                        <h:form>
+                            <b:dataTable var="categorie" value="#{categorieController.getCategories()}">
+                                <b:dataTableColumn value="#{categorie.naam}" />
+                                <b:dataTableColumn value="" label="">
+                                    <h:commandLink action="#{adminController.deleteCategorie(categorie.id)}">
+                                        <b:icon name="trash" />
+                                    </h:commandLink>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </h:form>
+                        <br />
+                        <h:form>
+                            <b:dataTable var="merk" value="#{merkController.getMerken()}">
+                                <b:dataTableColumn value="#{merk.naam}" />
+                                <b:dataTableColumn value="" label="">
+                                    <h:commandLink action="#{adminController.deleteMerk(merk.id)}">
+                                        <b:icon name="trash" />
+                                    </h:commandLink>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </h:form>
+                        <br />
+                        <h:form>
+                            <b:dataTable var="product" value="#{productController.getProducts()}">
+                                <b:dataTableColumn value="#{product.naam}" />
+                                <b:dataTableColumn value="#{product.omschrijving}" />
+                                <b:dataTableColumn value="#{product.prijs}" />
+                                <b:dataTableColumn value="#{product.hoeveelheidInVoorraad}" />
+                                <b:dataTableColumn value="" label="">
+                                    <h:commandLink action="#{adminController.deleteProduct(product.id)}">
+                                        <b:icon name="trash" />
+                                    </h:commandLink>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </h:form>
+                        <br />
+                        <h:form>
+                            <b:dataTable var="specificatie" value="#{specificatieController.getSpecificaties()}">
+                                <b:dataTableColumn value="#{specificatie.naam}" />
+                                <b:dataTableColumn value="#{specificatie.waarde}" />
+                                <b:dataTableColumn value="" label="">
+                                    <h:commandLink action="#{adminController.deleteSpecificatie(specificatie.id)}">
+                                        <b:icon name="trash" />
+                                    </h:commandLink>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </h:form>
+                        <br />
+                        <h:form>
+                            <b:dataTable var="supportTicket" value="#{supportTicketController.getSupportTickets()}">
+                                <b:dataTableColumn value="#{supportTicket.naam}" />
+                                <b:dataTableColumn value="#{supportTicket.opmerking}" />
+                                <b:dataTableColumn value="#{supportTicket.datumAanvraag}" />
+                                <b:dataTableColumn value="" label="">
+                                    <h:commandLink action="#{adminController.deleteSupportTicket(supportTicket.id)}">
+                                        <b:icon name="trash" />
+                                    </h:commandLink>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </h:form>
+                    </div>
+                    <b:panelGrid colSpans="6,6" style="margin:15px">
+                        <b:panel>
+                            <div>
+                        <h2>Product aanmaken</h2>
+                        <h:form>
+                            <p:growl id="growlProduct" />
+                            <h:panelGrid columns="2">
+                                <h:panelGroup>
+                                    <h:outputText value="Productnaam: " />
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <p:inputText id="naamProduct" value="#{productController.newNaam}" /> <br />
+                                    <p:watermark value="Productnaam" for="naamProduct" />
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <h:outputText value="Omschrijving: " />
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <p:inputText id="omschrijvingProduct" value="#{productController.newOmschrijving}" /> <br />
+                                    <p:watermark value="Omschrijving" for="omschrijvingProduct" />
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <h:outputText value="Prijs: " />
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <p:inputText id="prijsProduct" value="#{productController.newPrijs}" /> <br />
+                                    <p:watermark value="Prijs" for="prijsProduct" />
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <h:outputText value="Hoeveelheid in voorraad: " />
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <p:inputText id="hoeveelheidInVoorraadProduct" value="#{productController.newHoeveelheidInVoorraad}" /> <br />
+                                    <p:watermark value="Hoeveelheid in voorraad" for="hoeveelheidInVoorraadProduct" />
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <p:commandButton value="Submit" action="#{productController.createProduct()}" update="@form" />
+                                </h:panelGroup>
+                            </h:panelGrid>
+                        </h:form>
+                            </div>
+                        </b:panel>
+                        <b:panel>
+                            <div>
+                            <h2>Categorie aanmaken</h2>
+                            <h:form>
+                                <p:growl id="growlCategorie" />
+                                <h:panelGrid columns="2">
+                                    <h:panelGroup>
+                                        <h:outputText value="Categorienaam: " />
+                                    </h:panelGroup>
+                                    <h:panelGroup>
+                                        <p:inputText id="naamCategorie" value="#{categorieController.newNaam}" /> <br />
+                                        <p:watermark value="Categorienaam" for="naamCategorie" />
+                                    </h:panelGroup>
+                                    <h:panelGroup>
+                                        <p:commandButton value="Submit" action="#{categorieController.createCategorie()}" update="@form" />
+                                    </h:panelGroup>
+                                </h:panelGrid>
+                            </h:form>
+                        </div>
+                        </b:panel>
+                        <b:panel>
+                            <div>
+                            <h2>Merk aanmaken</h2>
+                            <h:form>
+                                <p:growl id="growlMerk" />
+                                <h:panelGrid columns="2">
+                                    <h:panelGroup>
+                                        <h:outputText value="Merknaam: " />
+                                    </h:panelGroup>
+                                    <h:panelGroup>
+                                        <p:inputText id="naamMerk" value="#{merkController.newNaam}" /> <br />
+                                        <p:watermark value="Merknaam" for="naamMerk" />
+                                    </h:panelGroup>
+                                    <h:panelGroup>
+                                        <p:commandButton value="Submit" action="#{merkController.createMerk()}" update="@form" />
+                                    </h:panelGroup>
+                                </h:panelGrid>
+                            </h:form>
+                        </div>
+                        </b:panel>
+                        <b:panel>
+                            <div>
+                                <h2>Specificatie aanmaken</h2>
+                                <h:form>
+                                    <p:growl id="growlSpecificatie" />
+                                    <h:panelGrid columns="2">
+                                        <h:panelGroup>
+                                            <h:outputText value="Specificatienaam: " />
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <p:inputText id="naamSpecificatie" value="#{specificatieController.newNaam}" />
+                                            <p:watermark value="Specificatienaam" for="naamSpecificatie" />
+                                        </h:panelGroup>
+
+                                        <h:panelGroup>
+                                            <h:outputText value="Specificatiewaarde: " />
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <p:inputText id="waardeSpecificatie" value="#{specificatieController.newWaarde}" />
+                                            <p:watermark value="Specificatiewaarde" for="waardeSpecificatie" />
+                                        </h:panelGroup>
+
+                                        <h:panelGroup>
+                                            <p:commandButton value="Submit" action="#{specificatieController.createSpecificatie()}" update="@form" />
+                                        </h:panelGroup>
+                                    </h:panelGrid>
+                                </h:form>
+                            </div>
+                        </b:panel>
+                    </b:panelGrid>
                 </b:jumbotron>
             </b:column>
         </b:row>

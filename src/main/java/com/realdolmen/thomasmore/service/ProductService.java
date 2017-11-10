@@ -12,7 +12,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public void createProduct(String naam, String omschrijving, int prijs, int hoeveelheidInVoorraad) {
+    public void createProduct(String naam, String omschrijving, double prijs, int hoeveelheidInVoorraad) {
         Product product = new Product();
         product.setNaam(naam);
         product.setOmschrijving(omschrijving);

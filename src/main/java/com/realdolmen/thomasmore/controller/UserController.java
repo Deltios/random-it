@@ -7,6 +7,7 @@ import com.realdolmen.thomasmore.session.UserSession;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.primefaces.component.calendar.Calendar;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -15,6 +16,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @ManagedBean
@@ -32,6 +34,7 @@ public class UserController {
     private String newEmail;
     private String newPaswoord;
     private String newTelefoon;
+    private int newUserLevel;
 
     private Long sessionUserId;
     private String errorMessage;
@@ -48,18 +51,19 @@ public class UserController {
     }*/
 
     public void createTestUsers(){
-        userService.createUser("Jan","Peeters","Bergenstraat 12","Dessel",
-                "2480","jan.peeters@gmail.com","Geheim","0475913475");
-        userService.createUser("Els","Vandenbroecke","Molenberg 5","Kasterlee",
-                "2460","els.vdbroecke@gmail.com","Abc123","0494327496");
+        userService.createKlant("Jan","Peeters","Bergenstraat 12","Dessel",
+                "2480","jan.peeters@gmail.com","Geheim","0475913475", 0, new GregorianCalendar());
+        userService.createWerknemer("Els","Vandenbroecke","Molenberg 5","Kasterlee",
+                "2460","els.vdbroecke@gmail.com","Abc123","0494327496", 1);
         userService.createUser("Dirk","Janssens","Ooststraat 15","Arendonk",
-                "2370","dirk.janssens@gmail.com","Tgdk","0461783519");
+                "2370","dirk.janssens@gmail.com","Tgdk","0461783519", 2);
         addMessage("Test users toegevoegd!");
     }
 
     public String showUserDetails(){
         return "details";
     }
+
     private void clearForm() {
         newUserVoornaam = null;
         newUserFamilienaam = null;
@@ -69,7 +73,9 @@ public class UserController {
         newEmail = null;
         newPaswoord = null;
         newTelefoon = null;
+        newUserLevel = 0;
     }
+
     private void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -193,6 +199,14 @@ public class UserController {
 
     public UserService getUserService() {
         return userService;
+    }
+
+    public int getNewUserLevel() {
+        return newUserLevel;
+    }
+
+    public void setNewUserLevel(int newUserLevel) {
+        this.newUserLevel = newUserLevel;
     }
 
     /**
