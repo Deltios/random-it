@@ -1,8 +1,8 @@
 package com.realdolmen.thomasmore.service;
 
-import com.realdolmen.thomasmore.payment.jaxb.PaymentPort;
-import com.realdolmen.thomasmore.payment.jaxb.PaymentRequest;
-import com.realdolmen.thomasmore.payment.jaxb.PaymentResponse;
+import com.realdolmen.payment.jaxb.PaymentPort;
+import com.realdolmen.payment.jaxb.PaymentRequest;
+import com.realdolmen.payment.jaxb.PaymentResponse;
 import org.springframework.stereotype.Service;
 
 
