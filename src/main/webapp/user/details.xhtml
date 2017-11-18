@@ -1,31 +1,41 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-    <title>BootsFaces Basic Page</title>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <title>Homepage</title>
+    <h:outputStylesheet name="/style/index.css"></h:outputStylesheet>
 </h:head>
-<h:body>
+<h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
-
-        <h:panelGroup id="wrapperPanel">
-                <h:panelGroup id="loggedOut" rendered="#{userController.sessionUserId == null}">
-                    <ui:include src="/included/navbar/navBar.xhtml"/>
-                </h:panelGroup>
-                <h:panelGroup id="loggedIn" rendered="#{userController.sessionUserId != null}">
-                    <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
-                </h:panelGroup>
+    <h:panelGroup id="wrapperPanel">
+        <h:panelGroup id="loggedOut" rendered="#{userController.sessionUserId == null}">
+            <ui:include src="/included/navbar/navBar.xhtml"/>
         </h:panelGroup>
-
-
+        <h:panelGroup id="loggedIn" rendered="#{userController.sessionUserId != null}">
+            <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
+        </h:panelGroup>
+    </h:panelGroup>
+    <!-- kopieren van taakbalken stopt hier-->
     <b:container>
-        <h1>test</h1>
-        <p>
-            #{userController.huidigeKlant.voornaam}  #{userController.huidigeKlant.familienaam}
-        </p>
+        <b:row>
+            <b:column>
+                <b:jumbotron styleClass="techfoto">
+                    <b:image value="/resources/images/logo.png" styleClass="center" />
+                    <hr/>
+                    <p style="text-align: center" class="customFont">Welkom op de thuispagina van Random IT, uw IT-specialist in het verkopen van computeronderdelen en andere technologie!</p>
+                    <p style="text-align: center" class="customFont">Kijk gerust door onze lijst van producten of kies een categorie van onderdelen waarnaar je op zoek bent. U kan ook altijd een mailtje sturen indien iets niet overeen komt met uw wensen, of feedback geven over onze service, zodat we het kunnen verbeteren naar uw wensen.</p>
+                    <p style="text-align: center" class="customFont">Alvast veel plezier gewenst!</p>
+                </b:jumbotron>
+            </b:column>
+        </b:row>
+        <b:row>
+            <b:column>
+            </b:column>
+        </b:row>
     </b:container>
 </h:body>
 </html>

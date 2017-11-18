@@ -12,7 +12,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public void createProduct(String naam, String omschrijving, int prijs, int hoeveelheidInVoorraad) {
+    public void createProduct(String naam, String omschrijving, double prijs, int hoeveelheidInVoorraad) {
         Product product = new Product();
         product.setNaam(naam);
         product.setOmschrijving(omschrijving);
@@ -24,5 +24,9 @@ public class ProductService {
 
     public List<Product> findAllProducts() {
         return productRepository.findAll();
+    }
+
+    public Product getProduct(Long id) {
+        return productRepository.findOne(id);
     }
 }

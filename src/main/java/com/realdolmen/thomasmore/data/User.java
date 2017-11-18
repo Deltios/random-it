@@ -30,7 +30,6 @@ public class User implements Serializable{
     @OneToMany(mappedBy="user")
     private List<Bestelling> bestellingen = new ArrayList<>();
 
-
     //constructors
     public User() {
     }
