@@ -67,8 +67,8 @@ public class Product implements Serializable {
 		this.prijs = prijs;
 	}
 
-	public double getHoeveelheidInVoorraad() {
-		return this.hoeveelheidInVoorraad;
+	public int getHoeveelheidInVoorraad() {
+		return hoeveelheidInVoorraad;
 	}
 
 	public void setHoeveelheidInVoorraad(int hoeveelheidInVoorraad) {

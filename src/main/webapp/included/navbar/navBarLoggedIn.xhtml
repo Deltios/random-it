@@ -43,7 +43,9 @@
         <!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
         <h:form>
             <b:navbarLinks pull="right">
-                <b:navCommandLink value="Logout" action="#{userController.logoutUser()}"/>
+                    <b:navCommandLink value="Admin"  rendered="#{userController.sessionUserLevel == 3}" outcome="/admin/adminMain.xhtml">
+                    </b:navCommandLink>
+                <b:navCommandLink value='Logout #{session.getAttribute("type")}' action="#{userController.logoutUser()}"/>
             </b:navbarLinks>
         </h:form>
 

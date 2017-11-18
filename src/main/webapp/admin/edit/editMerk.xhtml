@@ -21,17 +21,9 @@
     <b:container>
         <h:form prependId="false">
             <b:row>
-                <b:inputText label="Naam:" value="#{adminController.product.naam}" span="5" placeholder="" required="true"/>
-                <b:inputText label="Prijs:" value="#{adminController.product.prijs}" span="5" placeholder="" required="true"/>
+                <b:inputText label="Naam:" value="#{adminController.merk.naam}" span="5" placeholder="" required="true"/>
+                <b:commandButton value="Normal button" look="primary" action="#{adminController.saveMerk()}" />
             </b:row>
-            <b:row>
-                <b:inputText label="In stock:" value="#{adminController.product.hoeveelheidInVoorraad}" span="3" placeholder="" required="true"/>
-                <b:inputTextarea type="text" label="Omschrijving:" value="#{adminController.product.omschrijving}" span="4" placeholder="" required="true"/>
-                <b:selectOneMenu value="#{adminController.product.merk}" colMd="2" label="Merk" labelColMd="2">
-                    <f:selectItems value="#{adminController.getAllMerken()}" var="m" itemValue="#{m}" itemLabel="#{m.naam}"/>
-                </b:selectOneMenu>
-            </b:row>
-            <b:commandButton value="Normal button" look="primary" action="#{adminController.saveProduct()}" />
         </h:form>
     </b:container>
 </h:body>

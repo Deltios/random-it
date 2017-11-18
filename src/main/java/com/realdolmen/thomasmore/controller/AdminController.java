@@ -26,6 +26,8 @@ public class AdminController {
     private List<Bestelling> bestellingen;
     private User user;
     private Product product;
+    private Merk merk;
+    private Categorie categorie;
 
     public AdminController() {
     }
@@ -64,6 +66,7 @@ public class AdminController {
         bestellingen = adminService.findBestellingenByPerson(id);
         return "bestellingTable";
     }
+
     public String newUser(){
         user = new User();
         return "edit/editUser";
@@ -72,39 +75,67 @@ public class AdminController {
         user = userService.getUser(id);
         return ("edit/editUser");
     }
-
-
-    public String editOrSaveSingleUser(){
+    public String saveUser(){
         adminService.saveOrUpdateUser(user);
         user = null;
-        return "../userTable.xhtml";
+        return "../userTable";
+    }
+    public void deleteUser(long id) {
+        adminService.deleteUser(id);
+    }
+
+    public String newProduct(){
+        product = new Product();
+        return "edit/editProduct";
     }
     public String editProducts(long id){
         product = adminService.findProductById(id);
         return "edit/editProduct";
     }
-
-    public String editProductDetails(){
+    public String saveProduct(){
         adminService.saveOrUpdateProduct(product);
-        return "editProductDetails";
-    }
-    public String editMerken() {
-        return "editMerken";
-    }
-    public String editCategorieen(){
-        return "editcategorieen";
-    }
-
-    public void deleteUser(long id) {
-        adminService.deleteUser(id);
+        return "productsTable";
     }
     public void deleteProduct(long id){ adminService.deleteProduct(id);}
+
+    public String newMerk(){
+        merk = new Merk();
+        return "edit/editMerk";
+    }
+    public String editMerken(long id) {
+        merk = adminService.findMerkById(id);
+        return "edit/editMerk";
+    }
+    public String saveMerk(){
+        adminService.saveOrUpdateMerk(merk);
+        return "merkenTable";
+    }
     public void deleteMerk(long id){ adminService.deleteMerk(id);}
+
+    public String newCategorie(){
+        categorie = new Categorie();
+        return "edit/editCategorie";
+    }
+    public String editCategorieen(Long id){
+        categorie = adminService.findCategorieById(id);
+        return "edit/editCategorie";
+    }
+    public String saveCategorie(){
+        adminService.saveOrUpdateCategorie(categorie);
+        return "categorieTable";
+    }
     public void deleteCategorie(long id){ adminService.deleteCategorie(id);}
+
+    public void deleteBestelling(long id){
+        adminService.deleteBestelling(id);
+    }
+
+
     public void deleteSpecificatie(long id){ adminService.deleteSpecificatie(id);}
-    public void deleteBestelling(long id){ adminService.deleteBestelling(id);}
+
     public void deleteSupportTicket(long id){ adminService.deleteBestelling(id);}
 
+    //Getters and setters
     public UserService getUserService() {
         return userService;
     }
@@ -138,5 +169,19 @@ public class AdminController {
     }
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public Merk getMerk() {
+        return merk;
+    }
+    public void setMerk(Merk merk) {
+        this.merk = merk;
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 }

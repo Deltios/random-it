@@ -36,7 +36,7 @@
                 <b:inputText label="Postcode:" value="#{adminController.user.postcode}" span="4" placeholder="" required="true"/>
                 <b:inputText label="Woonplaats:" value="#{adminController.user.gemeente}" span="6" placeholder="" required="true"/>
             </b:row>
-            <b:commandButton value="Normal button" look="primary" action="#{adminController.editOrSaveSingleUser()}" />
+            <b:commandButton value="Normal button" look="primary" action="#{adminController.saveUser()}" />
         </h:form>
     </b:container>
 </h:body>
