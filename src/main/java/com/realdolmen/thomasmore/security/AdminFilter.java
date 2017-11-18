@@ -20,7 +20,7 @@ public class AdminFilter implements Filter {
             loginAdmin = (User) request.getSession().getAttribute("user");
             level = loginAdmin.getUserLevel();
         }
-        String loginURL = request.getContextPath() + "/user/Login.xhtml";
+        String loginURL = request.getContextPath() + "/user/login.xhtml";
         if(loginAdmin != null && loginAdmin.getUserLevel() == 3){
             chain.doFilter(req, res);
         }

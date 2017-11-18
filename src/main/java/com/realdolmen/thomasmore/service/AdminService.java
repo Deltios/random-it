@@ -46,7 +46,10 @@ public class AdminService {
     public Bestelling findBestellingById(Long id){return bestellingRepository.findOne(id);}
     public Specificatie findSpecificatieById(Long id){return specificatieRepository.findOne(id);}
 
-    public void saveOrUpdateUser(User user){ userRepository.save(user); }
+    public void saveOrUpdateUser(User user){
+        String hashedWachtwoord = passwordEncoder.encode(user.getWachtwoord());
+        user.setWachtwoord(hashedWachtwoord);
+        userRepository.save(user); }
     public void saveOrUpdateProduct(Product product){ productRepository.save(product); }
     public void saveOrUpdateMerk(Merk merk){ merkRepository.save(merk); }
     public void saveOrUpdateCategorie(Categorie categorie){ categorieRepository.save(categorie); }

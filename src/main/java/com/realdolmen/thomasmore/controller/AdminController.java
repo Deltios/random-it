@@ -25,6 +25,7 @@ public class AdminController {
 
     private List<Bestelling> bestellingen;
     private User user;
+    private Product product;
 
     public AdminController() {
     }
@@ -63,19 +64,28 @@ public class AdminController {
         bestellingen = adminService.findBestellingenByPerson(id);
         return "bestellingTable";
     }
+    public String newUser(){
+        user = new User();
+        return "edit/editUser";
+    }
     public String editUsers(Long id){
         user = userService.getUser(id);
-        return ("editUsers");
+        return ("edit/editUser");
     }
-    public String editSingleUser(){
+
+
+    public String editOrSaveSingleUser(){
         adminService.saveOrUpdateUser(user);
         user = null;
-        return "userTable";
+        return "../userTable.xhtml";
     }
-    public String editProducts(){
-        return "editProducts";
+    public String editProducts(long id){
+        product = adminService.findProductById(id);
+        return "edit/editProduct";
     }
+
     public String editProductDetails(){
+        adminService.saveOrUpdateProduct(product);
         return "editProductDetails";
     }
     public String editMerken() {
@@ -121,4 +131,11 @@ public class AdminController {
         this.bestellingen = bestellingen;
     }
     public List<Bestelling> getBestellingen(){ return this.bestellingen;}
+
+    public Product getProduct() {
+        return product;
+    }
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }
