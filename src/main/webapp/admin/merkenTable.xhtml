@@ -24,15 +24,13 @@
         <b:row>
             <b:panel>
                 <h:form>
+                    <b:commandButton value="Nieuwe merk" action="#{adminController.newMerk()}"/>
                     <b:dataTable var="m" value="#{merkController.getMerken()}" responsive="true">
                         <b:dataTableColumn value="#{m.id}" />
                         <b:dataTableColumn value="#{m.naam}" />
-                        <b:dataTableColumn value="" label=""><h:commandLink action="#{adminController.deleteMerk(m.id)}"><b:icon name="trash" /></h:commandLink></b:dataTableColumn>
-
-                        <b:dataTableColumn label="Detailpagina">
-                            <b:commandButton look="primary" value="Details" iconAwesome="info-circle">
-                            </b:commandButton>
-                        </b:dataTableColumn>
+                        <b:dataTableColumn value="" label="">
+                            <h:commandLink action="#{adminController.editMerken(m.id)}"><b:icon name="pencil" /></h:commandLink>
+                            <h:commandLink action="#{adminController.deleteMerk(m.id)}"><b:icon name="trash" /></h:commandLink></b:dataTableColumn>
                     </b:dataTable>
                 </h:form>
             </b:panel>

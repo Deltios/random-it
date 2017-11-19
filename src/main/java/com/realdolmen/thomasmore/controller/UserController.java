@@ -35,6 +35,7 @@ public class UserController {
     private String newPaswoord;
     private String newTelefoon;
     private int newUserLevel;
+    private int sessionUserLevel;
 
     private Long sessionUserId;
     private String errorMessage;
@@ -93,12 +94,12 @@ public class UserController {
         User user = userService.authenticateUser(newEmail, newPaswoord);
         if (user !=  null){
             huidigeKlant = (Klant)userService.getByEmail(newEmail);
-
             session.setAttribute("user", user);
             if (user.getUserLevel() == 3){
 
             }
             this.sessionUserId = user.getId();
+            this.sessionUserLevel = user.getUserLevel();
             this.newEmail = null;
             this.newPaswoord = null;
             return "details";
@@ -222,6 +223,14 @@ public class UserController {
 
     public void setSessionUserId(Long sessionUserId) {
         this.sessionUserId = sessionUserId;
+    }
+
+    public int getSessionUserLevel() {
+        return sessionUserLevel;
+    }
+
+    public void setSessionUserLevel(int sessionUserLevel) {
+        this.sessionUserLevel = sessionUserLevel;
     }
 
     public String getErrorMessage() {

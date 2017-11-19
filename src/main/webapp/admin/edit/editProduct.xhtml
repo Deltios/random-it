@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>BootsFaces Basic Page</title>
+</h:head>
+<h:body>
+    <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
+    <h:panelGroup id="wrapperPanel">
+        <h:panelGroup id="loggedOut" rendered="#{request.getSession().getAttribute('user') == null}">
+            <ui:include src="/included/navbar/navBar.xhtml"/>
+        </h:panelGroup>
+        <h:panelGroup id="loggedIn" rendered="#{request.getSession().getAttribute('user')!= null}">
+            <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
+        </h:panelGroup>
+    </h:panelGroup>
+    <b:container>
+        <h:form prependId="false">
+            <b:row>
+                <b:inputText label="Naam:" value="#{adminController.product.naam}" span="5" placeholder="" required="true"/>
+                <b:inputText label="Prijs:" value="#{adminController.product.prijs}" span="5" placeholder="" required="true"/>
+            </b:row>
+            <b:row>
+                <b:inputText label="In stock:" value="#{adminController.product.hoeveelheidInVoorraad}" span="3" placeholder="" required="true"/>
+                <b:inputTextarea type="text" label="Omschrijving:" value="#{adminController.product.omschrijving}" span="4" placeholder="" required="true"/>
+                <b:selectOneMenu value="#{adminController.product.merk}" colMd="2" label="Merk" labelColMd="2">
+                    <f:selectItems value="#{adminController.getAllMerken()}" var="m" itemValue="#{m}" itemLabel="#{m.naam}"/>
+                </b:selectOneMenu>
+            </b:row>
+            <b:commandButton value="Normal button" look="primary" action="#{adminController.saveProduct()}" />
+        </h:form>
+    </b:container>
+</h:body>
+</html>

@@ -8,7 +8,6 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:b="http://bootsfaces.net/ui">
     <!-- Om de CSS van iets te veranderen moet je naar een eigen CSS verwijzen. CSS van Bootstrap komt op Facebook te staan.-->
-    <h:outputStylesheet name="navBar/navBar.css"></h:outputStylesheet>
     <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
     <b:navBar brand="Home" brandHref="#{request.contextPath}/index.xhtml" inverse="true">
         <b:navbarLinks>
@@ -44,7 +43,9 @@
         <!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
         <h:form>
             <b:navbarLinks pull="right">
-                <b:navCommandLink class="logoutLink" value="Logout" action="#{userController.logoutUser()}"/>
+                    <b:navCommandLink value="Admin"  rendered="#{userController.sessionUserLevel == 3}" outcome="/admin/adminMain.xhtml">
+                    </b:navCommandLink>
+                <b:navCommandLink value='Logout #{session.getAttribute("type")}' action="#{userController.logoutUser()}"/>
             </b:navbarLinks>
         </h:form>
 

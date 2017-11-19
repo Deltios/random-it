@@ -28,5 +28,6 @@ public class UserSession {
     }
     public void setSession(HttpSession session){
         session.setAttribute("user", user);
+        session.setAttribute("type", user.getUserLevel());
     }
 }
