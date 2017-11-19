@@ -102,12 +102,11 @@ public class UserController {
             this.sessionUserLevel = user.getUserLevel();
             this.newEmail = null;
             this.newPaswoord = null;
-            return "details";
+            return "/index";
         }
         else{
-            errorHandling("Er is geen gebruiker  ingelogd.");
+            return errorHandling("Er is geen gebruiker  ingelogd.");
         }
-        return "index";
     }
     public String logoutUser(){
         if  (this.sessionUserId==null){
