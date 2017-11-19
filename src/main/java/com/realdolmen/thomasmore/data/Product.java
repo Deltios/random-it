@@ -107,6 +107,18 @@ public class Product implements Serializable {
 		this.besteldeProducten = besteldeProducten;
 	}
 
+	@Override
+	public int hashCode() {
+		return id.hashCode();
+	}
+
+	public boolean equals(Object object) {
+		if(!(object instanceof Product)){
+			return false;
+		}
+		return this.id == ((Product)object).id;
+	}
+
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}

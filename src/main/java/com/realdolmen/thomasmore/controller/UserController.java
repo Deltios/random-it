@@ -108,19 +108,23 @@ public class UserController {
             return errorHandling("Er is geen gebruiker  ingelogd.");
         }
     }
-    public String logoutUser(){
-        if  (this.sessionUserId==null){
-            errorHandling("Er is geen gebruiker  ingelogd.");
+    public String logoutUser(HttpSession session){
+        if  (this.sessionUserId == null){
+            return errorHandling("Er is geen gebruiker  ingelogd.");
         }
         userService.logoutUser();
-        this.sessionUserId =  null;
-        this.huidigeKlant=null;
-        return "loggedOut";
+        this.sessionUserId = null;
+        this.huidigeKlant = null;
+        session.setAttribute("user", null);
+        session.setAttribute("winkelkarretje", null);
+        return "/index";
     }
+
     public String errorHandling(String errorMessage){
         this.errorMessage= errorMessage;
         return "errorPage";
     }
+
     public void test(){
         addMessage("Test users toegevoegd!");
     }

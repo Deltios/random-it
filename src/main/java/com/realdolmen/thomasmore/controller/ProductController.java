@@ -9,7 +9,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.servlet.http.HttpSession;
+import java.util.*;
 
 @ManagedBean
 @SessionScoped
@@ -43,10 +45,53 @@ public class ProductController {
         return productService.findAllProducts();
     }
 
+    public List<Product> getArtikelsInWinkelkarretje(HttpSession session) {
+        HashMap<Product, Integer> winkelkarretje = (HashMap<Product, Integer>)session.getAttribute("winkelkarretje");
+
+        if(winkelkarretje == null) {
+            return Collections.EMPTY_LIST;
+        }
+
+        List<Product> artikels = new ArrayList<>();
+        artikels.addAll(winkelkarretje.keySet());
+        return artikels;
+    }
+
+    public int getArtikelAantalInWinkelkarretje(HttpSession session, Product artikel) {
+        HashMap<Product, Integer> winkelkarretje = (HashMap<Product, Integer>)session.getAttribute("winkelkarretje");
+        int aantal = winkelkarretje.get(artikel);
+        return aantal;
+    }
+
     public void createProduct() {
         productService.createProduct(newNaam, newOmschrijving, newPrijs, newHoeveelheidInVoorraad);
         addMessage("Product toegevoegd!");
         clearForm();
+    }
+
+    public String naarWinkelkarretjeOverzicht(HttpSession session) {
+        if(session.getAttribute("user") == null) {
+            return "/user/register";
+        }
+        else {
+            return "/producten/winkelmandje";
+        }
+    }
+
+    public double berekenTotaalPrijs(HttpSession session) {
+        HashMap<Product, Integer> winkelkarretje = (HashMap<Product, Integer>)session.getAttribute("winkelkarretje");
+
+        if(winkelkarretje == null) {
+            return 0.0;
+        }
+
+        double totaalprijs = 0.0;
+
+        for(Map.Entry<Product, Integer> artikel : winkelkarretje.entrySet()){
+            totaalprijs += artikel.getValue() * artikel.getKey().getPrijs();
+        }
+
+        return totaalprijs;
     }
 
     public void createTestProducten(){
@@ -60,6 +105,32 @@ public class ProductController {
         newOmschrijving = null;
         newPrijs = 0;
         newHoeveelheidInVoorraad = 0;
+    }
+
+    public String addArtikelInWinkelkarretje(HttpSession session, Product artikel, int aantalToeTeVoegen) {
+        if(session.getAttribute("user") == null) {
+            return "/user/register";
+        }
+
+        HashMap<Product, Integer> winkelkarretje;
+
+        if(session.getAttribute("winkelkarretje") == null) {
+            winkelkarretje = new HashMap<>();
+            session.setAttribute("winkelkarretje", winkelkarretje);
+        }
+        else {
+            winkelkarretje = (HashMap<Product, Integer>)session.getAttribute("winkelkarretje");
+        }
+
+        if(winkelkarretje.containsKey(artikel)) {
+            int aantal = winkelkarretje.get(artikel);
+            winkelkarretje.put(artikel, aantal + aantalToeTeVoegen);
+        }
+        else {
+            winkelkarretje.put(artikel, aantalToeTeVoegen);
+        }
+
+        return "/producten/productenlijst";
     }
 
     private void addMessage(String summary) {

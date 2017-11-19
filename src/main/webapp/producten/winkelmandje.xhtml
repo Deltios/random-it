@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <title>Producten</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
+    <h:outputStylesheet name="/style/index.css"></h:outputStylesheet>
+</h:head>
+<h:body styleClass="achtergrondfoto">
+    <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
+    <h:panelGroup id="wrapperPanel">
+        <h:panelGroup id="loggedOut" rendered="#{userController.sessionUserId == null}">
+            <ui:include src="/included/navbar/navBar.xhtml"/>
+        </h:panelGroup>
+        <h:panelGroup id="loggedIn" rendered="#{userController.sessionUserId != null}">
+            <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
+        </h:panelGroup>
+    </h:panelGroup>
+    <!-- kopieren van taakbalken stopt hier-->
+    <b:container>
+        <b:row>
+            <b:panel>
+                <b:dataTable value="#{productController.getArtikelsInWinkelkarretje(session)}" var="a"
+                             paginated="false"
+                             responsive="true"
+                             searching="false"
+                             custom-options="info:false">
+                    <b:dataTableColumn value="#{a.naam}" orderable="false" />
+                    <b:dataTableColumn orderable="false" label="Prijs">
+                        &#8364; <h:outputText value="#{a.prijs}"><f:convertNumber pattern="#0.##" /></h:outputText>
+                    </b:dataTableColumn>
+                    <b:dataTableColumn value="#{productController.getArtikelAantalInWinkelkarretje(session, a)}" orderable="false" label="Aantal" />
+                    <b:dataTableColumn orderable="false" label="Totaalprijs">
+                        <b>&#8364; <h:outputText value="#{a.prijs * productController.getArtikelAantalInWinkelkarretje(session, a)}"><f:convertNumber pattern="#0.##" /></h:outputText></b>
+                    </b:dataTableColumn>
+                </b:dataTable>
+
+                <p>&#8364; <h:outputText value="#{productController.berekenTotaalPrijs(session)}"><f:convertNumber pattern="#0.##" /></h:outputText></p>
+            </b:panel>
+        </b:row>
+    </b:container>
+
+</h:body>
+</html>
