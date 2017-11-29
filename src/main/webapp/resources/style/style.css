@@ -32,3 +32,26 @@
 .customFont {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
+
+/* background image*/
+.achtergrondfoto {
+    background: url("#{resource['images/background.png']}") !important;
+    background-color: grey !important;
+}
+
+/* background image voor de jumbotron op de index pagina */
+.techfoto {
+    background: url("#{resource['images/jumbotron-image.png']}") !important;
+    background-color: black !important;
+    background-size: 100% 100% !important;
+    color: white !important;
+}
+
+form{
+    background-color: rgba(205,204,238,0.50);
+    padding: 10px;
+}
+
+.title{
+    color: whitesmoke;
+}
