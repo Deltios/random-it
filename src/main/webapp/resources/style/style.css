@@ -28,7 +28,7 @@
     color: white !important;
 }
 
-/* class om de font van een p-tag aan te passen */
+/* class om font aan te passen */
 .customFont {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
@@ -52,6 +52,6 @@ form{
     padding: 10px;
 }
 
-.title{
+.smoke{
     color: whitesmoke;
 }
