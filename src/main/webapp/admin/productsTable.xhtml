@@ -24,6 +24,8 @@
         <b:row>
             <b:panel>
                 <h:form>
+                    <b:commandButton value="Nieuw merk" action="#{adminController.newProduct()}"/>
+                    <br/>
                     <b:dataTable var="p" value="#{adminController.getAllProducts()}" responsive="true">
                         <b:dataTableColumn value="#{p.naam}" />
                         <b:dataTableColumn value="" label="Prijs">

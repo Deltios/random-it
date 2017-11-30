@@ -8,7 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.spi.http.HttpContext;
+import java.io.IOException;
 import java.util.List;
 
 @ManagedBean
@@ -75,10 +79,10 @@ public class AdminController {
         user = userService.getUser(id);
         return ("edit/editUser");
     }
-    public String saveUser(){
+    public void saveUser(){
         adminService.saveOrUpdateUser(user);
         user = null;
-        return "../userTable";
+        this.redirectToPage("../userTable.xhtml");
     }
     public void deleteUser(long id) {
         adminService.deleteUser(id);
@@ -92,9 +96,9 @@ public class AdminController {
         product = adminService.findProductById(id);
         return "edit/editProduct";
     }
-    public String saveProduct(){
+    public void saveProduct(){
         adminService.saveOrUpdateProduct(product);
-        return "productsTable";
+        this.redirectToPage("../productsTable.xhtml");
     }
     public void deleteProduct(long id){ adminService.deleteProduct(id);}
 
@@ -106,9 +110,11 @@ public class AdminController {
         merk = adminService.findMerkById(id);
         return "edit/editMerk";
     }
-    public String saveMerk(){
+    public void saveMerk(){
         adminService.saveOrUpdateMerk(merk);
-        return "merkenTable";
+        this.getAllMerken();
+        this.redirectToPage("../merkenTable.xhtml");
+
     }
     public void deleteMerk(long id){ adminService.deleteMerk(id);}
 
@@ -120,9 +126,9 @@ public class AdminController {
         categorie = adminService.findCategorieById(id);
         return "edit/editCategorie";
     }
-    public String saveCategorie(){
+    public void saveCategorie(){
         adminService.saveOrUpdateCategorie(categorie);
-        return "categorieTable";
+        this.redirectToPage("../categorieTable.xhtml");
     }
     public void deleteCategorie(long id){ adminService.deleteCategorie(id);}
 
@@ -135,6 +141,17 @@ public class AdminController {
 
     public void deleteSupportTicket(long id){ adminService.deleteBestelling(id);}
 
+
+    private void redirectToPage(String s){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+
+        try {
+            ec.redirect(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     //Getters and setters
     public UserService getUserService() {
         return userService;

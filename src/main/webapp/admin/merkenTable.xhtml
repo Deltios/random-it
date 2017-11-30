@@ -24,7 +24,8 @@
         <b:row>
             <b:panel>
                 <h:form>
-                    <b:commandButton value="Nieuwe merk" action="#{adminController.newMerk()}"/>
+                    <b:commandButton value="Nieuw merk" action="#{adminController.newMerk()}"/>
+                    <br/>
                     <b:dataTable var="m" value="#{merkController.getMerken()}" responsive="true">
                         <b:dataTableColumn value="#{m.id}" />
                         <b:dataTableColumn value="#{m.naam}" />

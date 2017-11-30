@@ -19,12 +19,18 @@
     <b:container>
         <b:row>
             <b:column>
-                <b:button outcome="./userTable.xhtml" value="Gebruikers bewerken"/>
-                <b:button outcome="./productsTable.xhtml" value="Producten bewerken"/>
-                <b:button outcome="./merkenTable.xhtml" value="Merken bewerken"/>
-                <b:button outcome="./categorieTable.xhtml" value="Categorieën bewerken"/>
-                <h:form>
-                    <b:commandButton action="#{adminController.getAllBestellingen()}" value="Alle bestellingen"/>
+                <b:panelGrid colSpans="6,6">
+                    <b:button styleClass="containerCard" outcome="./userTable.xhtml" value="Gebruikers bewerken" colLg="12"/>
+                    <b:button outcome="./productsTable.xhtml" value="Producten bewerken" colLg="12"/>
+                </b:panelGrid>
+                <br/>
+                <b:panelGrid colSpans="6,6">
+                    <b:button outcome="./merkenTable.xhtml" value="Merken bewerken" colLg="12"/>
+                    <b:button outcome="./categorieTable.xhtml" value="Categorieën bewerken" colLg="12"/>
+                </b:panelGrid>
+                <br/>
+               <h:form>
+                    <b:commandButton action="#{adminController.getAllBestellingen()}" value="Alle bestellingen" colLg = "12"/>
                 </h:form>
 
             </b:column>
