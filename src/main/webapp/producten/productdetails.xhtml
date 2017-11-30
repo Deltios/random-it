@@ -27,29 +27,43 @@
     <!-- kopieren van taakbalken stopt hier-->
     <b:container>
         <b:row>
-            <b:panel style="margin:15px">
-                <h1 class="centerText customFont"><h:outputText value="#{productController.product.naam}" /></h1>
-                <hr/>
-                <p><b:image name="placeholder" value="../resources/images/placeholder.png" tooltip="#{productController.product.naam}" styleClass="centerImage"/></p>
-                <b:dataTable value="#{productController.product}"
-                             var="p"
-                             id="p"
-                             paginated="false"
-                             border="false"
-                             scroll-x="false"
-                             rowHighlight="false"
-                             striped="false"
-                             custom-options="info:false"
-                             responsive="true"
-                             searching="false">
-                    <b:dataTableColumn value="#{p.omschrijving}" label="Omschrijving" orderable="false" />
-                    <b:dataTableColumn value="#{p.hoeveelheidInVoorraad}" label="Hoeveelheid in Voorraad" orderable="false" />
-                    <b:dataTableColumn value="#{p.merk.naam}" label="Merk" orderable="false" />
-                    <b:dataTableColumn label="Prijs" orderable="false">
-                        <b>&#8364; <h:outputText value="#{p.prijs}"><f:convertNumber pattern="#0.##" /></h:outputText></b>
-                    </b:dataTableColumn>
-                </b:dataTable>
-            </b:panel>
+
+
+                    <b:panel style="margin:15px">
+                        <h1 class="centerText customFont"><h:outputText value="#{productController.product.naam}" /></h1>
+                        <hr/>
+                        <p><b:image name="placeholder" value="../resources/images/placeholder.png" tooltip="#{productController.product.naam}" styleClass="centerImage"/></p>
+
+                        <p:tabView dynamic="true">
+                            <p:tab title="Algemene Info">
+                              <b:dataTable value="#{productController.product}"
+                                         var="p"
+                                         id="p"
+                                         paginated="false"
+                                         border="false"
+                                         scroll-x="false"
+                                         rowHighlight="false"
+                                         striped="false"
+                                         custom-options="info:false"
+                                         responsive="true"
+                                         searching="false">
+                                <b:dataTableColumn value="#{p.omschrijving}" label="Omschrijving" orderable="false" />
+                                <b:dataTableColumn value="#{p.hoeveelheidInVoorraad}" label="Hoeveelheid in Voorraad" orderable="false" />
+                                <b:dataTableColumn value="#{p.merk.naam}" label="Merk" orderable="false" />
+                                <b:dataTableColumn label="Prijs" orderable="false">
+                                    <b>&#8364; <h:outputText value="#{p.prijs}"><f:convertNumber pattern="#0.##" /></h:outputText></b>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                            </p:tab>
+                            <p:tab title="Specificaties">
+
+                            </p:tab>
+                        </p:tabView>
+                    </b:panel>
+
+
+
+
         </b:row>
 
         <b:row>
