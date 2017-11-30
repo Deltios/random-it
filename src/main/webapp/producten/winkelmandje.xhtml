@@ -24,7 +24,7 @@
     <!-- kopieren van taakbalken stopt hier-->
     <b:container>
         <b:row>
-            <b:panel>
+            <b:panel style="margin:5px">
                 <b:dataTable value="#{productController.getArtikelsInWinkelkarretje(session)}" var="a"
                              paginated="false"
                              responsive="true"
@@ -40,8 +40,12 @@
                     </b:dataTableColumn>
                 </b:dataTable>
 
-                <p>&#8364; <h:outputText value="#{productController.berekenTotaalPrijs(session)}"><f:convertNumber pattern="#0.##" /></h:outputText></p>
+                <p style="text-align: right">&#8364; <h:outputText value="#{productController.berekenTotaalPrijs(session)}"><f:convertNumber pattern="#0.##" /></h:outputText></p>
             </b:panel>
+        </b:row>
+
+        <b:row>
+            <b:button outcome="productenlijst" look="primary" value="Terug" iconAwesome="arrow-left" style="margin:15px"/>
         </b:row>
     </b:container>
 
