@@ -9,7 +9,7 @@
 <h:head>
     <title>BootsFaces Basic Page</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
-    <h:outputStylesheet name="/style/contact.css"></h:outputStylesheet>
+    <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
     <style type="text/css">
         .topcorner{
             position:absolute;
@@ -18,7 +18,7 @@
         }
     </style>
 </h:head>
-<h:body>
+<h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
         <h:panelGroup id="wrapperPanel">
                 <h:panelGroup id="loggedOut" rendered="#{userController.sessionUserId == null}">
@@ -28,8 +28,8 @@
                     <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
                 </h:panelGroup>
         </h:panelGroup>
-    <b:container>
-        <h3>Contact opnemen Random IT</h3>
+    <b:container styleClass="container">
+        <h3 class="title">Contact opnemen Random IT</h3>
         <p:accordionPanel>
             <p:tab title="Bedrijf contact gegevens">
                 <p:panelGrid columns="2" cellpadding="10" cellspacing="50">
@@ -48,7 +48,7 @@
                 <b:image width="50%" value="../resources/images/logo.png" styleClass="right" class="logorandomit topcorner" />
             </p:tab>
             <p:tab title="Geografische ligging">
-                <h1>Google maps comming soon :D</h1>
+                <h1>Google maps coming soon :D</h1>
             </p:tab>
             <p:tab rendered="#{userController.sessionUserId != null}" title="alle support ticekts aadmin">
                 <b:panel>

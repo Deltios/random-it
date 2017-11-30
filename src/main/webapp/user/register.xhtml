@@ -6,9 +6,11 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <title>BootsFaces Basic Page</title>
+    <title>Registreren</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
+    <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
 </h:head>
-<h:body>
+<h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
     <h:panelGroup id="wrapperPanel">
         <h:panelGroup id="loggedOut" rendered="#{userController.sessionUserId == null}">
@@ -36,7 +38,7 @@
                 <b:inputText label="Postcode:" value="#{userController.huidigeKlant.postcode}" span="4" placeholder="" required="true"/>
                 <b:inputText label="Woonplaats:" value="#{userController.huidigeKlant.gemeente}" span="6" placeholder="" required="true"/>
             </b:row>
-            <b:commandButton value="Normal button" look="primary" action="#{userController.registerKlant()}" />
+            <b:commandButton value="Registreer" look="primary" action="#{userController.registerKlant()}" />
         </h:form>
     </b:container>
 </h:body>
