@@ -23,11 +23,11 @@
     </h:panelGroup>
     <!-- kopieren van taakbalken stopt hier-->
     <b:container>
-        <b:row>
             <h:form>
-                <b:button outcome="#{productController.naarWinkelkarretjeOverzicht(session)}" look="primary" value="Winkelmandje" iconAwesome="shopping-basket" style="margin:15px"/>
-
-                <b:panelGrid colSpans="4,4,4" style="margin:15px">
+                <b:button outcome="#{productController.naarWinkelkarretjeOverzicht(session)}" look="primary" value="Winkelmandje" iconAwesome="shopping-basket"/>
+                <br/>
+                <br/>
+                <b:panelGrid colSpans="4,4,4">
                     <c:forEach items="#{productController.getProducts()}" var="p">
                         <b:panel>
                             <h1 class="centerText customFont"><h:outputText value="#{p.naam}" /></h1>
@@ -45,11 +45,6 @@
                     </c:forEach>
                 </b:panelGrid>
             </h:form>
-        </b:row>
-        <b:row>
-            <b:column>
-            </b:column>
-        </b:row>
     </b:container>
 </h:body>
 </html>
