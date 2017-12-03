@@ -54,9 +54,10 @@
                 <b:form>
                 <b:panel>
                     <b:inputText id="kaartnummer" type="number" label="Kredietkaartnummer" placeholder="4111111111111111" pattern=".{16}" required="true" tooltip="Gelieve een kaartnummer van 16 cijfers in te vullen"></b:inputText>
+                    <b:commandButton value="Betalen" look="success" action="#{bestellingController.createBestelling()}" tooltip="Dit is definitief!" iconAwesome="credit-card"/>
                 </b:panel>
                     <b:button outcome="#{productController.naarWinkelkarretjeOverzicht(session)}" look="primary" value="Terug naar winkelmandje" iconAwesome="shopping-basket"/>
-                    <b:commandButton value="Betalen" look="success" action="#{bestellingController.createBestelling()}" tooltip="Dit is definitief!"/>
+
                 </b:form>
             </b:column>
 
