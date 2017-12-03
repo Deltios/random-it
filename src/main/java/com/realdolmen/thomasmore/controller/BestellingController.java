@@ -9,7 +9,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class BestellingController {
     private BestellingService bestellingService;
 
     private String newBestelnummer;
-    private Calendar newBesteldatum;
+    private LocalDate newBesteldatum;
     private String newOpmerking;
 
     public List<Bestelling> getBestellingen() {
@@ -34,9 +36,9 @@ public class BestellingController {
     }
 
     public void createTestBestellingen(){
-        bestellingService.createBestelling("21548", new GregorianCalendar(2017,10,20), "Geen");
-        bestellingService.createBestelling("21376", new GregorianCalendar(2017,10,20), "Geen");
-        bestellingService.createBestelling("21482", new GregorianCalendar(2017,10,20), "Geen");
+        bestellingService.createBestelling("21548", LocalDate.of(2017,10,20), "Geen");
+        bestellingService.createBestelling("21376", LocalDate.of(2017,10,20), "Geen");
+        bestellingService.createBestelling("21482", LocalDate.of(2017,10,20), "Geen");
     }
 
     private void clearForm() {
@@ -62,11 +64,11 @@ public class BestellingController {
         this.newBestelnummer = newBestelnummer;
     }
 
-    public Calendar getNewBesteldatum() {
+    public LocalDate getNewBesteldatum() {
         return newBesteldatum;
     }
 
-    public void setNewBesteldatum(Calendar newBesteldatum) {
+    public void setNewBesteldatum(LocalDate newBesteldatum) {
         this.newBesteldatum = newBesteldatum;
     }
 

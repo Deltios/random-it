@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -32,13 +33,13 @@ public class SupportTicketController {
     }
 
     public void add(){
-        this.supportTicketService.createSupportTicket(Calendar.getInstance(),supportTicket.getNaam(),supportTicket.getOpmerking());
+        this.supportTicketService.createSupportTicket(LocalDate.now(),supportTicket.getNaam(),supportTicket.getOpmerking());
         this.supportTicket = new SupportTicket();
     }
 
 
     private User newUser;
-    private Calendar newDatumAanvraag;
+    private LocalDate newDatumAanvraag;
     private String newOpmerking;
     private String newNaam;
 
@@ -53,9 +54,9 @@ public class SupportTicketController {
     }
 
     public void createTestSupportTickets(){
-        supportTicketService.createSupportTicket(new GregorianCalendar(2017, 10, 11 ), "Geen", "mrappel");
-        supportTicketService.createSupportTicket(new GregorianCalendar(2017, 9, 3 ), "Geen", "mrPeer");
-        supportTicketService.createSupportTicket(new GregorianCalendar(2017, 5, 15 ), "Geen", "mrBanaan");
+        supportTicketService.createSupportTicket(LocalDate.of(2017, 10, 11 ), "Geen", "mrappel");
+        supportTicketService.createSupportTicket(LocalDate.of(2017, 9, 3 ), "Geen", "mrPeer");
+        supportTicketService.createSupportTicket(LocalDate.of(2017, 5, 15 ), "Geen", "mrBanaan");
     }
 
     private void clearForm() {
