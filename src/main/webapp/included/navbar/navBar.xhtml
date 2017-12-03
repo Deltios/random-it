@@ -11,8 +11,9 @@
     <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
     <h:outputStylesheet library="style" name="navBar.css"></h:outputStylesheet>
     <h:outputStylesheet name="style/navBar.css"></h:outputStylesheet>
-    <b:navBar brand="Home" brandHref="#{request.contextPath}/index.xhtml" inverse="true">
+    <b:navBar brand="Home" iconAwesome="home" brandHref="#{request.contextPath}/index.xhtml" inverse="true">
         <b:navbarLinks>
+            <b:navLink value="Producten" outcome="producten/productenlijst"/>
             <!--<b:navLink outcome="#/index">#{helloWorldController.helloWorld}</b:navLink>
             <b:navLink href="#"></b:navLink>
             <b:dropMenu value="Dropdown" >
@@ -34,7 +35,7 @@
                 </b:dropMenu>
                 <b:navLink value="One more separated link" href="#"></b:navLink>
             </b:dropMenu>-->
-            <b:navLink  value="Contact opnemen" outcome="/support/index"></b:navLink>
+            <b:navLink  value="Contact" outcome="/support/index"></b:navLink>
         </b:navbarLinks>
         <!--<form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs" action="search">
             <div class="form-group">

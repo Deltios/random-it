@@ -23,6 +23,7 @@
     </h:panelGroup>
     <!-- kopieren van taakbalken stopt hier-->
     <b:container>
+        <h2 class="smoke">Jouw winkelmandje</h2>
             <b:panel>
                 <b:dataTable value="#{productController.getArtikelsInWinkelkarretje(session)}" var="a"
                              paginated="false"
@@ -43,6 +44,7 @@
             </b:panel>
 
             <b:button outcome="productenlijst" look="primary" value="Naar producten" iconAwesome="arrow-left"/>
+            <b:button pull="right" outcome="/bestelling/bestellingPlaatsen" look="primary" value="Bestellen"/>
     </b:container>
 
 </h:body>

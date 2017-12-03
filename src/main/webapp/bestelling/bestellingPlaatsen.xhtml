@@ -25,11 +25,41 @@
         <b:row>
             <b:column>
                 <h2 class="smoke">Bestelling plaatsen</h2>
-                <p class="smoke">Bestelling 1</p>
+                <h3 class="smoke">Producten</h3>
                 <b:panel>
-                    <b:inputText>Hallo</b:inputText>
+                <b:dataTable value="#{productController.getArtikelsInWinkelkarretje(session)}" var="a"
+                             paginated="false"
+                             responsive="true"
+                             searching="false"
+                             custom-options="info:false">
+                    <b:dataTableColumn value="#{a.naam}" orderable="false" />
+                    <b:dataTableColumn orderable="false" label="Prijs">
+                        &#8364; <h:outputText value="#{a.prijs}"><f:convertNumber pattern="#0.##" /></h:outputText>
+                    </b:dataTableColumn>
+                    <b:dataTableColumn value="#{productController.getArtikelAantalInWinkelkarretje(session, a)}" orderable="false" label="Aantal" />
+                    <b:dataTableColumn orderable="false" label="Totaalprijs">
+                        <b>&#8364; <h:outputText value="#{a.prijs * productController.getArtikelAantalInWinkelkarretje(session, a)}"><f:convertNumber pattern="#0.##" /></h:outputText></b>
+                    </b:dataTableColumn>
+                </b:dataTable>
                 </b:panel>
             </b:column>
+        </b:row>
+        <b:row>
+            <b:column rendered="#{userController.sessionUserId == null}">
+            <b:panel look="danger" title="Je moet ingelogd zijn om te kunnen bestellen" collapsed="true" collapsible="false">
+            </b:panel>
+            </b:column>
+            <b:column rendered="#{userController.sessionUserId != null}">
+                <h3 class="smoke">Uw gegevens</h3>
+                <b:form>
+                <b:panel>
+                    <b:inputText id="kaartnummer" type="number" label="Kredietkaartnummer" placeholder="4111111111111111" pattern=".{16}" required="true" tooltip="Gelieve een kaartnummer van 16 cijfers in te vullen"></b:inputText>
+                </b:panel>
+                    <b:button outcome="#{productController.naarWinkelkarretjeOverzicht(session)}" look="primary" value="Terug naar winkelmandje" iconAwesome="shopping-basket"/>
+                    <b:commandButton value="Betalen" look="success" action="#{bestellingController.createBestelling()}" tooltip="Dit is definitief!"/>
+                </b:form>
+            </b:column>
+
         </b:row>
 
         <!--<b:row>
