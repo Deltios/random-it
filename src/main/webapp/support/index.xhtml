@@ -41,7 +41,7 @@
             <p:tab title="Geografische ligging">
                 <h1>Google maps coming soon :D</h1>
             </p:tab>
-            <p:tab rendered="#{userController.sessionUserId != null}" title="alle support ticekts aadmin">
+            <p:tab rendered="#{userController.sessionUserId != null}" title="Alle support tickets admin">
                 <b:panel>
                     <h:form>
                         <b:dataTable var="s" value="#{supportTicketController.getSupportTickets()}" responsive="true">

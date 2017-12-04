@@ -20,13 +20,13 @@
                 <b:row>
                     <b:inputText type="password" label="Wachtwoord:" span="4" value="#{userController.newPaswoord}"/>
                 </b:row>
-                <b:commandButton ajax="false" value="Login" look="primary" action="#{userController.loginKlant(session)}" />
+                <b:commandButton ajax="false" value="Inloggen" look="primary" action="#{userController.loginKlant(session)}" />
             </h:form>
             <hr></hr>
-           <h:panelGrid columns="2">
-               <p>Nog geen lid? </p>
-               <b:button outcome="register" look="primary" value="Registreer" style="margin-left: 10px;margin-bottom:2px"/>
-           </h:panelGrid>
+
+               <p>Nog geen lid?
+                   <b:navLink outcome="register" value="Registreren"/>
+               </p>
         </b:panel>
     </b:container>
 </h:body>
