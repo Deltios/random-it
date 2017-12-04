@@ -7,16 +7,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <title>BootsFaces Basic Page</title>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
-    <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
-    <style type="text/css">
-        .topcorner{
-            position:absolute;
-            top:0;
-            right:0;
-        }
-    </style>
+    <ui:include src="../included/head/head.xhtml"></ui:include>
 </h:head>
 <h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
@@ -56,11 +47,11 @@
                         <b:dataTable var="s" value="#{supportTicketController.getSupportTickets()}" responsive="true">
                             <b:dataTableColumn value="#{s.opmerking}" />
                             <b:dataTableColumn value="#{s.naam}" />
-
                         </b:dataTable>
                     </h:form>
                 </b:panel>
             </p:tab>
+
             <p:tab rendered="#{userController.sessionUserId != null}" title="Maak support ticket aan Random IT">
                 <b:panel>
                     <h:form>
