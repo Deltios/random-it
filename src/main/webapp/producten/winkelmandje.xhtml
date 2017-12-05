@@ -21,6 +21,7 @@
     <!-- kopieren van taakbalken stopt hier-->
     <b:container>
         <h2 class="smoke">Jouw winkelmandje</h2>
+        <h:form>
             <b:panel>
                 <b:dataTable value="#{productController.getArtikelsInWinkelkarretje(session)}" var="a"
                              paginated="false"
@@ -29,19 +30,33 @@
                              custom-options="info:false">
                     <b:dataTableColumn value="#{a.naam}" orderable="false" />
                     <b:dataTableColumn orderable="false" label="Prijs">
-                        &#8364; <h:outputText value="#{a.prijs}"><f:convertNumber pattern="#0.##" /></h:outputText>
+                        <h:outputText value="#{a.prijs}"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText>
                     </b:dataTableColumn>
                     <b:dataTableColumn value="#{productController.getArtikelAantalInWinkelkarretje(session, a)}" orderable="false" label="Aantal" />
                     <b:dataTableColumn orderable="false" label="Totaalprijs">
-                        <b>&#8364; <h:outputText value="#{a.prijs * productController.getArtikelAantalInWinkelkarretje(session, a)}"><f:convertNumber pattern="#0.##" /></h:outputText></b>
+                        <b><h:outputText value="#{a.prijs * productController.getArtikelAantalInWinkelkarretje(session, a)}"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText></b>
+                    </b:dataTableColumn>
+                    <b:dataTableColumn orderable="false" label="">
+                        <b:commandButton action="#{productController.removeArtikelFromWinkelkarretje(session, a, 1)}" look="danger" value="Verwijder" iconAwesome="times"/>
                     </b:dataTableColumn>
                 </b:dataTable>
 
-                <p style="text-align: right">&#8364; <h:outputText value="#{productController.berekenTotaalPrijs(session)}"><f:convertNumber pattern="#0.##" /></h:outputText></p>
-            </b:panel>
+                <hr/>
 
-            <b:button outcome="productenlijst" look="primary" value="Naar producten" iconAwesome="arrow-left"/>
-            <b:button pull="right" outcome="/bestelling/bestellingPlaatsen" look="primary" value="Bestellen"/>
+                <p style="text-align: right">Totaalbedrag: <h:outputText value="#{productController.berekenTotaalPrijs(session)}"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText></p>
+            </b:panel>
+        </h:form>
+
+        <b:button outcome="productenlijst" look="primary" value="Naar producten" iconAwesome="arrow-left"/>
+
+        <c:choose>
+            <c:when test="#{productController.berekenTotaalPrijs(session) == 0}">
+                <b:button style="margin-left: 5px" outcome="/bestelling/bestellingPlaatsen" look="primary" value="Bestellen" disabled="true"/>
+            </c:when>
+            <c:otherwise>
+                <b:button style="margin-left: 5px" outcome="/bestelling/bestellingPlaatsen" look="primary" value="Bestellen"/>
+            </c:otherwise>
+        </c:choose>
     </b:container>
 
 </h:body>

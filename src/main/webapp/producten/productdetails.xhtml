@@ -36,38 +36,25 @@
                     </p>
 
                     <p>
-                        <b>Hoeveelheid In Voorraad: </b>
-                        <h:outputText value="#{productController.product.hoeveelheidInVoorraad}" />
-                    </p>
-
-                    <p>
                         <b>Merk: </b>
                         <h:outputText value="#{productController.product.merk.naam}" />
                     </p>
 
                     <p>
                         <b>Prijs: </b>
-                        <b>&#8364; <h:outputText value="#{productController.product.prijs}" style="font-size: 20px"><f:convertNumber pattern="#0.##" /></h:outputText></b>
+                        <b><h:outputText value="#{productController.product.prijs}"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText></b>
                     </p>
 
-                    <!--<b:dataTable value="#{productController.product}"
-                                 var="p"
-                                 id="p"
-                                 paginated="false"
-                                 border="false"
-                                 scroll-x="false"
-                                 rowHighlight="false"
-                                 striped="false"
-                                 custom-options="info:false"
-                                 responsive="true"
-                                 searching="false">
-                        <b:dataTableColumn value="#{p.omschrijving}" label="Omschrijving" orderable="false" />
-                        <b:dataTableColumn value="#{p.hoeveelheidInVoorraad}" label="Hoeveelheid in Voorraad" orderable="false" />
-                        <b:dataTableColumn value="#{p.merk.naam}" label="Merk" orderable="false" />
-                        <b:dataTableColumn label="Prijs" orderable="false">
-                            <b>&#8364; <h:outputText value="#{p.prijs}"><f:convertNumber pattern="#0.##" /></h:outputText></b>
-                        </b:dataTableColumn>
-                    </b:dataTable>-->
+                    <p>
+                        <c:choose>
+                            <c:when test="#{productController.product.hoeveelheidInVoorraad == 1}">
+                                Er is nog <b><h:outputText value="#{productController.product.hoeveelheidInVoorraad}"  /></b> exemplaar beschikbaar.
+                            </c:when>
+                            <c:otherwise>
+                                Er zijn <b><h:outputText value="#{productController.product.hoeveelheidInVoorraad}"  /></b> exemplaren beschikbaar.
+                            </c:otherwise>
+                        </c:choose>
+                    </p>
                 </p:tab>
                 <p:tab title="Specificaties">
 
@@ -75,7 +62,7 @@
             </p:tabView>
         </b:panel>
 
-        <b:button outcome="productenlijst" look="primary" value="Terug naar overzicht" iconAwesome="arrow-left"/>
+        <b:button outcome="productenlijst" look="primary" value="Terug naar overzicht" iconAwesome="arrow-left" style="margin-bottom:20px"/>
     </b:container>
 </h:body>
 </html>

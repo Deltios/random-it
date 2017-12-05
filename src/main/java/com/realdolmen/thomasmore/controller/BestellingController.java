@@ -1,7 +1,10 @@
 package com.realdolmen.thomasmore.controller;
 
+import com.realdolmen.payment.jaxb.PaymentRequest;
+import com.realdolmen.payment.jaxb.PaymentResponse;
 import com.realdolmen.thomasmore.data.Bestelling;
 import com.realdolmen.thomasmore.service.BestellingService;
+import com.realdolmen.thomasmore.service.PaymentService;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -27,6 +30,28 @@ public class BestellingController {
 
     public List<Bestelling> getBestellingen() {
         return bestellingService.findAllBestellingen();
+    }
+
+    public void doeBetaling(){
+        PaymentRequest paymentRequest = new PaymentRequest();
+        /*paymentRequest.setAmount();
+        paymentRequest.setCreditCardExpirationDate();
+        paymentRequest.setCreditCardHolderName();
+        paymentRequest.setCreditCardNumber();
+        paymentRequest.setCvcCode();
+        paymentRequest.getMerchantId();*/
+
+
+        PaymentService paymentService = new PaymentService();
+        paymentService.payment(paymentRequest);
+        PaymentResponse paymentResponse = new PaymentResponse();
+
+        if(paymentResponse.isSuccess()){
+            //succespagina
+            createBestelling();
+        }else {
+            //errorpagina
+        }
     }
 
     public void createBestelling() {

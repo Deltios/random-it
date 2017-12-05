@@ -109,7 +109,7 @@ public class ProductController {
 
     public String addArtikelInWinkelkarretje(HttpSession session, Product artikel, int aantalToeTeVoegen) {
         if(session.getAttribute("user") == null) {
-            return "/user/register";
+            return "/user/login";
         }
 
         HashMap<Product, Integer> winkelkarretje;
@@ -131,6 +131,20 @@ public class ProductController {
         }
 
         return "/producten/productenlijst";
+    }
+
+    public String removeArtikelFromWinkelkarretje(HttpSession session, Product artikel, int aantalAfTeTrekken) {
+        HashMap<Product, Integer> winkelkarretje = (HashMap<Product, Integer>)session.getAttribute("winkelkarretje");
+
+        int aantal = winkelkarretje.get(artikel);
+        if((aantal - aantalAfTeTrekken) == 0) {
+            winkelkarretje.remove(artikel);
+        }
+        else {
+            winkelkarretje.put(artikel, aantal - aantalAfTeTrekken);
+        }
+
+        return "/producten/winkelmandje";
     }
 
     private void addMessage(String summary) {
