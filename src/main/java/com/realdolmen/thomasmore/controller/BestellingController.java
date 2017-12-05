@@ -32,7 +32,7 @@ public class BestellingController {
         return bestellingService.findAllBestellingen();
     }
 
-    public void doeBetaling(){
+    public String doeBetaling(){
         PaymentRequest paymentRequest = new PaymentRequest();
         /*paymentRequest.setAmount();
         paymentRequest.setCreditCardExpirationDate();
@@ -52,6 +52,8 @@ public class BestellingController {
         }else {
             //errorpagina
         }
+
+        return "/index";
     }
 
     public void createBestelling() {
