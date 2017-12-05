@@ -6,9 +6,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <title>Registreren</title>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
-    <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
+    <ui:include src="../included/head/head.xhtml"></ui:include>
 </h:head>
 <h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
@@ -39,7 +37,7 @@
                     <b:inputText label="Postcode:" value="#{userController.huidigeKlant.postcode}" span="4" placeholder="" required="true"/>
                     <b:inputText label="Woonplaats:" value="#{userController.huidigeKlant.gemeente}" span="6" placeholder="" required="true"/>
                 </b:row>
-                <b:commandButton value="Registreer" look="primary" action="#{userController.registerKlant()}" />
+                <b:commandButton value="Bevestigen" look="primary" action="#{userController.registerKlant()}" />
             </h:form>
         </b:panel>
     </b:container>

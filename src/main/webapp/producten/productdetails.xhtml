@@ -6,10 +6,7 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-    <script name="jquery/jquery.js" library="primefaces"></script>
-    <title>Producten</title>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
-    <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
+    <ui:include src="../included/head/head.xhtml"></ui:include>
     <f:metadata>
         <f:viewParam name="productId" value="#{productController.productId}"/>
     </f:metadata>

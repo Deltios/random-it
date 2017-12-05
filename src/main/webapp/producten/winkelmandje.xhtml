@@ -6,10 +6,7 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-    <script name="jquery/jquery.js" library="primefaces"></script>
-    <title>Producten</title>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
-    <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
+   <ui:include src="../included/head/head.xhtml"></ui:include>
 </h:head>
 <h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
@@ -23,6 +20,7 @@
     </h:panelGroup>
     <!-- kopieren van taakbalken stopt hier-->
     <b:container>
+        <h2 class="smoke">Jouw winkelmandje</h2>
             <b:panel>
                 <b:dataTable value="#{productController.getArtikelsInWinkelkarretje(session)}" var="a"
                              paginated="false"
@@ -42,7 +40,8 @@
                 <p style="text-align: right">&#8364; <h:outputText value="#{productController.berekenTotaalPrijs(session)}"><f:convertNumber pattern="#0.##" /></h:outputText></p>
             </b:panel>
 
-            <b:button outcome="productenlijst" look="primary" value="Terug" iconAwesome="arrow-left"/>
+            <b:button outcome="productenlijst" look="primary" value="Naar producten" iconAwesome="arrow-left"/>
+            <b:button pull="right" outcome="/bestelling/bestellingPlaatsen" look="primary" value="Bestellen"/>
     </b:container>
 
 </h:body>

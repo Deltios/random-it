@@ -6,9 +6,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <title>Error</title>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
-    <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
+    <ui:include src="../included/head/head.xhtml"></ui:include>
 </h:head>
 <h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
@@ -24,8 +22,8 @@
 
 
     <b:container>
-        <h1>Er is  iets misgelopen.</h1>
-        <p>
+        <h1 class="smoke">Er is  iets misgelopen.</h1>
+        <p class="smoke">
             #{userController.errorMessage}
         </p>
     </b:container>

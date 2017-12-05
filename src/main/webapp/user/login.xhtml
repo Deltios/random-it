@@ -6,9 +6,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
-    <title>Inloggen</title>
-    <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
+    <ui:include src="../included/head/head.xhtml"></ui:include>
 </h:head>
 <h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
@@ -22,8 +20,13 @@
                 <b:row>
                     <b:inputText type="password" label="Wachtwoord:" span="4" value="#{userController.newPaswoord}"/>
                 </b:row>
-                <b:commandButton ajax="false" value="Login" look="primary" action="#{userController.loginKlant(session)}" />
+                <b:commandButton ajax="false" value="Inloggen" look="primary" action="#{userController.loginKlant(session)}" />
             </h:form>
+            <hr></hr>
+
+               <p>Nog geen lid?
+                   <b:navLink outcome="register" value="Registreren"/>
+               </p>
         </b:panel>
     </b:container>
 </h:body>

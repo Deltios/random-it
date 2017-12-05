@@ -5,6 +5,7 @@ import com.realdolmen.thomasmore.repository.SupportTicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +15,7 @@ public class SupportTicketService {
     @Autowired
     private SupportTicketRepository supportTicketRepository;
 
-    public void createSupportTicket(Calendar datumAanvraag, String naam, String opmerking) {
+    public void createSupportTicket(LocalDate datumAanvraag, String naam, String opmerking) {
         SupportTicket supportTicket = new SupportTicket();
         supportTicket.setDatumAanvraag(datumAanvraag);
         supportTicket.setOpmerking(opmerking);

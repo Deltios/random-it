@@ -105,7 +105,7 @@ public class UserController {
             return "/index";
         }
         else{
-            return errorHandling("Er is geen gebruiker  ingelogd.");
+            return errorHandling("Je inloggegevens zijn niet juist.");
         }
     }
     public String logoutUser(HttpSession session){

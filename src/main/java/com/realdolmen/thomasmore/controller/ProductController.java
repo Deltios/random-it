@@ -109,7 +109,7 @@ public class ProductController {
 
     public String addArtikelInWinkelkarretje(HttpSession session, Product artikel, int aantalToeTeVoegen) {
         if(session.getAttribute("user") == null) {
-            return "/user/register";
+            return "/user/login";
         }
 
         HashMap<Product, Integer> winkelkarretje;
