@@ -96,8 +96,6 @@ public class UserController {
         if (user !=  null){
             huidigeKlant = (Klant)userService.getByEmail(newEmail);
             session.setAttribute("user", user);
-
-
             this.sessionUserId = user.getId();
             this.sessionUserLevel = user.getUserLevel();
             this.newEmail = null;
@@ -119,6 +117,7 @@ public class UserController {
         userService.logoutUser();
         this.sessionUserId = null;
         this.huidigeKlant = null;
+        this.selectedUser=null;
         session.setAttribute("user", null);
         session.setAttribute("winkelkarretje", null);
         return "/index";
