@@ -14,8 +14,7 @@
             right:0;
         }
         .tekst{
-            margin-top: 10%;
-            color: ;
+            margin-top: 10px;
         }
     </style>
 </h:head>
@@ -47,54 +46,13 @@
                     <a class="mailtolink" href="mailto:randomIT@randomit.be">randomIT@randomit.be</a>
                 </p:panelGrid>
                 <b:image width="50%" value="../resources/images/logo.png" styleClass="right" class="logorandomit topcorner" />
-                <p class="tekst">U kunt ook direct een vraag stellen aan ons team als u zich heeft geregistreerd waarna u naar ons <b:navLink  value="Support Ticket" outcome="supportTicket"></b:navLink>pagina kan gaan.</p>
+                <p class="tekst">U kunt ook direct een vraag stellen aan ons team als u zich heeft geregistreerd waarna u naar ons <b:navLink  value="Support Ticket" outcome="supportTicket"></b:navLink> pagina kan gaan.</p>
             </p:tab>
             <p:tab title="Geografische ligging">
                 <h3>Geografische ligging Random IT</h3>
                 <div><p:gmap center="51.1598347,4.9617172" zoom="15" type="HYBRID" style="width:100%;height:400px" model="#{supportTicketGmapController.simpleModel}" /></div>
             </p:tab>
-            <p:tab rendered="#{userController.sessionUserId != null}" title="Alle support tickets admin">
-                <b:panel>
-                    <h:form>
-                        <b:dataTable var="s" value="#{supportTicketController.getSupportTickets()}" responsive="true">
-                            <b:dataTableColumn value="#{s.opmerking}" />
-                            <b:dataTableColumn value="#{s.naam}" />
-                        </b:dataTable>
-                    </h:form>
-                </b:panel>
-            </p:tab>
 
-            <p:tab rendered="#{userController.sessionUserId != null}" title="Maak support ticket aan Random IT">
-                <b:panel>
-                    <h:form>
-                        <p:panel id="panel" header="Form" style="margin-bottom:10px;">
-                            <p:messages id="messages" />
-                            <h:panelGrid columns="2" cellpadding="5">
-                                <h:outputLabel for="naam" value="Naam:" />
-                                <p:inputText id="naam" value="#{supportTicketController.supportTicket.naam}" />
-
-                                <h:outputLabel for="opmerking" value="Opmerking:" />
-                                <p:inputText id="opmerking" value="#{supportTicketController.supportTicket.opmerking}" />
-
-                                <p:outputLabel value="#{supportTicketController.now()}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy" type="date" />
-                                </p:outputLabel>
-
-                                <p:commandButton value="Submit" action="#{supportTicketController.add()}" update="@form"  />
-
-                            </h:panelGrid>
-                        </p:panel>
-
-                    </h:form>
-                </b:panel>
-            </p:tab>
-            <p:tab rendered="#{userController.sessionUserId != null}" title="Support tickets van  #{userController.huidigeKlant.voornaam}  #{userController.huidigeKlant.familienaam} #{userController.huidigeKlant.id}">
-                <b:panel>
-                    <p>
-                        #{userController.huidigeKlant.voornaam}  #{userController.huidigeKlant.familienaam}"
-                    </p>
-                </b:panel>
-            </p:tab>
 
         </p:accordionPanel>
     </b:container>

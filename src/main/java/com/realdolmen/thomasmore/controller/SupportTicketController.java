@@ -38,27 +38,8 @@ public class SupportTicketController {
         return supportTicket;
     }
 
-    private User user;
 
-
-    @ManagedProperty("#{userService}")
-    private UserService userService;
-
-    public SupportTicketController() {
-
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String naarsupport(HttpSession session) {
-
-        user = (User) session.getAttribute("user");
+    public String naarsupport() {
         return "nieuwspupportticket";
     }
 
@@ -67,16 +48,8 @@ public class SupportTicketController {
     }
 
     public void add(){
-        this.supportTicketService.createSupportTicket(Calendar.getInstance(),supportTicket.getNaam(),supportTicket.getOpmerking(), supportTicket.getOnderwerp(),user);
+        this.supportTicketService.createSupportTicket(Calendar.getInstance(),supportTicket.getNaam(),supportTicket.getOpmerking(), supportTicket.getOnderwerp(),supportTicket.getUser());
         this.supportTicket = new SupportTicket();
-    }
-
-    public UserService getUserService() {
-        return userService;
-    }
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
     }
 
     private User newUser;
