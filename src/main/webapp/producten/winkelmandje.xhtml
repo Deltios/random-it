@@ -29,15 +29,15 @@
                              custom-options="info:false">
                     <b:dataTableColumn value="#{a.naam}" orderable="false" />
                     <b:dataTableColumn orderable="false" label="Prijs">
-                        &#8364; <h:outputText value="#{a.prijs}"><f:convertNumber pattern="#0.##" /></h:outputText>
+                        <h:outputText value="#{a.prijs}"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText>
                     </b:dataTableColumn>
                     <b:dataTableColumn value="#{productController.getArtikelAantalInWinkelkarretje(session, a)}" orderable="false" label="Aantal" />
                     <b:dataTableColumn orderable="false" label="Totaalprijs">
-                        <b>&#8364; <h:outputText value="#{a.prijs * productController.getArtikelAantalInWinkelkarretje(session, a)}"><f:convertNumber pattern="#0.##" /></h:outputText></b>
+                        <b><h:outputText value="#{a.prijs * productController.getArtikelAantalInWinkelkarretje(session, a)}"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText></b>
                     </b:dataTableColumn>
                 </b:dataTable>
 
-                <p style="text-align: right">&#8364; <h:outputText value="#{productController.berekenTotaalPrijs(session)}"><f:convertNumber pattern="#0.##" /></h:outputText></p>
+                <p style="text-align: right"><h:outputText value="#{productController.berekenTotaalPrijs(session)}"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText></p>
             </b:panel>
 
             <b:button outcome="productenlijst" look="primary" value="Naar producten" iconAwesome="arrow-left"/>
