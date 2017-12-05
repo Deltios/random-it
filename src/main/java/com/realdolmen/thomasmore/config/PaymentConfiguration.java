@@ -11,7 +11,7 @@ public class PaymentConfiguration {
 
     @Bean
     public PaymentPort paymentPort(){
-        return new PaymentPortService().getPaymentPortSoap11();
+        return null;// new PaymentPortService().getPaymentPortSoap11();
     }
 
 }
