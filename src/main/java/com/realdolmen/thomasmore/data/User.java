@@ -1,5 +1,7 @@
 package com.realdolmen.thomasmore.data;
 
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,7 +29,7 @@ public class User implements Serializable{
     @OneToMany(mappedBy="user")
     private List<SupportTicket> supportTickets = new ArrayList<>();
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", fetch = FetchType.EAGER)
     private List<Bestelling> bestellingen = new ArrayList<>();
 
     //constructors

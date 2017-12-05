@@ -1,5 +1,6 @@
 package com.realdolmen.thomasmore.service;
 
+import com.realdolmen.thomasmore.data.Product;
 import com.realdolmen.thomasmore.data.Specificatie;
 import com.realdolmen.thomasmore.repository.SpecificatieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +24,5 @@ public class SpecificatieService {
     public List<Specificatie> findAllSpecificaties() {
         return specificatieRepository.findAll();
     }
+    //public List<Specificatie> findAllSpecificatiesFromProduct(Product product){ return specificatieRepository.findAllByProductId(product.getId()); }
 }

@@ -56,7 +56,12 @@
                             </b:dataTable>
                             </p:tab>
                             <p:tab title="Specificaties">
-
+                                <ui:repeat value="#{productController.product.specificaties}" var="specs">
+                                    <p>#{specs.bap}</p><!-- not actually working -->
+                                </ui:repeat>
+                                <b:dataTable value="#{productController.specificaties}" var="specs">
+                                    <b:dataTableColumn>#{specs.waarde}</b:dataTableColumn>
+                                </b:dataTable>
                             </p:tab>
                         </p:tabView>
                     </b:panel>
