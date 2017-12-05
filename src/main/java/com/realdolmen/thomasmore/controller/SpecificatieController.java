@@ -1,5 +1,6 @@
 package com.realdolmen.thomasmore.controller;
 
+import com.realdolmen.thomasmore.data.Product;
 import com.realdolmen.thomasmore.data.Specificatie;
 import com.realdolmen.thomasmore.service.SpecificatieService;
 
@@ -35,6 +36,9 @@ public class SpecificatieController {
         specificatieService.createSpecificatie("Wifi", "Ja");
         specificatieService.createSpecificatie("HDD", "2 TB");
     }
+    /*public List<Specificatie> getSpecificatiesFromProduct(Product product){
+        return specificatieService.findAllSpecificatiesFromProduct(product);
+    }*/
 
     private void clearForm() {
         newNaam = null;

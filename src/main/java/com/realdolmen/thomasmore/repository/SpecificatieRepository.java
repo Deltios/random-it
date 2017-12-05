@@ -1,5 +1,6 @@
 package com.realdolmen.thomasmore.repository;
 
+import com.realdolmen.thomasmore.data.Product;
 import com.realdolmen.thomasmore.data.Specificatie;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -10,4 +11,5 @@ import java.util.List;
 public interface SpecificatieRepository extends CrudRepository<Specificatie, Long> {
     Specificatie findByNaam(String naam);
     List<Specificatie> findAll();
+    //List<Specificatie> findAllByProductId(long productId);
 }

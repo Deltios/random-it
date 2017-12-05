@@ -1,6 +1,7 @@
 package com.realdolmen.thomasmore.controller;
 
 import com.realdolmen.thomasmore.data.Product;
+import com.realdolmen.thomasmore.data.Specificatie;
 import com.realdolmen.thomasmore.service.ProductService;
 
 import javax.faces.application.FacesMessage;
@@ -39,6 +40,13 @@ public class ProductController {
     public void setProductId(Long productId) {
         this.productId = productId;
         this.product = productService.getProduct(productId);
+    }
+    private List<Specificatie> specificaties;
+    public List<Specificatie> getSpecificaties(){
+        return product.getSpecificaties();
+    }
+    public void setSpecificaties(List<Specificatie> specificaties) {
+        this.specificaties = specificaties;
     }
 
     public List<Product> getProducts() {

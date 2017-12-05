@@ -39,6 +39,7 @@ public class UserController {
 
     private Long sessionUserId;
     private String errorMessage;
+    private User selectedUser;
 
     public List<User> getUsers() {
         return userService.findAllUsers();
@@ -95,14 +96,15 @@ public class UserController {
         if (user !=  null){
             huidigeKlant = (Klant)userService.getByEmail(newEmail);
             session.setAttribute("user", user);
-            if (user.getUserLevel() == 3){
-
-            }
             this.sessionUserId = user.getId();
             this.sessionUserLevel = user.getUserLevel();
             this.newEmail = null;
             this.newPaswoord = null;
-            return "/index";
+            this.selectedUser = user;
+            if (user.getUserLevel() == 3){
+                return "/admin/adminMain";
+            }
+            return "/user/my-account/dashboard";
         }
         else{
             return errorHandling("Je inloggegevens zijn niet juist.");
@@ -115,6 +117,7 @@ public class UserController {
         userService.logoutUser();
         this.sessionUserId = null;
         this.huidigeKlant = null;
+        this.selectedUser=null;
         session.setAttribute("user", null);
         session.setAttribute("winkelkarretje", null);
         return "/index";
@@ -125,9 +128,6 @@ public class UserController {
         return "errorPage";
     }
 
-    public void test(){
-        addMessage("Test users toegevoegd!");
-    }
 
     public String getNewUserVoornaam() {
         return newUserVoornaam;
@@ -242,5 +242,13 @@ public class UserController {
 
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
+    }
+
+    public User getSelectedUser() {
+        return selectedUser;
+    }
+
+    public void setSelectedUser(User selectedUser) {
+        this.selectedUser = selectedUser;
     }
 }
