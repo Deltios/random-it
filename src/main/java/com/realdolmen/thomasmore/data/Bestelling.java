@@ -2,8 +2,10 @@ package com.realdolmen.thomasmore.data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -16,7 +18,7 @@ public class Bestelling implements Serializable {
 	private Long id;
 	private String bestelnummer;
 	private String opmerking;
-	private Calendar besteldatum;
+	private LocalDate besteldatum;
 
 	@OneToMany(fetch=FetchType.EAGER, mappedBy ="bestelling", cascade = CascadeType.ALL)
 	private List<BesteldProduct> besteldeProducten = new ArrayList<>();
@@ -53,11 +55,11 @@ public class Bestelling implements Serializable {
 		this.opmerking = opmerking;
 	}
 
-	public Calendar getBesteldatum() {
+	public LocalDate getBesteldatum() {
 		return this.besteldatum;
 	}
 
-	public void setBesteldatum(Calendar besteldatum) {
+	public void setBesteldatum(LocalDate besteldatum) {
 		this.besteldatum = besteldatum;
 	}
 

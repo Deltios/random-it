@@ -6,9 +6,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <title>Registreren</title>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
-    <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
+    <ui:include src="../included/head/head.xhtml"></ui:include>
 </h:head>
 <h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
@@ -21,25 +19,27 @@
         </h:panelGroup>
     </h:panelGroup>
     <b:container>
-        <h:form prependId="false">
-            <b:row>
-                <b:inputText label="Voornaam:" value="#{userController.huidigeKlant.voornaam}" span="5" placeholder="" required="true"/>
-                <b:inputText label="Familienaam:" value="#{userController.huidigeKlant.familienaam}" span="5" placeholder="" required="true"/>
-            </b:row>
-            <b:row>
-                <b:inputText label="Email:" value="#{userController.huidigeKlant.email}" span="6" placeholder="" required="true"/>
-                <b:inputText type="password" label="Wachtwoord:" value="#{userController.huidigeKlant.wachtwoord}" span="4" placeholder="" required="true"/>
+        <b:panel>
+            <h:form prependId="false">
+                <b:row>
+                    <b:inputText label="Voornaam:" value="#{userController.huidigeKlant.voornaam}" span="5" placeholder="" required="true"/>
+                    <b:inputText label="Familienaam:" value="#{userController.huidigeKlant.familienaam}" span="5" placeholder="" required="true"/>
+                </b:row>
+                <b:row>
+                    <b:inputText label="Email:" value="#{userController.huidigeKlant.email}" span="6" placeholder="" required="true"/>
+                    <b:inputText type="password" label="Wachtwoord:" value="#{userController.huidigeKlant.wachtwoord}" span="4" placeholder="" required="true"/>
 
-            </b:row>
-            <b:row>
-                <b:inputText label="Adres:" value="#{userController.huidigeKlant.adres}" span="10" placeholder="" required="true"/>
-            </b:row>
-            <b:row>
-                <b:inputText label="Postcode:" value="#{userController.huidigeKlant.postcode}" span="4" placeholder="" required="true"/>
-                <b:inputText label="Woonplaats:" value="#{userController.huidigeKlant.gemeente}" span="6" placeholder="" required="true"/>
-            </b:row>
-            <b:commandButton value="Registreer" look="primary" action="#{userController.registerKlant()}" />
-        </h:form>
+                </b:row>
+                <b:row>
+                    <b:inputText label="Adres:" value="#{userController.huidigeKlant.adres}" span="10" placeholder="" required="true"/>
+                </b:row>
+                <b:row>
+                    <b:inputText label="Postcode:" value="#{userController.huidigeKlant.postcode}" span="4" placeholder="" required="true"/>
+                    <b:inputText label="Woonplaats:" value="#{userController.huidigeKlant.gemeente}" span="6" placeholder="" required="true"/>
+                </b:row>
+                <b:commandButton value="Bevestigen" look="primary" action="#{userController.registerKlant()}" />
+            </h:form>
+        </b:panel>
     </b:container>
 </h:body>
 </html>

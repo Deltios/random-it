@@ -6,23 +6,28 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
-    <title>Inloggen</title>
-    <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
+    <ui:include src="../included/head/head.xhtml"></ui:include>
 </h:head>
 <h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
     <ui:include src="/included/navbar/navBar.xhtml"/>
     <b:container>
-        <h:form prependId="false">
-            <b:row>
-                <b:inputText label="Email:" span="5" value="#{userController.newEmail}" />
-            </b:row>
-            <b:row>
-                <b:inputText type="password" label="Wachtwoord:" span="4" value="#{userController.newPaswoord}"/>
-            </b:row>
-            <b:commandButton ajax="false" value="Login" look="primary" action="#{userController.loginKlant(session)}" />
-        </h:form>
+        <b:panel>
+            <h:form prependId="false">
+                <b:row>
+                    <b:inputText label="Email:" span="5" value="#{userController.newEmail}" />
+                </b:row>
+                <b:row>
+                    <b:inputText type="password" label="Wachtwoord:" span="4" value="#{userController.newPaswoord}"/>
+                </b:row>
+                <b:commandButton ajax="false" value="Inloggen" look="primary" action="#{userController.loginKlant(session)}" />
+            </h:form>
+            <hr></hr>
+
+               <p>Nog geen lid?
+                   <b:navLink outcome="register" value="Registreren"/>
+               </p>
+        </b:panel>
     </b:container>
 </h:body>
 </html>

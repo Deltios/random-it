@@ -17,27 +17,20 @@
             <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
         </h:panelGroup>
     </h:panelGroup>
-    <!-- kopieren van taakbalken stopt hier-->
-    <b:container>
-        <b:row>
-            <b:panel>
-                <h:form>
-                    <b:commandButton value="Nieuw merk" action="#{adminController.newMerk()}"/>
-                    <br/>
-                    <b:dataTable var="m" value="#{merkController.getMerken()}" responsive="true">
-                        <b:dataTableColumn value="#{m.id}" />
-                        <b:dataTableColumn value="#{m.naam}" />
-                        <b:dataTableColumn value="" label="">
-                            <h:commandLink action="#{adminController.editMerken(m.id)}"><b:icon name="pencil" /></h:commandLink>
-                            <h:commandLink action="#{adminController.deleteMerk(m.id)}"><b:icon name="trash" /></h:commandLink></b:dataTableColumn>
-                    </b:dataTable>
-                </h:form>
-            </b:panel>
-        </b:row>
-        <b:row>
-            <b:column>
-            </b:column>
-        </b:row>
+
+    <b:container rendered="#{userController.sessionUserId == null}">
+        <div  class="jumbotron" >
+            <p >U moet i ngellogd zijn om...</p>
+        </div>
     </b:container>
+
+    <b:container rendered="#{userController.sessionUserId != null}">
+        <div  class="jumbotron" >
+            <p >Support Ticket aan maken</p>
+            <p:button  outcome="#{supportTicketController.naarsupport()}" icon="ui-icon-star" title="Icon Only">
+            </p:button>
+        </div>
+    </b:container>
+
 </h:body>
 </html>

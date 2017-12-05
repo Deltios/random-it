@@ -6,10 +6,7 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-    <script name="jquery/jquery.js" library="primefaces"></script>
-    <title>Producten</title>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
-    <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
+    <ui:include src="../included/head/head.xhtml"></ui:include>
 </h:head>
 <h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
@@ -23,17 +20,17 @@
     </h:panelGroup>
     <!-- kopieren van taakbalken stopt hier-->
     <b:container>
-        <b:row>
             <h:form>
-                <b:button outcome="#{productController.naarWinkelkarretjeOverzicht(session)}" look="primary" value="Winkelmandje" iconAwesome="shopping-basket" style="margin:15px"/>
-
-                <b:panelGrid colSpans="4,4,4" style="margin:15px">
+                <b:button outcome="#{productController.naarWinkelkarretjeOverzicht(session)}" look="primary" value="Winkelmandje" iconAwesome="shopping-basket"/>
+                <br/>
+                <br/>
+                <b:panelGrid colSpans="4,4,4">
                     <c:forEach items="#{productController.getProducts()}" var="p">
                         <b:panel>
                             <h1 class="centerText customFont"><h:outputText value="#{p.naam}" /></h1>
                             <p><b:image name="placeholder" value="../resources/images/placeholder.png" tooltip="#{p.naam}" styleClass="centerImage"/></p>
                             <p class="customFont" style="text-align: right; font-size: 20px">
-                                <b>Prijs: </b>&#8364; <h:outputText value="#{p.prijs}"><f:convertNumber pattern="#0.##" /></h:outputText>
+                                <b>Prijs: </b><h:outputText value="#{p.prijs}"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText>
                             </p>
                             <p class="centerText customFont">
                                 <b:button outcome="productdetails" look="primary" value="Details" iconAwesome="info-circle" style="width:40%; margin:5px">
@@ -45,11 +42,6 @@
                     </c:forEach>
                 </b:panelGrid>
             </h:form>
-        </b:row>
-        <b:row>
-            <b:column>
-            </b:column>
-        </b:row>
     </b:container>
 </h:body>
 </html>

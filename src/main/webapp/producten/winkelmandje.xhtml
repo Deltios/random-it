@@ -6,10 +6,7 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-    <script name="jquery/jquery.js" library="primefaces"></script>
-    <title>Producten</title>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
-    <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
+   <ui:include src="../included/head/head.xhtml"></ui:include>
 </h:head>
 <h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
@@ -23,8 +20,9 @@
     </h:panelGroup>
     <!-- kopieren van taakbalken stopt hier-->
     <b:container>
-        <b:row>
-            <b:panel style="margin:5px">
+        <h2 class="smoke">Jouw winkelmandje</h2>
+        <h:form>
+            <b:panel>
                 <b:dataTable value="#{productController.getArtikelsInWinkelkarretje(session)}" var="a"
                              paginated="false"
                              responsive="true"
@@ -32,21 +30,33 @@
                              custom-options="info:false">
                     <b:dataTableColumn value="#{a.naam}" orderable="false" />
                     <b:dataTableColumn orderable="false" label="Prijs">
-                        &#8364; <h:outputText value="#{a.prijs}"><f:convertNumber pattern="#0.##" /></h:outputText>
+                        <h:outputText value="#{a.prijs}"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText>
                     </b:dataTableColumn>
                     <b:dataTableColumn value="#{productController.getArtikelAantalInWinkelkarretje(session, a)}" orderable="false" label="Aantal" />
                     <b:dataTableColumn orderable="false" label="Totaalprijs">
-                        <b>&#8364; <h:outputText value="#{a.prijs * productController.getArtikelAantalInWinkelkarretje(session, a)}"><f:convertNumber pattern="#0.##" /></h:outputText></b>
+                        <b><h:outputText value="#{a.prijs * productController.getArtikelAantalInWinkelkarretje(session, a)}"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText></b>
+                    </b:dataTableColumn>
+                    <b:dataTableColumn orderable="false" label="">
+                        <b:commandButton action="#{productController.removeArtikelFromWinkelkarretje(session, a, 1)}" look="danger" value="Verwijder" iconAwesome="times"/>
                     </b:dataTableColumn>
                 </b:dataTable>
 
-                <p style="text-align: right">&#8364; <h:outputText value="#{productController.berekenTotaalPrijs(session)}"><f:convertNumber pattern="#0.##" /></h:outputText></p>
-            </b:panel>
-        </b:row>
+                <hr/>
 
-        <b:row>
-            <b:button outcome="productenlijst" look="primary" value="Terug" iconAwesome="arrow-left" style="margin:15px"/>
-        </b:row>
+                <p style="text-align: right">Totaalbedrag: <h:outputText value="#{productController.berekenTotaalPrijs(session)}"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText></p>
+            </b:panel>
+        </h:form>
+
+        <b:button outcome="productenlijst" look="primary" value="Naar producten" iconAwesome="arrow-left"/>
+
+        <c:choose>
+            <c:when test="#{productController.berekenTotaalPrijs(session) == 0}">
+                <b:button style="margin-left: 5px" outcome="/bestelling/bestellingPlaatsen" look="primary" value="Bestellen" disabled="true"/>
+            </c:when>
+            <c:otherwise>
+                <b:button style="margin-left: 5px" outcome="/bestelling/bestellingPlaatsen" look="primary" value="Bestellen"/>
+            </c:otherwise>
+        </c:choose>
     </b:container>
 
 </h:body>

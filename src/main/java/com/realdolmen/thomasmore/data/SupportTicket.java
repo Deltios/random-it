@@ -2,6 +2,7 @@ package com.realdolmen.thomasmore.data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 @Entity
@@ -14,6 +15,7 @@ public class SupportTicket implements Serializable {
 	private String naam;
 	private String opmerking;
 	private Calendar datumAanvraag;
+	private String onderwerp;
 
 	@ManyToOne
 	private User user;
@@ -64,5 +66,13 @@ public class SupportTicket implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getOnderwerp() {
+		return onderwerp;
+	}
+
+	public void setOnderwerp(String onderwerp) {
+		this.onderwerp = onderwerp;
 	}
 }

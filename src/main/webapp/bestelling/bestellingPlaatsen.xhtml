@@ -5,13 +5,11 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:b="http://bootsfaces.net/ui"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:b="http://bootsfaces.net/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-    <title>Bestelling Plaatsen</title>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
-    <h:outputStylesheet name="/style/style.css"></h:outputStylesheet>
+   <ui:include src="../included/head/head.xhtml"/>
 </h:head>
+
 <h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
     <h:panelGroup id="wrapperPanel">
@@ -22,16 +20,53 @@
             <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
         </h:panelGroup>
     </h:panelGroup>
+
+    <!--TODO: Footer implementeren (voor elke pagina-->
+    <!--TODO: Form css aanpassen -->
     <b:container>
         <b:row>
             <b:column>
-                <h2 class="customFont">Bestelling plaatsen</h2>
-                <p>Bestelling 1</p>
+                <h2 class="smoke">Bestelling plaatsen</h2>
+                <h3 class="smoke">Producten</h3>
                 <b:panel>
-                    <b:inputText>Hallo</b:inputText>
+                <b:dataTable value="#{productController.getArtikelsInWinkelkarretje(session)}" var="a"
+                             paginated="false"
+                             responsive="true"
+                             searching="false"
+                             custom-options="info:false">
+                    <b:dataTableColumn value="#{a.naam}" orderable="false" />
+                    <b:dataTableColumn orderable="false" label="Prijs">
+                        &#8364; <h:outputText value="#{a.prijs}"><f:convertNumber pattern="#0.##" /></h:outputText>
+                    </b:dataTableColumn>
+                    <b:dataTableColumn value="#{productController.getArtikelAantalInWinkelkarretje(session, a)}" orderable="false" label="Aantal" />
+                    <b:dataTableColumn orderable="false" label="Totaalprijs">
+                        <b>&#8364; <h:outputText value="#{a.prijs * productController.getArtikelAantalInWinkelkarretje(session, a)}"><f:convertNumber pattern="#0.##" /></h:outputText></b>
+                    </b:dataTableColumn>
+                </b:dataTable>
                 </b:panel>
             </b:column>
         </b:row>
+        <b:row>
+            <b:column rendered="#{userController.sessionUserId == null}">
+            <b:panel look="danger" title="Je moet ingelogd zijn om te kunnen bestellen" collapsed="true" collapsible="false">
+            </b:panel>
+            </b:column>
+            <b:column rendered="#{userController.sessionUserId != null}">
+                <h3 class="smoke">Uw gegevens</h3>
+                <b:form>
+                <b:panel>
+                    <b:inputText id="kaartnummer" type="number" label="Kredietkaartnummer" placeholder="4111111111111111" pattern=".{16,16}" required="true" tooltip="Gelieve een kaartnummer van 16 cijfers in te vullen"></b:inputText>
+                    <b:commandButton value="Betalen" look="success" action="#{bestellingController.createBestelling()}" tooltip="Dit is definitief!" iconAwesome="credit-card"/>
+                </b:panel>
+                    <b:button outcome="#{productController.naarWinkelkarretjeOverzicht(session)}" look="primary" value="Terug naar winkelmandje" iconAwesome="shopping-basket"/>
+                </b:form>
+            </b:column>
+
+        </b:row>
+
     </b:container>
+
+    <ui:include src="../included/footer/footer.xhtml"></ui:include>
+
 </h:body>
 </html>

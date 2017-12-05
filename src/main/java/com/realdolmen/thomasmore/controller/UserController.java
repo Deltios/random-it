@@ -109,7 +109,7 @@ public class UserController {
             return "/user/my-account/dashboard";
         }
         else{
-            return errorHandling("Er is geen gebruiker  ingelogd.");
+            return errorHandling("Je inloggegevens zijn niet juist.");
         }
     }
     public String logoutUser(HttpSession session){

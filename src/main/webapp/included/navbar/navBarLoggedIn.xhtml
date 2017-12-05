@@ -10,10 +10,9 @@
     <!-- Om de CSS van iets te veranderen moet je naar een eigen CSS verwijzen. CSS van Bootstrap komt op Facebook te staan.-->
     <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
     <h:outputStylesheet name="style/navBar.css"></h:outputStylesheet>
-    <b:navBar brand="Home" brandHref="#{request.contextPath}/index.xhtml" inverse="true">
+    <b:navBar brand="Welkom, #{userController.huidigeKlant.voornaam}" brandHref="#{request.contextPath}/index.xhtml" inverse="true" iconAwesome="home">
         <b:navbarLinks>
-            <b:navLink outcome="/index">Welkom, usernummer #{userController.sessionUserId}</b:navLink>
-            <b:navLink href="#"></b:navLink>
+            <b:navLink value="Producten" outcome="/producten/productenlijst"/>
            <!--<b:dropMenu value="Dropdown" iconAwesome="birthday-cake">
                 <b:navLink value="Action" href="#"></b:navLink>
                 <b:navLink value="Another action" href="#"></b:navLink>
@@ -33,22 +32,23 @@
                 </b:dropMenu>
                 <b:navLink value="One more separated link" href="#"></b:navLink>
             </b:dropMenu>-->
-            <b:navLink  value="Contact opnemen" outcome="/support/index"></b:navLink>
+            <b:navLink  value="Contact" outcome="/support/index"></b:navLink>
+            <b:navLink  value="Support Ticket" outcome="/support/supportTicket"></b:navLink>
         </b:navbarLinks>
-        <form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs" action="search">
+        <!--<form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs" action="search">
             <div class="form-group">
                 <input type="text" class="form-control"/>
             </div>
             <button type="submit" class="btn btn-default">Bevestig</button>
-        </form>
+        </form>-->
         <!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
         <h:form>
             <b:navbarLinks pull="right">
+                <b:navLink outcome="#{productController.naarWinkelkarretjeOverzicht(session)}" iconAwesome="shopping-basket"></b:navLink>
                     <b:navCommandLink value="Admin"  rendered="#{userController.sessionUserLevel == 3}" outcome="/admin/adminMain.xhtml">
                     </b:navCommandLink>
                 <b:navCommandLink value='Log uit #{session.getAttribute("type")}' action="#{userController.logoutUser(session)}"/>
             </b:navbarLinks>
         </h:form>
-
     </b:navBar>
 </ui:composition>
