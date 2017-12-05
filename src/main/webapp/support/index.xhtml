@@ -8,6 +8,18 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
     <ui:include src="../included/head/head.xhtml"></ui:include>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCI99iQYguPMIXXkJQfoS-23blK9ry9Ck&amp;callback=initMap" type="text/javascript"/>
+    <style type="text/css">
+        .topcorner{
+            position:absolute;
+            top:0;
+            right:0;
+        }
+        .tekst{
+            margin-top: 10%;
+            color: ;
+        }
+    </style>
 </h:head>
 <h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
@@ -37,9 +49,11 @@
                     <a class="mailtolink" href="mailto:randomIT@randomit.be">randomIT@randomit.be</a>
                 </p:panelGrid>
                 <b:image width="50%" value="../resources/images/logo.png" styleClass="right" class="logorandomit topcorner" />
+                <p class="tekst">U kunt ook direct een vraag stellen aan ons team als u zich heeft geregistreerd waarna u naar ons <b:navLink  value="Support Ticket" outcome="supportTicket"></b:navLink>pagina kan gaan.</p>
             </p:tab>
             <p:tab title="Geografische ligging">
-                <h1>Google maps coming soon :D</h1>
+                <h3>Geografische ligging Random IT</h3>
+                <div><p:gmap center="51.1598347,4.9617172" zoom="15" type="HYBRID" style="width:100%;height:400px" model="#{supportTicketGmapController.simpleModel}" /></div>
             </p:tab>
             <p:tab rendered="#{userController.sessionUserId != null}" title="alle support ticekts aadmin">
                 <b:panel>
@@ -86,10 +100,5 @@
 
         </p:accordionPanel>
     </b:container>
-
-    <script async="async" defer="defer"
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5pfeSpfe2jKNtdGmFh7CDuj5E8Y5O0vc&amp;callback=initMap">
-    </script>
-
 </h:body>
 </html>

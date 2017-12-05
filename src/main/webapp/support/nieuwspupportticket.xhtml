@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <ui:include src="../included/head/head.xhtml"></ui:include>
+</h:head>
+<h:body styleClass="achtergrondfoto">
+    <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
+    <h:panelGroup id="wrapperPanel">
+        <h:panelGroup id="loggedOut" rendered="#{userController.sessionUserId == null}">
+            <ui:include src="/included/navbar/navBar.xhtml"/>
+        </h:panelGroup>
+        <h:panelGroup id="loggedIn" rendered="#{userController.sessionUserId != null}">
+            <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
+        </h:panelGroup>
+    </h:panelGroup>
+
+    <b:container >
+        <div  class="jumbotron" >
+        <h:form>
+                <p:messages id="messages" />
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="naam" value="Naam:" />
+                    <p:inputText id="naam" value="#{supportTicketController.supportTicket.naam}" />
+
+                    <h:outputLabel for="opmerking" value="Opmerking:" />
+                    <p:inputText id="opmerking" value="#{supportTicketController.supportTicket.opmerking}" />
+
+                    <p:outputLabel value="#{supportTicketController.now()}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" type="date" />
+                    </p:outputLabel>
+
+                    <b:selectOneMenu value="#{supportTicketController.supportTicket.user}"  label="Categorie">
+                        <f:selectItem itemLabel=""/>
+                        <f:selectItems value="#{userController.huidigeKlant}" />
+                    </b:selectOneMenu>
+
+                    <h:outputLabel for="xxx" value="xxx:" />
+                    <p:inputText id="xxx" value="#{userController.huidigeKlant}" />
+
+                    <p:commandButton value="Submit" action="#{supportTicketController.add()}" update="@form"  />
+
+                </h:panelGrid>
+
+        </h:form>
+        </div>
+
+    </b:container>
+
+</h:body>
+</html>
