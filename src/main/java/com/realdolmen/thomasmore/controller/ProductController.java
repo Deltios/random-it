@@ -133,6 +133,20 @@ public class ProductController {
         return "/producten/productenlijst";
     }
 
+    public String removeArtikelFromWinkelkarretje(HttpSession session, Product artikel, int aantalAfTeTrekken) {
+        HashMap<Product, Integer> winkelkarretje = (HashMap<Product, Integer>)session.getAttribute("winkelkarretje");
+
+        int aantal = winkelkarretje.get(artikel);
+        if((aantal - aantalAfTeTrekken) == 0) {
+            winkelkarretje.remove(artikel);
+        }
+        else {
+            winkelkarretje.put(artikel, aantal - aantalAfTeTrekken);
+        }
+
+        return "/producten/winkelmandje";
+    }
+
     private void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
         FacesContext.getCurrentInstance().addMessage(null, message);
