@@ -22,10 +22,14 @@ import java.util.List;
 import com.realdolmen.thomasmore.service.UserService;
 import com.realdolmen.thomasmore.session.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.realdolmen.thomasmore.service.UserService;
 
 @ManagedBean
 @SessionScoped
 public class SupportTicketController {
+
+
+
     @Autowired
     private HttpSession session;
 
@@ -47,9 +51,21 @@ public class SupportTicketController {
         this.supportTicket = supportTicket;
     }
 
+    User user;
+
     public void add(){
+
+        user = (User) session.getAttribute("user");
         this.supportTicketService.createSupportTicket(Calendar.getInstance(),supportTicket.getNaam(),supportTicket.getOpmerking(), supportTicket.getOnderwerp(),supportTicket.getUser());
         this.supportTicket = new SupportTicket();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     private User newUser;
