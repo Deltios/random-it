@@ -47,8 +47,9 @@ public class SupportTicketController {
         this.supportTicket = supportTicket;
     }
 
-    public void add(){
-        this.supportTicketService.createSupportTicket(Calendar.getInstance(),supportTicket.getNaam(),supportTicket.getOpmerking(), supportTicket.getOnderwerp(),supportTicket.getUser());
+    public void add(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        this.supportTicketService.createSupportTicket(Calendar.getInstance(),supportTicket.getNaam(),supportTicket.getOpmerking(), supportTicket.getOnderwerp(),user);
         this.supportTicket = new SupportTicket();
     }
 
