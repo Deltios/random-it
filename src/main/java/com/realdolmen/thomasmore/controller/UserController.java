@@ -122,7 +122,11 @@ public class UserController {
         session.setAttribute("winkelkarretje", null);
         return "/index";
     }
-
+    public void saveUserData(){
+        this.selectedUser.setWachtwoord(this.newPaswoord);
+        this.newPaswoord = null;
+        userService.updateUser(this.selectedUser);
+    }
     public String errorHandling(String errorMessage){
         this.errorMessage= errorMessage;
         return "errorPage";

@@ -25,7 +25,9 @@
     <b:container>
         <b:panelGrid colSpans="4, 8">
             <b:panel>
-
+                <p><p:link outcome="/user/my-account/dashboard.xhtml">Mijn account</p:link></p>
+                <p><p:link outcome="/user/my-account/alle-bestellingen.xhtml">Mijn bestellingen</p:link></p>
+                <p><p:link outcome="/user/my-account/bewerk-gegevens.xhtml">Mijn gegevens</p:link></p>
             </b:panel>
             <b:panel>
                 <h2>Laatste bestelling op:#{userController.selectedUser.bestellingen[0].besteldatum}</h2>
@@ -34,12 +36,12 @@
                     <b:panel id="latestOrder">
                         <p:panel  style="float:left;overflow-X: auto;width: 100%;">
 
-                            <ui:repeat value="#{userController.selectedUser.bestellingen[0].besteldeProducten}" var="bestproducten">
+                            <ui:repeat value="#{userController.selectedUser.bestellingen[userController.selectedUser.bestellingen.size()-1].besteldeProducten}" var="bestproducten">
                                 <div class="OrderedProduct-Box">
                                     <div class="OrderedProduct-Content">
                                         <div>
                                             <div>
-                                                <p>#{userController.selectedUser.bestellingen[0].bestelnummer}</p>
+                                                <p><b:image name="placeholder" value="/resources/images/placeholder.png" tooltip="#{bestproducten.product.naam}" styleClass="centerImage"/></p>
                                                 <p>Aantal: #{bestproducten.aantal}</p>
                                                 <p>#{bestproducten.product.naam}</p>
                                             </div>
@@ -49,6 +51,16 @@
                             </ui:repeat>
                         </p:panel>
                     </b:panel>
+                </b:row>
+                <b:row>
+                    <p:panel  style="float:left;width: 96%;margin:15px;">
+                        <p><b>Klantennummer: </b>#{userController.selectedUser.id}</p>
+                        <p><b>Naam: </b>#{userController.selectedUser.voornaam} #{userController.selectedUser.familienaam}</p>
+                        <p><b>Email: </b>#{userController.selectedUser.email}</p>
+                        <p><b>Adres: </b>#{userController.selectedUser.adres} #{userController.selectedUser.postcode}</p>
+                        <p><b>Woonplaats: </b>#{userController.selectedUser.gemeente}</p>
+                    </p:panel>
+                    <p:link outcome="/user/my-account/bewerk-gegevens.xhtml">Gebruikersgegevens bewerken</p:link>
                 </b:row>
             </b:panel>
         </b:panelGrid>

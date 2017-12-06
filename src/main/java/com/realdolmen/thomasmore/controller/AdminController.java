@@ -32,7 +32,7 @@ public class AdminController {
     private Product product;
     private Merk merk;
     private Categorie categorie;
-
+    private String newPassword = null;
     public AdminController() {
     }
 
@@ -73,13 +73,16 @@ public class AdminController {
 
     public String newUser(){
         user = new User();
+        this.newPassword="";
         return "edit/editUser";
     }
     public String editUsers(Long id){
         user = userService.getUser(id);
+        this.newPassword="";
         return ("edit/editUser");
     }
     public void saveUser(){
+        this.user.setWachtwoord(this.newPassword);
         adminService.saveOrUpdateUser(user);
         user = null;
         this.redirectToPage("../userTable.xhtml");
@@ -200,5 +203,13 @@ public class AdminController {
     }
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
 }

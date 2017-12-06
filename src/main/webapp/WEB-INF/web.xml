@@ -62,5 +62,6 @@
     <filter-mapping >
         <filter-name>WinkelFilter</filter-name>
         <url-pattern>/producten/winkelmandje.xhtml</url-pattern>
+        <url-pattern>/user/my-account/*</url-pattern>
     </filter-mapping>
 </web-app>

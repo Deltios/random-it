@@ -27,7 +27,7 @@
                     <f:selectItems value="#{adminController.getAllCategorieen()}" var="c" itemValue="#{c}" itemLabel="#{c.naam}"/>
                 </b:selectOneMenu>
             </b:row>
-            <b:commandButton value="Normal button" look="primary" action="#{adminController.saveCategorie()}" />
+            <b:commandButton value="Opslaan" look="primary" action="#{adminController.saveCategorie()}" />
         </h:form>
     </b:container>
 </h:body>

@@ -78,6 +78,11 @@ public class UserService {
         newUser.setUserLevel(1);
         userRepository.save(newUser);
     }
+    public void updateUser(User user){
+        String hashedWachtwoord = passwordEncoder.encode(user.getWachtwoord());
+        user.setWachtwoord(hashedWachtwoord);
+        userRepository.save(user);
+    }
 
     public void registerKlant(Klant nieuweKlant) {
         nieuweKlant.setUserLevel(1);

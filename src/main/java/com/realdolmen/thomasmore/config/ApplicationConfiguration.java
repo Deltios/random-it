@@ -28,7 +28,7 @@ public class ApplicationConfiguration {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/webshop");
         dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setPassword("mysql");
 
         return dataSource;
     }

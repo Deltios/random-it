@@ -25,7 +25,7 @@ public class AdminFilter implements Filter {
             chain.doFilter(req, res);
         }
         else if (level != 3){
-            response.sendRedirect(request.getContextPath() + "/user/noAccess.xhtml");
+            response.sendRedirect(request.getContextPath() + "/user/login.xhtml");
         }
         else{
             response.sendRedirect(loginURL);
