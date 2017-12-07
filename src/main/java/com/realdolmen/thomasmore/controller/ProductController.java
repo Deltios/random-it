@@ -133,9 +133,12 @@ public class ProductController {
     }
 
     public void createTestProducten(){
-        productService.createProduct("GTX 1080", "Zotte GPU", 899, 82, 1, 2);
-        productService.createProduct("i7 6700k", "Zotte CPU", 499, 64, 2, 1);
-        productService.createProduct("Z370 Aorus", "Zot moederbordje", 279, 38, 3, 3);
+        productService.createProduct("GTX 1080", "Eén van de sterkste grafische kaarten die nu beschikbaar zijn. Geschikt voor zware grafische applicaties.", 899, 82, 2, 2);
+        productService.createProduct("GTX 1060", "Het kleine broertje van de GTX 1080. Zeer goede prijs-kwaliteitverhouding.", 350, 23, 2, 2);
+        productService.createProduct("i7 6700k", "Beschikt over vier krachtige kernen die bovendien ook nog dubbel werk kunnen leveren.", 499, 64, 1, 1);
+        productService.createProduct("i5 7600k", "Nieuwe generatie van i5 processoren. Heeft vier kernen die hun volle 100% kunnen geven.", 499, 64, 1, 1);
+        productService.createProduct("Z370 Aorus", "Stabiel moederbord met onboard geluid en netwerk. Geschikt voor zwaardere onderdelen aan te sturen.", 279, 38, 3, 3);
+        productService.createProduct("GA-B250-HD3P", "Stabiel moederbord met onboard geluid en netwerk. Geschikt voor de gemiddelde gebruiker.", 279, 38, 3, 3);
     }
 
     private void clearForm() {
