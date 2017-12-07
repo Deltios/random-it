@@ -22,7 +22,7 @@ public class SupportTicketService {
     @Autowired
     private UserSession userSession;
 
-    public void createSupportTicket(Calendar datumAanvraag, String naam, String opmerking, String onderwerp, User user) {
+    public void createSupportTicket(LocalDate datumAanvraag, String naam, String opmerking, String onderwerp, User user) {
         SupportTicket supportTicket = new SupportTicket();
         supportTicket.setDatumAanvraag(datumAanvraag);
         supportTicket.setOpmerking(opmerking);

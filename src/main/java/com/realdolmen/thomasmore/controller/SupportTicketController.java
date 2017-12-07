@@ -56,7 +56,7 @@ public class SupportTicketController {
 
     public String add(HttpSession session){
         User user = (User)session.getAttribute("user");
-        this.supportTicketService.createSupportTicket(Calendar.getInstance(),supportTicket.getNaam(),supportTicket.getOpmerking(), supportTicket.getOnderwerp(),user);
+        this.supportTicketService.createSupportTicket(LocalDate.now(),supportTicket.getNaam(),supportTicket.getOpmerking(), supportTicket.getOnderwerp(),user);
         this.supportTicket = new SupportTicket();
         return "/support/supportTicket";
     }
@@ -65,14 +65,14 @@ public class SupportTicketController {
 
     public String voegtoe(String onderwerpx){
         String onderwerp = onderwerpx;
-        this.supportTicketService.createSupportTicket(Calendar.getInstance(),supportTicket.getNaam() ,supportTicket.getOpmerking(), onderwerp ,user);
+        this.supportTicketService.createSupportTicket(LocalDate.now(),supportTicket.getNaam() ,supportTicket.getOpmerking(), onderwerp ,user);
         this.supportTicket = new SupportTicket();
         return "/admin/supportTicketsTable";
     }
 
     public String naarSupportTicket(HttpSession session) {
         User user = (User)session.getAttribute("user");
-       Long id = user.getId();
+        Long id = user.getId();
         SupportTicketById = supportTicketService.findSupportsByUser(user);
        return "/support/supportTicket.xhtml";
     }
@@ -94,7 +94,7 @@ public class SupportTicketController {
     }
 
     private User newUser;
-    private Calendar newDatumAanvraag;
+    private LocalDate newDatumAanvraag;
     private String newOpmerking;
     private String newNaam;
     private String newOnderwerp;
