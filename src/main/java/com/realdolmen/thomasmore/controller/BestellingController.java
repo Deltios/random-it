@@ -18,6 +18,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @ManagedBean
@@ -58,6 +59,7 @@ public class BestellingController {
     public String doeBetaling(HttpSession session){
         System.out.println("doeBetaling methode");
         LocalDate vandaag = LocalDate.now();
+        LocalDateTime vandaagTijd = LocalDateTime.now();
         System.out.println("vandaag is " + vandaag);
         ProductController productController = new ProductController();
 
@@ -96,8 +98,11 @@ public class BestellingController {
         System.out.println("is succes?: " +paymentResponse.isSuccess());
 
         if(paymentResponse.isSuccess()){
-            //succespagina
-            //createBestelling();
+            //bestelling aanmaken
+            newBestelnummer = vandaagTijd.toString()+newCvcCode;
+            System.out.println("bestelnummer is: " + newBestelnummer);
+            newOpmerking = "Betaling is gelukt";
+            bestellingService.createBestelling(newBestelnummer,vandaag,newOpmerking);;
             return "bestelling-bevestiging";
         }
 
