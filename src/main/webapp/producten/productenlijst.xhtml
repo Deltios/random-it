@@ -46,13 +46,13 @@
                                 <h1 class="centerText customFont"><h:outputText value="#{p.naam}" /></h1>
                                 <p><b:image name="placeholder" value="../resources/images/placeholder.png" tooltip="#{p.naam}" styleClass="centerImage"/></p>
                                 <p class="customFont" style="text-align: right; font-size: 20px">
-                                    <b>Prijs: </b>&#8364; <h:outputText value="#{p.prijs}"><f:convertNumber pattern="#0.##" /></h:outputText>
+                                    <b>Prijs: </b><h:outputText value="#{p.prijs}"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText>
                                 </p>
                                 <p class="centerText customFont">
                                     <b:button outcome="productdetails" look="primary" value="Details" iconAwesome="info-circle" style="width:40%; margin:5px">
                                         <f:param name="productId" value="#{p.id}"/>
                                     </b:button>
-                                    <b:commandButton action="#{productController.addArtikelInWinkelkarretje(session, p, 1)}" look="primary" value="In mandje" iconAwesome="shopping-basket" style="width:40%; margin:5px" ajax="true" oncomplete="$('#verificatieModal').modal('show')" data-target="#verificatieModal" data-toggle="modal" />
+                                    <b:commandButton action="#{productController.addArtikelInWinkelkarretjeOverzicht(session, p, 1)}" look="primary" value="In mandje" iconAwesome="shopping-basket" style="width:40%; margin:5px" ajax="true" oncomplete="$('#verificatieModal').modal('show')" data-target="#verificatieModal" data-toggle="modal" />
                                 </p>
                             </b:panel>
                         </c:forEach>
