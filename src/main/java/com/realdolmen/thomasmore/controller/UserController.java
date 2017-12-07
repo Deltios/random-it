@@ -54,11 +54,21 @@ public class UserController {
 
     public void createTestUsers(){
         userService.createKlant("Jan","Peeters","Bergenstraat 12","Dessel",
-                "2480","jan.peeters@gmail.com","Geheim","0475913475", 0, new GregorianCalendar());
-        userService.createWerknemer("Els","Vandenbroecke","Molenberg 5","Kasterlee",
-                "2460","els.vdbroecke@gmail.com","Abc123","0494327496", 1);
-        userService.createUser("Dirk","Janssens","Ooststraat 15","Arendonk",
-                "2370","dirk.janssens@gmail.com","Tgdk","0461783519", 2);
+                "2480","jan.peeters@gmail.com","$2a$10$QDVMASSRtkFnrPN4lL26zuldrFwnCIXPJp/8HuU6.tnEsT4lGvwWW",
+                "0475913475", 3, new GregorianCalendar());
+        userService.createKlant("Els","Vandenbroecke","Molenberg 5","Kasterlee",
+                "2460","els.vdbroecke@gmail.com","$2a$10$0ZMOsytIfXCywOP2VGRiv.9YfiYqrZshzsF4/OuWRSqCagskJZIfm",
+                "0494327496", 1, new GregorianCalendar());
+        userService.createKlant("Dirk","Janssens","Ooststraat 15","Arendonk",
+                "2370","dirk.janssens@gmail.com","$2a$10$ovH6rL2V5VJw9V7ANc3MeuRBNBAp/fwfJi/gFvqkYzzeXg8oqtrkW",
+                "0461783519", 1, new GregorianCalendar());
+        userService.createKlant("Andrew","Johnson","Schoolstraat 19","Oostende",
+                "8400","andrew.johnson@gmail.com","$2a$10$sWiF4f26d8QRgubo4kdt0e7QlOoudncqtMkRwERHeM89tVxl05joq",
+                "0463516483", 1, new GregorianCalendar());
+        userService.createKlant("Eline","Vangeel","Heikant 56","Oostende",
+                "8400","eline.vangeel@gmail.com","$2a$10$DESFNSA2v0721eWodSsFouFp0b4/c47QZmrAo.tBPK5.a57WWHGsS",
+                "0498213678", 1, new GregorianCalendar());
+
         addMessage("Test users toegevoegd!");
     }
 
