@@ -6,7 +6,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <ui:include src="../../included/head/head.xhtml"></ui:include>
+    <ui:include src="../../included/head/head-submap.xhtml"></ui:include>
 </h:head>
 <h:body>
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
@@ -34,5 +34,6 @@
             <b:commandButton value="Opslaan" look="primary" action="#{adminController.saveProduct()}" />
         </h:form>
     </b:container>
+    <ui:include src="../../included/footer/footer.xhtml"></ui:include>
 </h:body>
 </html>

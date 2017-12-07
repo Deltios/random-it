@@ -6,9 +6,9 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <ui:include src="../../included/head/head.xhtml"></ui:include>
+    <ui:include src="/included/head/head-submap.xhtml"></ui:include>
 </h:head>
-<h:body>
+<h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
     <h:panelGroup id="wrapperPanel">
         <h:panelGroup id="loggedOut" rendered="#{request.getSession().getAttribute('user') == null}">
@@ -19,6 +19,7 @@
         </h:panelGroup>
     </h:panelGroup>
     <b:container>
+        <b:panel>
         <h:form prependId="false">
             <b:row>
                 <b:inputText label="Voornaam:" value="#{userController.selectedUser.voornaam}" span="5" placeholder="" required="true"/>
@@ -38,6 +39,8 @@
             </b:row>
             <b:commandButton value="Gegevens opslaan" look="primary" action="#{userController.saveUserData()}" />
         </h:form>
+        </b:panel>
     </b:container>
+    <ui:include src="/included/footer/footer.xhtml"></ui:include>
 </h:body>
 </html>

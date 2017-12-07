@@ -1,16 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-    <ui:include src="../included/head/head.xhtml"></ui:include>
+    <ui:include src="/included/head/head.xhtml"/>
 </h:head>
 <h:body styleClass="achtergrondfoto">
     <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
-
     <h:panelGroup id="wrapperPanel">
         <h:panelGroup id="loggedOut" rendered="#{userController.sessionUserId == null}">
             <ui:include src="/included/navbar/navBar.xhtml"/>
@@ -19,14 +20,14 @@
             <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
         </h:panelGroup>
     </h:panelGroup>
-
-
     <b:container>
-        <h1 class="smoke">Er is  iets misgelopen.</h1>
-        <p class="smoke">
-            #{userController.errorMessage}
-        </p>
+        <b:row>
+            <b:column>
+                <h1 class="smoke">Jammer je bestelling is mislukt, probeer later nog eens.</h1>
+                <b:button style="margin-left: 5px" outcome="/bestelling/bestellingPlaatsen" look="primary" value="Opnieuw proberen"/>
+            </b:column>
+        </b:row>
     </b:container>
-    <ui:include src="../included/footer/footer.xhtml"></ui:include>
+    <ui:include src="/included/footer/footer.xhtml"></ui:include>
 </h:body>
 </html>
