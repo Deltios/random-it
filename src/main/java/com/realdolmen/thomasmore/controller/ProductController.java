@@ -1,5 +1,7 @@
 package com.realdolmen.thomasmore.controller;
 
+import com.realdolmen.thomasmore.data.Categorie;
+import com.realdolmen.thomasmore.data.Merk;
 import com.realdolmen.thomasmore.data.Product;
 import com.realdolmen.thomasmore.data.Specificatie;
 import com.realdolmen.thomasmore.service.ProductService;
@@ -24,6 +26,17 @@ public class ProductController {
     private String newOmschrijving;
     private double newPrijs;
     private int newHoeveelheidInVoorraad;
+    private int newMerkId;
+    private int newCategorieId;
+
+    private int categorieId = 0;
+    public int getCategorieId() {
+        return categorieId;
+    }
+
+    public void setCategorieId(int categorieId) {
+        this.categorieId = categorieId;
+    }
 
     private Product product;
     public Product getProduct() {
@@ -53,6 +66,10 @@ public class ProductController {
         return productService.findAllProducts();
     }
 
+    public List<Product> getProductsByCategory(int id) {
+        return productService.findAllProductsByCategory(id);
+    }
+
     public List<Product> getArtikelsInWinkelkarretje(HttpSession session) {
         HashMap<Product, Integer> winkelkarretje = (HashMap<Product, Integer>)session.getAttribute("winkelkarretje");
 
@@ -72,7 +89,7 @@ public class ProductController {
     }
 
     public void createProduct() {
-        productService.createProduct(newNaam, newOmschrijving, newPrijs, newHoeveelheidInVoorraad);
+        productService.createProduct(newNaam, newOmschrijving, newPrijs, newHoeveelheidInVoorraad, newMerkId, newCategorieId);
         addMessage("Product toegevoegd!");
         clearForm();
     }
@@ -103,9 +120,9 @@ public class ProductController {
     }
 
     public void createTestProducten(){
-        productService.createProduct("GTX 1080", "Zotte GPU", 899, 82);
-        productService.createProduct("i7 6700k", "Zotte CPU", 499, 64);
-        productService.createProduct("Z370 Aorus", "Zot moederbordje", 279, 38);
+        productService.createProduct("GTX 1080", "Zotte GPU", 899, 82, 1, 2);
+        productService.createProduct("i7 6700k", "Zotte CPU", 499, 64, 2, 1);
+        productService.createProduct("Z370 Aorus", "Zot moederbordje", 279, 38, 3, 3);
     }
 
     private void clearForm() {
@@ -113,6 +130,8 @@ public class ProductController {
         newOmschrijving = null;
         newPrijs = 0;
         newHoeveelheidInVoorraad = 0;
+        newCategorieId = 0;
+        newMerkId = 0;
     }
 
     public String addArtikelInWinkelkarretje(HttpSession session, Product artikel, int aantalToeTeVoegen) {
@@ -200,6 +219,22 @@ public class ProductController {
 
     public void setNewHoeveelheidInVoorraad(int newHoeveelheidInVoorraad) {
         this.newHoeveelheidInVoorraad = newHoeveelheidInVoorraad;
+    }
+
+    public int getNewMerkId() {
+        return newMerkId;
+    }
+
+    public void setNewMerkId(int newMerkId) {
+        this.newMerkId = newMerkId;
+    }
+
+    public int getNewCategorieId() {
+        return newCategorieId;
+    }
+
+    public void setNewCategorieId(int newCategorieId) {
+        this.newCategorieId = newCategorieId;
     }
 
     /**

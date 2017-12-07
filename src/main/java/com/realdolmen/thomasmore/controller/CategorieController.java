@@ -33,6 +33,9 @@ public class CategorieController {
         categorieService.createCategorie("CPU");
         categorieService.createCategorie("GPU");
         categorieService.createCategorie("Moederbord");
+        categorieService.createCategorie("Voeding");
+        categorieService.createCategorie("RAM");
+        categorieService.createCategorie("Netwerkkaart");
     }
 
     private void clearForm() {
