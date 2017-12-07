@@ -29,7 +29,7 @@
             <b:panel>
                 <b:row>
                     <b:panel id="allOrders">
-                        <ui:repeat value="#{userController.selectedUser.bestellingen}" var="bestellingen">
+                        <ui:repeat value="#{userController.GetHuidigeBestellingen()}" var="bestellingen">
                             <p:panel  style="float:left;overflow-X: auto;width: 100%;">
                                 <h4>Bestelling ##{bestellingen.bestelnummer} gedaan op: #{bestellingen.besteldatum}</h4>
                                 <ui:repeat value="#{bestellingen.besteldeProducten}" var="bestproducten">

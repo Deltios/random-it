@@ -1,5 +1,7 @@
 package com.realdolmen.thomasmore.controller;
 
+import com.realdolmen.thomasmore.data.BesteldProduct;
+import com.realdolmen.thomasmore.data.Bestelling;
 import com.realdolmen.thomasmore.data.Klant;
 import com.realdolmen.thomasmore.data.User;
 import com.realdolmen.thomasmore.service.UserService;
@@ -131,6 +133,13 @@ public class UserController {
         session.setAttribute("user", null);
         session.setAttribute("winkelkarretje", null);
         return "/index";
+    }
+    public List<Bestelling> GetHuidigeBestellingen(){
+        List<Bestelling> bestellingen = selectedUser.getBestellingen();
+        return bestellingen;
+    }
+    public Bestelling GetLatestBestelling(){
+        return selectedUser.getBestellingen().get(selectedUser.getBestellingen().size()-1);
     }
     public void saveUserData(){
         this.selectedUser.setWachtwoord(this.newPaswoord);
