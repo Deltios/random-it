@@ -98,10 +98,10 @@ public class BestellingController {
         if(paymentResponse.isSuccess()){
             //succespagina
             //createBestelling();
-            return "/bestelling/bestelling-bevestiging";
+            return "bestelling-bevestiging";
         }
 
-        return "/bestelling/bestelling-mislukt";
+        return "bestelling-mislukt";
     }
 
     public void createBestelling() {
