@@ -65,15 +65,16 @@ html{
 }
 
 .footer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    position: fixed;
     left: 0;
-    padding: 1rem;
-    background-color: #efefef;
+    bottom: 0;
+    width: 100%;
+    background-color: #292b2c;
+    color: rgba(255, 255, 255, 0.5);
     text-align: center;
-    padding-top: 10rem;
+    border: solid black thin;
 }
+
 .OrderedProduct-Box{
     position: relative;
     width: 35%;
