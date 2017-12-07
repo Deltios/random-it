@@ -37,7 +37,7 @@
                         <b><h:outputText value="#{a.prijs * productController.getArtikelAantalInWinkelkarretje(session, a)}"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText></b>
                     </b:dataTableColumn>
                     <b:dataTableColumn orderable="false" label="">
-                        <b:commandButton action="#{productController.removeArtikelFromWinkelkarretje(session, a, 1)}" look="danger" value="Verwijder" iconAwesome="times"/>
+                        <b:commandButton action="#{productController.removeArtikelFromWinkelkarretje(session, a, 1)}" look="danger" value="Verwijder" iconAwesome="trash"/>
                     </b:dataTableColumn>
                 </b:dataTable>
 
