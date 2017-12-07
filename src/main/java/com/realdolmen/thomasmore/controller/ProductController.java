@@ -38,6 +38,7 @@ public class ProductController {
         this.categorieId = categorieId;
     }
 
+
     private Product product;
     public Product getProduct() {
         return product;
@@ -101,6 +102,18 @@ public class ProductController {
         else {
             return "/producten/winkelmandje";
         }
+    }
+
+    public List<Product> FrontpageProducten(){
+        Random rnd = new Random();
+        List<Product> alleProducten = this.getProducts();
+        List<Product> frontPageProducten = new ArrayList<Product>();
+        for (int i = 0; i < 5; i++){
+            int index = rnd.nextInt(alleProducten.size());
+            Product product = productService.getProduct(alleProducten.get(index).getId());
+            frontPageProducten.add(product);
+        }
+        return frontPageProducten;
     }
 
     public double berekenTotaalPrijs(HttpSession session) {
