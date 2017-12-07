@@ -4,8 +4,10 @@ package com.realdolmen.thomasmore.controller;
 import com.realdolmen.payment.jaxb.PaymentPort;
 import com.realdolmen.payment.jaxb.PaymentRequest;
 import com.realdolmen.payment.jaxb.PaymentResponse;
+import com.realdolmen.thomasmore.data.BesteldProduct;
 import com.realdolmen.thomasmore.data.Bestelling;
 import com.realdolmen.thomasmore.data.Product;
+import com.realdolmen.thomasmore.data.User;
 import com.realdolmen.thomasmore.service.BestellingService;
 import com.realdolmen.thomasmore.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
@@ -56,7 +59,7 @@ public class BestellingController {
         return bestellingService.findAllBestellingen();
     }
 
-    public String doeBetaling(HttpSession session){
+    public String doeBetaling(HttpSession session, List<Product> producten){
         System.out.println("doeBetaling methode");
         LocalDate vandaag = LocalDate.now();
         LocalDateTime vandaagTijd = LocalDateTime.now();
@@ -98,11 +101,27 @@ public class BestellingController {
         System.out.println("is succes?: " +paymentResponse.isSuccess());
 
         if(paymentResponse.isSuccess()){
+            User user = (User)session.getAttribute("user");
             //bestelling aanmaken
             newBestelnummer = vandaagTijd.toString()+newCvcCode;
             System.out.println("bestelnummer is: " + newBestelnummer);
             newOpmerking = "Betaling is gelukt";
-            bestellingService.createBestelling(newBestelnummer,vandaag,newOpmerking);;
+            Bestelling bestelling = new Bestelling();
+            bestelling.setOpmerking(newOpmerking);
+            bestelling.setUser(user);
+            bestelling.setBesteldatum(vandaag);
+            bestelling.setBestelnummer(newBestelnummer);
+            List<BesteldProduct> besteldeProducten = new ArrayList<BesteldProduct>();
+            for(Product prod : producten){
+                BesteldProduct bestprod = new BesteldProduct();
+                bestprod.setAantal(productController.getArtikelAantalInWinkelkarretje(session, prod));
+                bestprod.setBestelling(bestelling);
+                bestprod.setProduct(prod);
+                bestprod.setToegepastePrijs(prod.getPrijs());
+                besteldeProducten.add(bestprod);
+            }
+            bestelling.setBesteldeProducten(besteldeProducten);
+            bestellingService.saveOrUpdateBestelling(bestelling);
             return "bestelling-bevestiging";
         }
 

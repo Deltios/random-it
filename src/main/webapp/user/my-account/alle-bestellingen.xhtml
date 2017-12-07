@@ -30,18 +30,20 @@
                 <b:row>
                     <b:panel id="allOrders">
                         <ui:repeat value="#{userController.selectedUser.bestellingen}" var="bestellingen">
-                            <p>Bestelling ##{bestellingen.bestelnummer} gedaan op: #{bestellingen.besteldatum}</p>
                             <p:panel  style="float:left;overflow-X: auto;width: 100%;">
+                                <h4>Bestelling ##{bestellingen.bestelnummer} gedaan op: #{bestellingen.besteldatum}</h4>
                                 <ui:repeat value="#{bestellingen.besteldeProducten}" var="bestproducten">
                                     <div class="OrderedProduct-Box">
                                         <div class="OrderedProduct-Content">
                                             <div>
+                                                <h:link outcome="/producten/productdetails.xhtml">
+                                                <f:param name="productId" value="#{bestproducten.product.id}"/>
                                                 <div>
-                                                    <h:commandLink action="#{productController}"></h:commandLink>
-                                                <p><b:image name="placeholder" value="/resources/images/placeholder.png" tooltip="#{bestproducten.product.naam}" styleClass="centerImage"/></p>
-                                                <p>Aantal: #{bestproducten.aantal}</p>
+                                                    <p><b:image name="placeholder" value="/resources/images/placeholder.png" tooltip="#{bestproducten.product.naam}" styleClass="centerImage"/></p>
+                                                    <p>Aantal: #{bestproducten.aantal}</p>
                                                     <p>#{bestproducten.product.naam}</p>
                                                 </div>
+                                                </h:link>
                                             </div>
                                         </div>
                                     </div>

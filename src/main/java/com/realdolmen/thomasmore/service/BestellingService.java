@@ -23,7 +23,9 @@ public class BestellingService {
 
         bestellingRepository.save(bestelling);
     }
-
+    public void saveOrUpdateBestelling(Bestelling bestelling){
+        bestellingRepository.save(bestelling);
+    }
     public List<Bestelling> findAllBestellingen() {
         return bestellingRepository.findAll();
     }

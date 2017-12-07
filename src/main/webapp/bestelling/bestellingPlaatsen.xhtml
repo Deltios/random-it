@@ -74,7 +74,7 @@
                     <h:outputText id="teBetalen" value="#{productController.berekenTotaalPrijs(session)}">
                         <f:convertNumber currencySymbol="€" pattern="¤ #0.00" />
                     </h:outputText></p>
-                    <b:commandButton update="@form" value="Betalen" look="success" action="#{bestellingController.doeBetaling(session)}" tooltip="Dit is definitief!" iconAwesome="credit-card"/>
+                    <b:commandButton update="@form" value="Betalen" look="success" action="#{bestellingController.doeBetaling(session, productController.getArtikelsInWinkelkarretje(session))}" tooltip="Dit is definitief!" iconAwesome="credit-card"/>
                 </b:panel>
                     <b:commandButton action="#{productController.naarWinkelkarretjeOverzicht(session)}" look="primary" value="Terug naar winkelmandje" iconAwesome="shopping-basket"/>
                 </b:form>
