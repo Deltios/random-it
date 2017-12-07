@@ -43,7 +43,7 @@
 
                 <hr/>
 
-                <p style="text-align: right">Totaalbedrag: <h:outputText value="#{productController.berekenTotaalPrijs(session)}"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText></p>
+                <p style="text-align: right; font-size: 25px">Totaalbedrag: <h:outputText value="#{productController.berekenTotaalPrijs(session)}" style="font-weight: bold"><f:convertNumber currencySymbol="€" pattern="¤ #0.00" /></h:outputText></p>
             </b:panel>
         </h:form>
 

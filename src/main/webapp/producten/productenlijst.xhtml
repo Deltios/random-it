@@ -19,6 +19,13 @@
         </h:panelGroup>
     </h:panelGroup>
     <!-- kopieren van taakbalken stopt hier-->
+    <b:modal id="verificatieModal" title="Succes!" styleClass="modalPseudoClass">
+        <p>Het artikel werd toegevoegd aan uw winkelmandje!</p>
+        <f:facet name="footer">
+            <b:button value="Ok" look="primary" dismiss="modal" />
+        </f:facet>
+    </b:modal>
+
     <b:container>
             <h:form>
                 <b:button outcome="#{productController.naarWinkelkarretjeOverzicht(session)}" look="primary" value="Winkelmandje" iconAwesome="shopping-basket"/>
@@ -36,7 +43,7 @@
                                 <b:button outcome="productdetails" look="primary" value="Details" iconAwesome="info-circle" style="width:40%; margin:5px">
                                     <f:param name="productId" value="#{p.id}"/>
                                 </b:button>
-                                <b:commandButton action="#{productController.addArtikelInWinkelkarretje(session, p, 1)}" look="primary" value="In mandje" iconAwesome="shopping-basket" style="width:40%; margin:5px" />
+                                <b:commandButton action="#{productController.addArtikelInWinkelkarretje(session, p, 1)}" look="primary" value="In mandje" iconAwesome="shopping-basket" style="width:40%; margin:5px" ajax="true" oncomplete="$('#verificatieModal').modal('show')" data-target="#verificatieModal" data-toggle="modal" />
                             </p>
                         </b:panel>
                     </c:forEach>
