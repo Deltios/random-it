@@ -14,7 +14,7 @@ public class SupportTicket implements Serializable {
 	private Long id;
 	private String naam;
 	private String opmerking;
-	private Calendar datumAanvraag;
+	private LocalDate datumAanvraag;
 	private String onderwerp;
 
 	@ManyToOne
@@ -52,11 +52,11 @@ public class SupportTicket implements Serializable {
 		this.opmerking = opmerking;
 	}
 
-	public Calendar getDatumAanvraag() {
+	public LocalDate getDatumAanvraag() {
 		return datumAanvraag;
 	}
 
-	public void setDatumAanvraag(Calendar datumAanvraag) {
+	public void setDatumAanvraag(LocalDate datumAanvraag) {
 		this.datumAanvraag = datumAanvraag;
 	}
 

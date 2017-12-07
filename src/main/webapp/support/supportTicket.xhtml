@@ -28,7 +28,7 @@
 
         <div  class="jumbotron" >
             <p >Support Ticket aan maken</p>
-            <p:button  outcome="#{supportTicketController.naarsupport()}" icon="ui-icon-star" title="Icon Only">
+            <p:button  outcome="#{supportTicketController.naarsupport()}" icon="ui-icon-add" title="Icon Only">
             </p:button>
         </div>
 
@@ -36,6 +36,8 @@
         <b:dataTable  id = "supportticketsbyname" var="s" value="#{supportTicketController.getSupportTicketById()}" responsive="true">
             <b:dataTableColumn value="#{s.onderwerp}" />
             <b:dataTableColumn value="#{s.opmerking}" />
+            <b:dataTableColumn value="#{s.datumAanvraag}" />
+
         </b:dataTable>
         </b:panel>
 

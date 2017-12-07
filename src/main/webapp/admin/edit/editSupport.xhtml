@@ -25,20 +25,36 @@
             <b:dataTable  id = "supportticketsbyname" var="s" value="#{adminController.getSupportTicketByOnderwerp()}" responsive="true">
                 <b:dataTableColumn value="#{s.onderwerp}" />
                 <b:dataTableColumn value="#{s.opmerking}" />
+                <b:dataTableColumn value="#{s.opmerking}" />
+                <b:column span="3">
+                    <a id="atrigger" class="btn btn-primary btn-lg" href="#amodal" data-toggle="modal">Geef antwoord</a>
+                </b:column>
 
             </b:dataTable>
-
         </h:form>
-
         <b:panel>
-            <h:form>
+     <!--       <h:form>
                 <h:panelGrid columns="4" cellpadding="5">
                     <h:outputLabel for="antwoord" value="Antwoord:" />
                     <p:inputTextarea id="antwoord" value="#{supportTicketController.supportTicket.opmerking}" />
                     <p:commandButton value="Submit" action="#{supportTicketController.voegtoe(adminController.getSupportTicketByOnderwerp())}" update="@form"  />
                 </h:panelGrid>
-            </h:form>
+            </h:form>   -->
         </b:panel>
     </b:container>
+    <b:modal id="amodal" title="Modal Example" styleClass="modalPseudoClass">
+        <p>geef hier uw antwoord</p>
+        <h:form>
+            <h:panelGrid columns="4" cellpadding="5">
+                <h:outputLabel for="antwoord" value="Antwoord:" />
+                <p:inputTextarea id="antwoord" value="#{supportTicketController.supportTicket.opmerking}" />
+                <p:commandButton value="Submit" action="#{supportTicketController.voegtoe(s.onderwerp)}" update="@form"  />
+            </h:panelGrid>
+        </h:form>
+        <f:facet name="footer">
+            <b:button value="Close" dismiss="modal" />
+            <b:button value="Ok" look="primary" dismiss="modal" />
+        </f:facet>
+    </b:modal>
 </h:body>
 </html>
