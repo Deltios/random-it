@@ -11,7 +11,7 @@ import java.util.List;
 public interface SupportTicketRepository extends CrudRepository<SupportTicket, Long> {
     SupportTicket findByNaam(String naam);
     List<SupportTicket> findAll();
-    List<SupportTicket> findAllByUser(User user);
+    List<SupportTicket> findAllByUserOrderByDatumAanvraag(User user);
     List<SupportTicket> findAllByOnderwerp(String onderwerp);
-
+    SupportTicket findByOnderwerp(String onderwerp);
 }

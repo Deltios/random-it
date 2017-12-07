@@ -41,7 +41,7 @@ public class SupportTicketService {
     }
 
     public List<SupportTicket> findSupportsByUser(User user){
-        return supportTicketRepository.findAllByUser(user);
+        return supportTicketRepository.findAllByUserOrderByDatumAanvraag(user);
     }
 
 

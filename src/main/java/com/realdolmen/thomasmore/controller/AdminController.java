@@ -3,7 +3,6 @@ package com.realdolmen.thomasmore.controller;
 import com.realdolmen.thomasmore.data.*;
 import com.realdolmen.thomasmore.service.AdminService;
 import com.realdolmen.thomasmore.service.UserService;
-import com.realdolmen.thomasmore.service.SupportTicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.faces.bean.ManagedBean;
@@ -28,14 +27,25 @@ public class AdminController {
     @ManagedProperty("#{adminService}")
     private AdminService adminService;
 
-    private List<SupportTicket> supportTickets;
+    public SupportTicket SupportTicketByOnderwerp;
+    public String SupportByName;
     private List<Bestelling> bestellingen;
     private User user;
     private Product product;
     private Merk merk;
     private Categorie categorie;
+
+
     private String newPassword = null;
     public AdminController() {
+    }
+
+    public String getSupportByName() {
+        return SupportByName;
+    }
+
+    public void setSupportByName(String supportByName) {
+        SupportByName = supportByName;
     }
 
     public AdminController(HttpSession session, UserService userService ) {
@@ -63,8 +73,6 @@ public class AdminController {
         return "bestellingTable";
     }
 
-
-    public List<SupportTicket> SupportTicketByOnderwerp;
     public List<Product> getAllProducts(){
         return adminService.findAllProducts();
     }
@@ -74,6 +82,20 @@ public class AdminController {
     public String getBestellingenPersoon(long id){
         bestellingen = adminService.findBestellingenByPerson(id);
         return "bestellingTable";
+    }
+
+    public String editSupport(String onderwerp){
+        SupportTicketByOnderwerp = adminService.findSupportByOnderwerpName(onderwerp);
+       // SupportByName = adminService.findSupportByOnderwerpName(onderwerp);
+        return ("edit/editSupport");
+    }
+
+    public SupportTicket getSupportTicketByOnderwerp() {
+        return SupportTicketByOnderwerp;
+    }
+
+    public void setSupportTicketByOnderwerp(SupportTicket supportTicketByOnderwerp) {
+        SupportTicketByOnderwerp = supportTicketByOnderwerp;
     }
 
     public String newUser(){
@@ -86,13 +108,6 @@ public class AdminController {
         this.newPassword="";
         return ("edit/editUser");
     }
-
-    public String editSupport(String onderwerp){
-        SupportTicketByOnderwerp = adminService.findSupportByOnderwerp(onderwerp);
-        return ("edit/editSupport");
-    }
-
-
     public void saveUser(){
         this.user.setWachtwoord(this.newPassword);
         adminService.saveOrUpdateUser(user);
@@ -225,11 +240,5 @@ public class AdminController {
         this.newPassword = newPassword;
     }
 
-    public List<SupportTicket> getSupportTicketByOnderwerp() {
-        return SupportTicketByOnderwerp;
-    }
 
-    public void setSupportTicketByOnderwerp(List<SupportTicket> supportTicketByOnderwerp) {
-        SupportTicketByOnderwerp = supportTicketByOnderwerp;
-    }
 }

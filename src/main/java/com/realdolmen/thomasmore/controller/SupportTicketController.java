@@ -61,19 +61,20 @@ public class SupportTicketController {
         return "/support/supportTicket";
     }
 
+    String onderwerp;
 
     public String voegtoe(String onderwerpx){
         String onderwerp = onderwerpx;
-        this.supportTicketService.createSupportTicket(Calendar.getInstance(),supportTicket.getNaam(),supportTicket.getOpmerking(), onderwerp,user);
+        this.supportTicketService.createSupportTicket(Calendar.getInstance(),supportTicket.getNaam() ,supportTicket.getOpmerking(), onderwerp ,user);
         this.supportTicket = new SupportTicket();
-        return "/support/supportTicket";
+        return "/admin/supportTicketsTable";
     }
 
     public String naarSupportTicket(HttpSession session) {
         User user = (User)session.getAttribute("user");
        Long id = user.getId();
         SupportTicketById = supportTicketService.findSupportsByUser(user);
-       return "/support/nieuwspupportticket";
+       return "/support/supportTicket.xhtml";
     }
 
     public List<SupportTicket> getSupportTicketById() {
