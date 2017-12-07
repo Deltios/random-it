@@ -147,11 +147,7 @@ public class ProductController {
         newMerkId = 0;
     }
 
-    public String addArtikelInWinkelkarretje(HttpSession session, Product artikel, int aantalToeTeVoegen) {
-        if(session.getAttribute("user") == null) {
-            return "/user/login";
-        }
-
+    private void addArtikelInWinkelkarretjeMethod(HttpSession session, Product artikel, int aantalToeTeVoegen) {
         HashMap<Product, Integer> winkelkarretje;
 
         if(session.getAttribute("winkelkarretje") == null) {
@@ -169,6 +165,24 @@ public class ProductController {
         else {
             winkelkarretje.put(artikel, aantalToeTeVoegen);
         }
+    }
+
+    public String addArtikelInWinkelkarretjeDetails(HttpSession session, Product artikel, int aantalToeTeVoegen) {
+        if(session.getAttribute("user") == null) {
+            return "/user/login";
+        }
+
+        addArtikelInWinkelkarretjeMethod(session, artikel, aantalToeTeVoegen);
+
+        return "/producten/productdetails";
+    }
+
+    public String addArtikelInWinkelkarretjeOverzicht(HttpSession session, Product artikel, int aantalToeTeVoegen) {
+        if(session.getAttribute("user") == null) {
+            return "/user/login";
+        }
+
+        addArtikelInWinkelkarretjeMethod(session, artikel, aantalToeTeVoegen);
 
         return "/producten/productenlijst";
     }

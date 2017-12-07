@@ -52,7 +52,7 @@
                                     <b:button outcome="productdetails" look="primary" value="Details" iconAwesome="info-circle" style="width:40%; margin:5px">
                                         <f:param name="productId" value="#{p.id}"/>
                                     </b:button>
-                                    <b:commandButton action="#{productController.addArtikelInWinkelkarretje(session, p, 1)}" look="primary" value="In mandje" iconAwesome="shopping-basket" style="width:40%; margin:5px" ajax="true" oncomplete="$('#verificatieModal').modal('show')" data-target="#verificatieModal" data-toggle="modal" />
+                                    <b:commandButton action="#{productController.addArtikelInWinkelkarretjeOverzicht(session, p, 1)}" look="primary" value="In mandje" iconAwesome="shopping-basket" style="width:40%; margin:5px" ajax="true" oncomplete="$('#verificatieModal').modal('show')" data-target="#verificatieModal" data-toggle="modal" />
                                 </p>
                             </b:panel>
                         </c:forEach>
