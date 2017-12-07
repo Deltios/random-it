@@ -109,14 +109,19 @@ public class BestellingController {
 
         System.out.println(paymentResponse);
         System.out.println(paymentResponse.getErrorMessage());
-        System.out.println(paymentService.payment(paymentRequest));
 
         if(paymentResponse.isSuccess()) {
             System.out.println("payment success");
-            return "/index";
+            try {
+                bestellingService.createBestelling(newBestelnummer,newBesteldatum,newOpmerking);
+            } catch (NullPointerException ex){
+                System.out.println(ex);
+            }
+
+            return "/bestelling/bestelling-bevestiging";
         }
         System.out.println("payment fail");
-            return "/user/noAccess";
+            return "/bestelling/bestelling-mislukt";
     }
 
     public void createTestBestellingen(){
