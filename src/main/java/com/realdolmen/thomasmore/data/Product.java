@@ -16,6 +16,8 @@ public class Product implements Serializable {
 	private String omschrijving;
 	private double prijs;
 	private int hoeveelheidInVoorraad;
+	private int merkId;
+	private int categorieId;
 
 	@OneToMany(mappedBy = "product")
 	private List<BesteldProduct> besteldeProducten = new ArrayList<>();
@@ -34,6 +36,16 @@ public class Product implements Serializable {
 
 	public Product() {
 	}
+
+	/*
+	public Product(String naam, String omschrijving, double prijs, int hoeveelheidInVoorraad, Merk merkId, Categorie categorieId) {
+		this.naam = naam;
+		this.omschrijving = omschrijving;
+		this.prijs = prijs;
+		this.hoeveelheidInVoorraad = hoeveelheidInVoorraad;
+		this.merk = merkId;
+		this.categorie = categorieId;
+	}*/
 
 	public Long getId() {
 		return id;
@@ -105,6 +117,22 @@ public class Product implements Serializable {
 
 	public void setBesteldeProducten(List<BesteldProduct> besteldeProducten) {
 		this.besteldeProducten = besteldeProducten;
+	}
+
+	public int getMerkId() {
+		return merkId;
+	}
+
+	public void setMerkId(int merkId) {
+		this.merkId = merkId;
+	}
+
+	public int getCategorieId() {
+		return categorieId;
+	}
+
+	public void setCategorieId(int categorieId) {
+		this.categorieId = categorieId;
 	}
 
 	@Override

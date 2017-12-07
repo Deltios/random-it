@@ -31,6 +31,3 @@ Bootsfaces, zet er !important achter. */
 .open > .dropdown-toggle ~ .dropdown-toggle:hover{
     background-color: #031C56 !important;
 }
-.commandLink {
-    color: #fff !important;
-}

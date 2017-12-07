@@ -5,9 +5,11 @@ import com.realdolmen.payment.jaxb.PaymentPort;
 import com.realdolmen.payment.jaxb.PaymentRequest;
 import com.realdolmen.payment.jaxb.PaymentResponse;
 import com.realdolmen.thomasmore.data.Bestelling;
+import com.realdolmen.thomasmore.data.Product;
 import com.realdolmen.thomasmore.service.BestellingService;
 import com.realdolmen.thomasmore.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -38,7 +40,6 @@ public class BestellingController {
     @Autowired
     private PaymentPort paymentPort;
 
-
     private String newBestelnummer;
     private LocalDate newBesteldatum;
     private String newOpmerking;
@@ -54,31 +55,59 @@ public class BestellingController {
         return bestellingService.findAllBestellingen();
     }
 
-    public String doeBetaling(){
+    public String doeBetaling(HttpSession session){
+        System.out.println("doeBetaling methode");
+        LocalDate vandaag = LocalDate.now();
+        System.out.println("vandaag is " + vandaag);
+        ProductController productController = new ProductController();
+
         PaymentRequest paymentRequest = new PaymentRequest();
-        paymentRequest.setAmount(newAmount);
+        paymentRequest.setAmount(productController.berekenTotaalPrijs(session));
         paymentRequest.setCreditCardExpirationDate(newCreditCardExpirationDate);
+        UserController userController =  new UserController();
+        //session.getAttribute(userController.getNewUserVoornaam());
+
         paymentRequest.setCreditCardHolderName(newCreditCardHolderName);
         paymentRequest.setCreditCardNumber(newCreditCardNumber);
         paymentRequest.setCvcCode(newCvcCode);
-        paymentRequest.getMerchantId();
+        paymentRequest.setMerchantId("Random IT");
+        paymentRequest.setCreditCardHolderName("John Doe");
 
-       PaymentResponse paymentResponse;
-        paymentResponse = paymentService.payment(paymentRequest);
 
+        //paar controles in console:
+        System.out.println("expiration date: " + paymentRequest.getCreditCardExpirationDate());
+        System.out.println("totaalprijs: " + paymentRequest.getAmount());
+        System.out.println("creditcardnumber: " + paymentRequest.getCreditCardNumber());
+        System.out.println("naam klant: " + paymentRequest.getCreditCardHolderName());
+        System.out.println("cvc code: " + paymentRequest.getCvcCode());
+        System.out.println("merchant ID: " + paymentRequest.getMerchantId());
+
+       PaymentResponse paymentResponse = new PaymentResponse();
+
+        try {
+            System.out.println(paymentService.payment(paymentRequest));
+            paymentResponse = paymentService.payment(paymentRequest);
+            System.out.println("payment opgeslagen in paymentresponse");
+        } catch (Exception ex){
+            System.out.println("error bij betaling: " + ex);
+        }
+
+        System.out.println("paymentresponse: " + paymentResponse);
+        System.out.println("is succes?: " +paymentResponse.isSuccess());
 
         if(paymentResponse.isSuccess()){
             //succespagina
-            createBestelling();
-        }else {
-            //errorpagina
+            //createBestelling();
+            return "/bestelling/bestelling-bevestiging";
         }
 
-        return "/index";
+        return "/bestelling/bestelling-mislukt";
     }
 
     public void createBestelling() {
-        bestellingService.createBestelling(newBestelnummer, newBesteldatum, newOpmerking);
+        LocalDate vandaag = LocalDate.now();
+        System.out.println("vandaag is " + vandaag);
+        bestellingService.createBestelling(newBestelnummer, vandaag, newOpmerking);
         addMessage("Bestelling toegevoegd!");
         clearForm();
     }
@@ -109,14 +138,19 @@ public class BestellingController {
 
         System.out.println(paymentResponse);
         System.out.println(paymentResponse.getErrorMessage());
-        System.out.println(paymentService.payment(paymentRequest));
 
         if(paymentResponse.isSuccess()) {
             System.out.println("payment success");
-            return "/index";
+            try {
+                bestellingService.createBestelling(newBestelnummer,newBesteldatum,newOpmerking);
+            } catch (NullPointerException ex){
+                System.out.println(ex);
+            }
+
+            return "/bestelling/bestelling-bevestiging";
         }
         System.out.println("payment fail");
-            return "/user/noAccess";
+            return "/bestelling/bestelling-mislukt";
     }
 
     public void createTestBestellingen(){

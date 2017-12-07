@@ -13,7 +13,6 @@
     <b:navBar brand="Welkom, #{userController.huidigeKlant.voornaam}" brandHref="#{request.contextPath}/index.xhtml" inverse="true" iconAwesome="home">
         <b:navbarLinks>
             <b:navLink value="Producten" outcome="/producten/productenlijst"/>
-            <b:navLink value="Profiel" outcome="/user/my-account/dashboard"/>
            <!--<b:dropMenu value="Dropdown" iconAwesome="birthday-cake">
                 <b:navLink value="Action" href="#"></b:navLink>
                 <b:navLink value="Another action" href="#"></b:navLink>
@@ -46,9 +45,9 @@
         <h:form>
             <b:navbarLinks pull="right">
                 <b:navLink outcome="#{productController.naarWinkelkarretjeOverzicht(session)}" iconAwesome="shopping-basket"></b:navLink>
-                    <b:navCommandLink value="Admin"  rendered="#{userController.sessionUserLevel == 3}" outcome="/admin/adminMain.xhtml">
-                    </b:navCommandLink>
-                <b:navCommandLink value='Log uit #{session.getAttribute("type")}' action="#{userController.logoutUser(session)}"/>
+                <b:navLink value="Profiel" outcome="/user/my-account/dashboard"/>
+                <b:navCommandLink value="Admin"  rendered="#{userController.sessionUserLevel == 3}" outcome="/admin/adminMain.xhtml"/>
+                <b:navCommandLink value='Log uit' action="#{userController.logoutUser(session)}"/>
             </b:navbarLinks>
         </h:form>
     </b:navBar>
