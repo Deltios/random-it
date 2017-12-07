@@ -19,32 +19,30 @@
     </h:panelGroup>
 
     <b:container >
+        <h:form>
+
+
+
+
+        </h:form>
         <div  class="jumbotron" >
-        <h:form >
+        <h:form title="Support ticket" value="#{supportTicketController.now()}" >
                 <p:messages id="messages" />
                 <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputLabel for="naam" value="Naam:" />
-                    <p:inputText id="naam" value="#{supportTicketController.supportTicket.naam}" />
+
+                    <h:outputLabel for="onderwerp" value="Onderwerp:" />
+                    <p:inputText id="onderwerp" value="#{supportTicketController.supportTicket.onderwerp}" />
 
                     <h:outputLabel for="opmerking" value="Opmerking:" />
-                    <p:inputText id="opmerking" value="#{supportTicketController.supportTicket.opmerking}" />
+                    <p:inputTextarea id="opmerking" value="#{supportTicketController.supportTicket.opmerking}" />
 
                     <p:outputLabel value="#{supportTicketController.now()}">
                         <f:convertDateTime pattern="MM/dd/yyyy" type="date" />
                     </p:outputLabel>
 
-          <!---          <b:selectOneMenu value="#{supportTicketController.supportTicket.user}"  label="Categorie">
-                        <f:selectItem itemLabel=""/>
-                        <f:selectItems value="#{userController.huidigeKlant}" />
-                    </b:selectOneMenu>
 
-                    <h:outputLabel for="xxx" value="xxx:" />
-                    <p:inputText id="xxx" value="#{userController.huidigeKlant}" />     -->
-
-                    <p:commandButton value="Submit" action="#{supportTicketController.add()}" update="@form"  />
-
+                    <p:commandButton value="Submit" action="#{supportTicketController.add(session)}" update="@form"  />
                 </h:panelGrid>
-
         </h:form>
         </div>
 

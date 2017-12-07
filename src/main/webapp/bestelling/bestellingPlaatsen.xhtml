@@ -53,10 +53,29 @@
             </b:column>
             <b:column rendered="#{userController.sessionUserId != null}">
                 <h3 class="smoke">Uw gegevens</h3>
-                <b:form>
+                <b:form value="#{productController.getArtikelsInWinkelkarretje(session)}" var="a">
                 <b:panel>
-                    <b:inputText id="kaartnummer" type="number" label="Kredietkaartnummer" placeholder="4111111111111111" pattern=".{16,16}" required="true" tooltip="Gelieve een kaartnummer van 16 cijfers in te vullen"></b:inputText>
-                    <b:commandButton value="Betalen" look="success" action="#{bestellingController.createBestelling()}" tooltip="Dit is definitief!" iconAwesome="credit-card"/>
+                    <b:inputText id="naam" label="Naam"
+                                 required="true" value="#{userController.huidigeKlant.voornaam} #{userController.huidigeKlant.familienaam}"
+                                 tooltip="Gelieve te controleren of dit overeenkomt met de naam op uw kredietkaart.">
+                    </b:inputText>
+                    <b:inputText id="kaartnummer" label="Kredietkaartnummer"
+                                 mask="9999999999999999" required="true" maxlength="16"
+                                 tooltip="Gelieve een kaartnummer van 16 cijfers in te vullen"
+                                 size="16">
+                    </b:inputText>
+                    <b:inputText id="CVC" label="CVC"
+                                 mask="999" required="true" maxlength="3" size="3"
+                                 tooltip="De CVC-code staat op de achterkant van uw kredietkaart, net onder de strook waarop uw handtekening staat. Het gaat om de laatste 3 cijfers van de code met 7 cijfers. ">
+                    </b:inputText>
+                    <b:inputText id="expirationDate" label="Vervaldatum van uw kaart"
+                                 mask="mm/yy" required="true">
+                    </b:inputText>
+                    <p>Totaal te betalen:
+                    <h:outputText id="teBetalen" value="#{productController.berekenTotaalPrijs(session)}">
+                        <f:convertNumber currencySymbol="€" pattern="¤ #0.00" />
+                    </h:outputText></p>
+                    <b:commandButton update="@form" value="Betalen" look="success" action="#{bestellingController.doeBetaling()}" tooltip="Dit is definitief!" iconAwesome="credit-card"/>
                 </b:panel>
                     <b:button outcome="#{productController.naarWinkelkarretjeOverzicht(session)}" look="primary" value="Terug naar winkelmandje" iconAwesome="shopping-basket"/>
                 </b:form>

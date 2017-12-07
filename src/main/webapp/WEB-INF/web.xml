@@ -55,4 +55,13 @@
         <filter-name>AdminFilter</filter-name>
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
+    <filter>
+        <filter-name>WinkelFilter</filter-name>
+        <filter-class>com.realdolmen.thomasmore.security.WinkelFilter</filter-class>
+    </filter>
+    <filter-mapping >
+        <filter-name>WinkelFilter</filter-name>
+        <url-pattern>/producten/winkelmandje.xhtml</url-pattern>
+        <url-pattern>/user/my-account/*</url-pattern>
+    </filter-mapping>
 </web-app>

@@ -4,7 +4,8 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
 <h:head>
     <ui:include src="../../included/head/head.xhtml"></ui:include>
 </h:head>
@@ -19,16 +20,25 @@
         </h:panelGroup>
     </h:panelGroup>
     <b:container>
+
         <h:form prependId="false">
-            <b:row>
-                <b:inputText label="Naam:" value="#{adminController.categorie.naam}" span="5" placeholder="" required="true"/>
-                <b:selectOneMenu value="#{adminController.categorie.hoofdcategorie}" colMd="2" label="Categorie" labelColMd="2">
-                    <f:selectItem itemLabel=""/>
-                    <f:selectItems value="#{adminController.getAllCategorieen()}" var="c" itemValue="#{c}" itemLabel="#{c.naam}"/>
-                </b:selectOneMenu>
-            </b:row>
-            <b:commandButton value="Opslaan" look="primary" action="#{adminController.saveCategorie()}" />
+            <b:dataTable  id = "supportticketsbyname" var="s" value="#{adminController.getSupportTicketByOnderwerp()}" responsive="true">
+                <b:dataTableColumn value="#{s.onderwerp}" />
+                <b:dataTableColumn value="#{s.opmerking}" />
+
+            </b:dataTable>
+
         </h:form>
+
+        <b:panel>
+            <h:form>
+                <h:panelGrid columns="4" cellpadding="5">
+                    <h:outputLabel for="antwoord" value="Antwoord:" />
+                    <p:inputTextarea id="antwoord" value="#{supportTicketController.supportTicket.opmerking}" />
+                    <p:commandButton value="Submit" action="#{supportTicketController.voegtoe(adminController.getSupportTicketByOnderwerp())}" update="@form"  />
+                </h:panelGrid>
+            </h:form>
+        </b:panel>
     </b:container>
 </h:body>
 </html>

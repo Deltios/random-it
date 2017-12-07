@@ -40,5 +40,9 @@ public class SupportTicketService {
         return supportTicketRepository.findAll();
     }
 
+    public List<SupportTicket> findSupportsByUser(User user){
+        return supportTicketRepository.findAllByUser(user);
+    }
+
 
 }

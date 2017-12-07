@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <title>Producten</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
+    <h:outputStylesheet name="style/style.css"></h:outputStylesheet>
+</h:head>
+<h:body styleClass="achtergrondfoto">
+    <!-- <ui:include> kan gebruikt worden om delen vanuit een andere XHTML gemakkelijk over te zetten: navbar als voorbeeld.  -->
+    <h:panelGroup id="wrapperPanel">
+        <h:panelGroup id="loggedOut" rendered="#{userController.sessionUserId == null}">
+            <ui:include src="/included/navbar/navBar.xhtml"/>
+        </h:panelGroup>
+        <h:panelGroup id="loggedIn" rendered="#{userController.sessionUserId != null}">
+            <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
+        </h:panelGroup>
+    </h:panelGroup>
+    <!-- kopieren van taakbalken stopt hier-->
+    <b:container>
+        <b:panelGrid colSpans="4, 8">
+            <b:panel>
+                <p><p:link outcome="/user/my-account/dashboard.xhtml">Mijn account</p:link></p>
+                <p><p:link outcome="/user/my-account/alle-bestellingen.xhtml">Mijn bestellingen</p:link></p>
+                <p><p:link outcome="/user/my-account/bewerk-gegevens.xhtml">Mijn gegevens</p:link></p>
+            </b:panel>
+            <b:panel>
+                <h2>Laatste bestelling op:#{userController.selectedUser.bestellingen[0].besteldatum}</h2>
+                <b:row>
+
+                    <b:panel id="latestOrder">
+                        <p:panel  style="float:left;overflow-X: auto;width: 100%;">
+
+                            <ui:repeat value="#{userController.selectedUser.bestellingen[userController.selectedUser.bestellingen.size()-1].besteldeProducten}" var="bestproducten">
+                                <div class="OrderedProduct-Box">
+                                    <div class="OrderedProduct-Content">
+                                        <div>
+                                            <div>
+                                                <p><b:image name="placeholder" value="/resources/images/placeholder.png" tooltip="#{bestproducten.product.naam}" styleClass="centerImage"/></p>
+                                                <p>Aantal: #{bestproducten.aantal}</p>
+                                                <p>#{bestproducten.product.naam}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ui:repeat>
+                        </p:panel>
+                    </b:panel>
+                </b:row>
+                <b:row>
+                    <p:panel  style="float:left;width: 96%;margin:15px;">
+                        <p><b>Klantennummer: </b>#{userController.selectedUser.id}</p>
+                        <p><b>Naam: </b>#{userController.selectedUser.voornaam} #{userController.selectedUser.familienaam}</p>
+                        <p><b>Email: </b>#{userController.selectedUser.email}</p>
+                        <p><b>Adres: </b>#{userController.selectedUser.adres} #{userController.selectedUser.postcode}</p>
+                        <p><b>Woonplaats: </b>#{userController.selectedUser.gemeente}</p>
+                    </p:panel>
+                    <p:link outcome="/user/my-account/bewerk-gegevens.xhtml">Gebruikersgegevens bewerken</p:link>
+                </b:row>
+            </b:panel>
+        </b:panelGrid>
+    </b:container>
+</h:body>
+</html>

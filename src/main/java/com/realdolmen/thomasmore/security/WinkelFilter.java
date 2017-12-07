@@ -8,23 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-public class AdminFilter implements Filter {
+public class WinkelFilter implements Filter {
     public void destroy() {
     }
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
-        User loginAdmin = null;
+        User loginUser = null;
         int level = 0;
         if (request.getSession().getAttribute("user")!= null){
-            loginAdmin = (User) request.getSession().getAttribute("user");
-            level = loginAdmin.getUserLevel();
+            loginUser = (User) request.getSession().getAttribute("user");
         }
         String loginURL = request.getContextPath() + "/user/login.xhtml";
-        if(loginAdmin != null && loginAdmin.getUserLevel() == 3){
+        if(loginUser != null){
             chain.doFilter(req, res);
         }
-        else if (level != 3){
+        else if (loginUser == null){
             response.sendRedirect(request.getContextPath() + "/user/login.xhtml");
         }
         else{

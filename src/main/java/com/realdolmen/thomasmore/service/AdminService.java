@@ -41,6 +41,7 @@ public class AdminService {
     public List<Bestelling> findAllBestelling(){return bestellingRepository.findAll();}
     public List<Specificatie> findAllSpecificatie(){return specificatieRepository.findAll();}
     public List<SupportTicket> findAllSupportTicket(){return supportTicketRepository.findAll();}
+    public List<SupportTicket> findSupportByOnderwerp(String onderwerp){return supportTicketRepository.findAllByOnderwerp(onderwerp);}
 
     public User findUserById(Long id){return userRepository.findOne(id);}
     public Product findProductById(Long id){return productRepository.findOne(id);}
