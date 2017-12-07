@@ -11,7 +11,13 @@ public class PaymentConfiguration {
 
     @Bean
     public PaymentPort paymentPort(){
-        return null;// new PaymentPortService().getPaymentPortSoap11();
+        try {
+            return new PaymentPortService().getPaymentPortSoap11();
+        } catch (RuntimeException ex){
+            System.out.println("paymentPort configuration is mislukt");
+            return null;
+        }
+
     }
 
 }
