@@ -17,29 +17,21 @@
             <ui:include src="/included/navbar/navBarLoggedIn.xhtml"/>
         </h:panelGroup>
     </h:panelGroup>
-
-    <b:container rendered="#{userController.sessionUserId == null}">
-        <div  class="jumbotron" >
-            <p >U moet over een account beschikken en ingelogd zijn om een support ticket aan te maken</p>
-        </div>
-    </b:container>
-
-    <b:container rendered="#{userController.sessionUserId != null}">
-
-        <div  class="jumbotron" >
-            <p >Support Ticket aan maken</p>
-            <p:button  outcome="#{supportTicketController.naarsupport()}" icon="ui-icon-star" title="Icon Only">
-            </p:button>
-        </div>
-
-        <b:panel>
-        <b:dataTable  id = "supportticketsbyname" var="s" value="#{supportTicketController.getSupportTicketById()}" responsive="true">
-            <b:dataTableColumn value="#{s.onderwerp}" />
-            <b:dataTableColumn value="#{s.opmerking}" />
-        </b:dataTable>
-        </b:panel>
+    <!-- kopieren van taakbalken stopt hier-->
+    <b:container>
+        <b:row>
+            <b:panel>
+                <h:form>
+                    <br/>
+                    <b:dataTable id = "supporttickets" var="s" value="#{supportTicketController.getAllSupportTickets()}" responsive="true">
+                        <b:dataTableColumn value="#{s.onderwerp}" />
+                        <b:dataTableColumn value="#{s.opmerking}" />
+                        <b:dataTableColumn label="Antwoord op support"><h:commandLink action="#{adminController.editSupport(s.onderwerp)}"><b:icon name="pencil" /></h:commandLink></b:dataTableColumn>
+                    </b:dataTable>
+                </h:form>
+            </b:panel>
+        </b:row>
 
     </b:container>
-    <ui:include src="../included/footer/footer.xhtml"></ui:include>
 </h:body>
 </html>

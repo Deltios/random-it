@@ -20,7 +20,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import com.realdolmen.thomasmore.service.UserService;
-import com.realdolmen.thomasmore.session.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @ManagedBean
@@ -28,6 +27,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class SupportTicketController {
     @Autowired
     private HttpSession session;
+
+
+    List<SupportTicket> SupportTicketById;
+
 
     @ManagedProperty("#{supportTicketService}")
     private SupportTicketService supportTicketService;
@@ -47,10 +50,46 @@ public class SupportTicketController {
         this.supportTicket = supportTicket;
     }
 
-    public void add(HttpSession session){
+
+    User user;
+
+
+    public String add(HttpSession session){
         User user = (User)session.getAttribute("user");
         this.supportTicketService.createSupportTicket(Calendar.getInstance(),supportTicket.getNaam(),supportTicket.getOpmerking(), supportTicket.getOnderwerp(),user);
         this.supportTicket = new SupportTicket();
+        return "/support/supportTicket";
+    }
+
+
+    public String voegtoe(String onderwerpx){
+        String onderwerp = onderwerpx;
+        this.supportTicketService.createSupportTicket(Calendar.getInstance(),supportTicket.getNaam(),supportTicket.getOpmerking(), onderwerp,user);
+        this.supportTicket = new SupportTicket();
+        return "/support/supportTicket";
+    }
+
+    public String naarSupportTicket(HttpSession session) {
+        User user = (User)session.getAttribute("user");
+       Long id = user.getId();
+        SupportTicketById = supportTicketService.findSupportsByUser(user);
+       return "/support/nieuwspupportticket";
+    }
+
+    public List<SupportTicket> getSupportTicketById() {
+        return SupportTicketById;
+    }
+
+    public void setSupportTicketById(List<SupportTicket> supportTicketById) {
+        SupportTicketById = supportTicketById;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     private User newUser;
@@ -69,9 +108,20 @@ public class SupportTicketController {
         clearForm();
     }
 
+
+    public List<SupportTicket> getAllSupportTickets(){
+        return supportTicketService.findAllSupportTickets();
+    }
+
+    public List<SupportTicket> findAllSupportTicketsByName(){
+        return supportTicketService.findAllSupportTickets();
+    }
+
+
     public List<User> getAllCategorieenid(){
         return supportTicketService.findAllCategorieid();
     }
+
 
     public void createTestSupportTickets(){
      //   supportTicketService.createSupportTicket(LocalDate.of(2017, 10, 11 ), "Geen", "mrappel");

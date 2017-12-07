@@ -3,6 +3,7 @@ package com.realdolmen.thomasmore.controller;
 import com.realdolmen.thomasmore.data.*;
 import com.realdolmen.thomasmore.service.AdminService;
 import com.realdolmen.thomasmore.service.UserService;
+import com.realdolmen.thomasmore.service.SupportTicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.faces.bean.ManagedBean;
@@ -27,6 +28,7 @@ public class AdminController {
     @ManagedProperty("#{adminService}")
     private AdminService adminService;
 
+    private List<SupportTicket> supportTickets;
     private List<Bestelling> bestellingen;
     private User user;
     private Product product;
@@ -60,6 +62,9 @@ public class AdminController {
         bestellingen = adminService.findAllBestelling();
         return "bestellingTable";
     }
+
+
+    public List<SupportTicket> SupportTicketByOnderwerp;
     public List<Product> getAllProducts(){
         return adminService.findAllProducts();
     }
@@ -81,6 +86,13 @@ public class AdminController {
         this.newPassword="";
         return ("edit/editUser");
     }
+
+    public String editSupport(String onderwerp){
+        SupportTicketByOnderwerp = adminService.findSupportByOnderwerp(onderwerp);
+        return ("edit/editSupport");
+    }
+
+
     public void saveUser(){
         this.user.setWachtwoord(this.newPassword);
         adminService.saveOrUpdateUser(user);
@@ -211,5 +223,13 @@ public class AdminController {
 
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
+    }
+
+    public List<SupportTicket> getSupportTicketByOnderwerp() {
+        return SupportTicketByOnderwerp;
+    }
+
+    public void setSupportTicketByOnderwerp(List<SupportTicket> supportTicketByOnderwerp) {
+        SupportTicketByOnderwerp = supportTicketByOnderwerp;
     }
 }
