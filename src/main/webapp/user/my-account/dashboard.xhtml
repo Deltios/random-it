@@ -27,7 +27,7 @@
                 <p><p:link outcome="/user/my-account/bewerk-gegevens.xhtml">Mijn gegevens</p:link></p>
             </b:panel>
             <b:panel>
-                <h2>Laatste bestelling op:#{userController.selectedUser.bestellingen[0].besteldatum}</h2>
+                <h2>Laatste bestelling op:#{userController.selectedUser.bestellingen[userController.selectedUser.bestellingen.size()-1].besteldatum}</h2>
                 <b:row>
 
                     <b:panel id="latestOrder">
@@ -61,7 +61,7 @@
                         <p><b>Adres: </b>#{userController.selectedUser.adres} #{userController.selectedUser.postcode}</p>
                         <p><b>Woonplaats: </b>#{userController.selectedUser.gemeente}</p>
                     </p:panel>
-                    <p:link outcome="/user/my-account/bewerk-gegevens.xhtml">Gebruikersgegevens bewerken</p:link>
+                    <p:link outcome="/user/my-account/bewerk-gegevens.xhtml" style="padding-left:15px;">Gebruikersgegevens bewerken</p:link>
                 </b:row>
             </b:panel>
         </b:panelGrid>

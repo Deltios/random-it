@@ -34,6 +34,24 @@
                         <b:button outcome="producten/productenlijst" look="primary" size="lg" value="Producten bekijken" />
                     </p>
                 </b:jumbotron>
+                <p:panel  style="float:left;width: 100%;" rendered="#{productController.FrontpageProducten() != null}">
+                    <ui:repeat value="#{productController.FrontpageProducten()}" var="product">
+                        <div class="FrontProduct-Box">
+                            <div class="FrontProduct-Content">
+                                <div>
+                                    <h:link outcome="/producten/productdetails.xhtml">
+                                        <f:param name="productId" value="#{product.id}"/>
+                                        <div>
+
+                                                <p><b:image name="placeholder" value="/resources/images/placeholder.png" tooltip="#{product.naam}" styleClass="centerImage"/></p>
+                                                <p>#{product.naam} - &#8364;#{product.prijs}</p>
+                                        </div>
+                                    </h:link>
+                                </div>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </p:panel>
             </b:column>
         </b:row>
     </b:container>
