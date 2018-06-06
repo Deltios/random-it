@@ -26,9 +26,9 @@ public class ApplicationConfiguration {
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/webshop");
-        dataSource.setUsername("root");
-        dataSource.setPassword("mysql");
+        dataSource.setUrl("mysql://db.sinners.be/delta_webshop");
+        dataSource.setUsername("delta");
+        dataSource.setPassword("jor19dy97");
 
         return dataSource;
     }
